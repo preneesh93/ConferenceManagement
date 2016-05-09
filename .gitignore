@@ -1,0 +1,7 @@
+/node_modules
+/app/lib
+/dist
+/.tmp
+/.sass-cache
+.idea/
+/.idea/

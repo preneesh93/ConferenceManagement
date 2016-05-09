@@ -1,0 +1,27 @@
+{
+  "name": "cms",
+  "description": "telecoperation lab",
+  "main": "app/index.html",
+  "dependencies": {
+    "angular": "latest",
+    "bootstrap": "^3.3.6",
+    "angular-material": "^1.0.8",
+    "font-awesome": "^4.6.2",
+    "angular-route": "^1.5.5"
+  },
+  "authors": [
+    "girish <sivadanamgirish@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/giri7io/cms",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "**/app/lib.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "app/lib"
+  ]
+}
