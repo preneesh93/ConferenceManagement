@@ -1,4 +1,7 @@
-//users
+/**
+ * Created by Girish on 5/9/2016.
+ */
+
 var mongojs = require('mongojs');
 var express = require('express');
 var user    = express.Router();

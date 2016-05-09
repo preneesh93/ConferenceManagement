@@ -4,7 +4,9 @@
   "main": "app/index.html",
   "dependencies": {
     "angular": "latest",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "angular-material": "^1.0.8",
+    "font-awesome": "^4.6.2"
   },
   "authors": [
     "girish <sivadanamgirish@gmail.com>"
