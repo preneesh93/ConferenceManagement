@@ -20,7 +20,7 @@ app.use('/api/author',authors);
 app.use('/api/chair',chair);
 
 
-app.use(express.static(__dirname + '/app'));
+app.use(express.static('../app'));
 app.use(bodyParser.json());
 
 app.listen(3000);
