@@ -13,14 +13,10 @@
  */
 angular
   .module('cms', [
-    'ngMaterial',
     'ngRoute',
-    'menu',
-    'routes'
-  ])
-  .controller('HomeController',function ($scope) {
-  console.log("home controller is called");
-  $scope.text = "this is angular test";
-
+    'routes',
+    'cms.controllers'
+  ]).constant('config', {
+  baseUrl : '/' , // Baseurl to load site resources
+  carouselInterval:3000
 });
-
