@@ -13,10 +13,15 @@
  */
 angular
   .module('cms', [
+    'ngMaterial',
+    'ngAnimate',
+    'ngAria',
     'ngRoute',
-    'routes',
-    'cms.controllers'
+    'routes'
   ]).constant('config', {
   baseUrl : '/' , // Baseurl to load site resources
   carouselInterval:3000
+}).config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('blue')
 });
