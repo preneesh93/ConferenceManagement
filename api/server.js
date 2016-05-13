@@ -21,6 +21,12 @@ app.use('/api/chair',chair);
 
 
 app.use(express.static('../app'));
+var path = require('path');
+app.all('/*', function(req, res, next) {
+  // Just send the index.html for other files to support HTML5Mode
+  res.sendfile(path.resolve('../app/index.html'));
+});
+
 app.use(bodyParser.json());
 
 app.listen(3000);

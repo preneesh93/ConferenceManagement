@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="login-container" layout="row" layout-align="center center" layout-margin>
+  <md-card >
+    <md-toolbar>
+      <div class="md-toolbar-tools" layout-align="center center">
+        <h2>Login</h2>
+      </div>
+    </md-toolbar>
 
-</body>
-</html>
+    <md-content layout="column" class="input-icons" layout-margin layout-padding>
+
+      <md-input-container >
+        <md-icon md-svg-src="img/email.svg" class="email"></md-icon>
+        <input ng-model="loginPage.email" type="email" placeholder="Email">
+      </md-input-container>
+
+      <md-input-container>
+
+        <md-icon md-svg-src="img/lock.svg" class="password"></md-icon>
+        <input ng-model="loginPage.password" type="password" placeholder="Password">
+      </md-input-container>
+
+      <md-button class="md-raised md-primary">Login</md-button>
+      <md-button class="md-primary" href="register">Register</md-button>
+
+    </md-content>
+  </md-card>
+</div>

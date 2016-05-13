@@ -7,8 +7,17 @@ angular.module('routes',[])
         controller: 'HomeController',
         controllerAs: 'home'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginController',
+        controllerAs: 'login'
+      })
+      .when('/404',{
+        templateUrl: 'views/404.html'
+
+      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/404'
       });
     $locationProvider.html5Mode(true);
   });
