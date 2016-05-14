@@ -13,11 +13,14 @@ user.use(function(req, res, next) {
   next();
 });
 user.get('/getuser',function (req,res) {
-  console.log("i recived a get req");
-  db.testdb.find(function (err,docs) {
+    console.log("i recived a get req");
+    db.testdb.find(function (err,docs) {
     console.log(docs);
     res.json(docs);
-  })
-});
+    })
+})
+
+
+
 
 module.exports = user;
