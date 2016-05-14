@@ -9,8 +9,11 @@ angular.module('routes',[])
       })
       .when('/login', {
         templateUrl: 'views/login.html',
-        controller: 'LoginController',
-        controllerAs: 'login'
+        controller: 'LoginController'
+      })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'RegistrationController'
       })
       .when('/404',{
         templateUrl: 'views/404.html'
