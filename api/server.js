@@ -11,8 +11,8 @@ var chair      = require('../api/routes/chair');
 var bodyParser = require('body-parser');
 
 var app = express();
-var db = mongojs('testdb',['testdb']);
 
+app.use(bodyParser.json());
 
 //server routes
 app.use('/api/user',users);
@@ -22,12 +22,15 @@ app.use('/api/chair',chair);
 
 app.use(express.static('../app'));
 var path = require('path');
+
+
+
+
 app.all('/*', function(req, res, next) {
   // Just send the index.html for other files to support HTML5Mode
   res.sendfile(path.resolve('../app/index.html'));
 });
 
-app.use(bodyParser.json());
 
 app.listen(3000);
 console.log("Server running on port 3000");
