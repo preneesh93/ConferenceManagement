@@ -1,5 +1,5 @@
 /**
- * Created by Smurf on 5/13/2016.
+ * Created by Giri on 5/13/2016.
  */
 angular.module('cms').controller('RegistrationController', function($scope, $http){
   console.log("inside registration controller")
