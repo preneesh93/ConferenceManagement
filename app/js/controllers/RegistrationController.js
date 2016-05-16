@@ -1,9 +1,10 @@
 /**
  * Created by Giri on 5/13/2016.
  */
-angular.module('cms').controller('RegistrationController', function($scope, $http){
+angular.module('cms').controller('RegistrationController', function($scope,$http,md5){
   console.log("inside registration controller")
   $scope.register = function () {
+    $scope.user.password=md5.createHash($scope.user.password);
     console.log($scope.user)
     $scope.data=JSON.stringify($scope.user)
     console.log($scope.data)

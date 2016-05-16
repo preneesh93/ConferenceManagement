@@ -1,9 +1,11 @@
 /**
  * Created by Giri on 5/10/2016.
  */
-angular.module('cms').controller('LoginController', function($scope, $http){
-  console.log("inside login controller")
-  $scope.login = function () {
+angular.module('cms')
+  .controller('LoginController',['$scope','$http','$state', 'md5',function($scope,$http,$state,md5){
+    console.log("inside login controller")
+    $scope.login = function () {
+    $scope.user.password=md5.createHash($scope.user.password);
     console.log($scope.user)
 
     var req = {
@@ -18,7 +20,10 @@ angular.module('cms').controller('LoginController', function($scope, $http){
         function(response){ // Success callback
           console.log(response)
           if(response.data.isAuthenticated==1){
-            $scope.msg="logged in successfully"
+            $state.go('dashboard')
+          }
+          else{
+
           }
         },
         function(response){ //Error callback
@@ -27,5 +32,5 @@ angular.module('cms').controller('LoginController', function($scope, $http){
       );
 
   }
-});
+}]);
 

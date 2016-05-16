@@ -18,7 +18,8 @@ angular
     'ngAria',
     'ngRoute',
     'routes',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngMd5'
   ]).constant('config', {
   baseUrl : '/' , // Baseurl to load site resources
   carouselInterval:3000
