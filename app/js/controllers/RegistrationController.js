@@ -20,6 +20,9 @@ angular.module('cms').controller('RegistrationController', function($scope, $htt
       .then(
         function(response){ // Success callback
           console.log(response)
+          if(response.data._id){
+            $scope.success=true;
+          }
         },
         function(response){ //Error callback
           console.log(response)

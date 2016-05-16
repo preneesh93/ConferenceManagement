@@ -17,7 +17,8 @@ angular
     'ngAnimate',
     'ngAria',
     'ngRoute',
-    'routes'
+    'routes',
+    'ui.bootstrap'
   ]).constant('config', {
   baseUrl : '/' , // Baseurl to load site resources
   carouselInterval:3000

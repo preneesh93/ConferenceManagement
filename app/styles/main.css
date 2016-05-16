@@ -5,4 +5,8 @@
   left: 0;
   right: 0;
   margin: auto;
+
+}
+.login-container label{
+  font-weight: normal !important;
 }
