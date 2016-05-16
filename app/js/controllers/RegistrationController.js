@@ -1,5 +1,5 @@
 /**
- * Created by Smurf on 5/13/2016.
+ * Created by Giri on 5/13/2016.
  */
 angular.module('cms').controller('RegistrationController', function($scope, $http){
   console.log("inside registration controller")
@@ -20,6 +20,9 @@ angular.module('cms').controller('RegistrationController', function($scope, $htt
       .then(
         function(response){ // Success callback
           console.log(response)
+          if(response.data._id){
+            $scope.success=true;
+          }
         },
         function(response){ //Error callback
           console.log(response)

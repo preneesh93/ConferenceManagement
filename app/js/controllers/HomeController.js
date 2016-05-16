@@ -1,4 +1,6 @@
-angular.module('cms').controller('HomeController', function($scope, $http){
-    console.log("inside home controller")
+angular.module('cms')
+  .controller('HomeController', function($scope, $state){
+    console.log("inside home controller");
+    $state.go('login');
   });
 
