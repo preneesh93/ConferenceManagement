@@ -5,12 +5,14 @@ angular.module('cms').controller('RegistrationController', function($scope, $htt
   console.log("inside registration controller")
   $scope.register = function () {
     console.log($scope.user)
+    $scope.data=JSON.stringify($scope.user)
+    console.log($scope.data)
 
 
     var req = {
-      method: 'POST',
+      method: 'post',
       url: "/api/user/register",
-      body: $scope.user
+      data: $scope.data
     };
 
     // Send it
