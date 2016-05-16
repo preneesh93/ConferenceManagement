@@ -12,7 +12,7 @@ module.exports = function(passport){
     // Passport needs to be able to serialize and deserialize users to support persistent login sessions
     passport.serializeUser(function(user, done) {
         console.log('serializing user:',user.username);
-        return done(null, user.username);
+        done(null, user.username);
     });
 
     passport.deserializeUser(function(username, done) {
@@ -28,18 +28,19 @@ module.exports = function(passport){
 
             //checking user
             if(!users[username]){
-                return done('Invalid Username!', false);
+                console.log('Invalid Username!' +username);
+                return done(null, false);
             }
 
-            //checking password
-            if(!isValidPassword(users[username], password)){
-                return done('Incorrect Password!', false);
+            if(isValidPassword(users[username], password)){
+                //sucessfully authenticated
+                console.log('Logged in Successfully!', users[username]);
+                return done(null, users[username]);
             }
-
-            //success
-            console.log('Logged in successfully!', false);
-
-            return done(null, users[username]);
+            else{
+                console.log('Incorrect password!' +username);
+                return done(null, false)
+            }
         }
     ));
 
@@ -59,9 +60,8 @@ module.exports = function(passport){
                 password: createHash(password)
             }
 
+            console.log(users[username].username + ' Registration successful');
             return done(null, users[username]);
-
-
         })
     );
 

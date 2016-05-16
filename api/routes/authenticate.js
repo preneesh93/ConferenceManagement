@@ -18,14 +18,14 @@ module.exports = function(passport){
 
     //log in
     router.post('/login', passport.authenticate('login', {
-        successRedirect: '/auth/success',
-        failureRedirect: '/auth/failure'
+        successRedirect: '/api/auth/success',
+        failureRedirect: '/api/auth/failure'
     }));
 
     //register
     router.post('/register', passport.authenticate('register', {
-        successRedirect: '/auth/success',
-        failureRedirect: '/auth/failure'
+        successRedirect: '/api/auth/success',
+        failureRedirect: '/api/auth/failure'
     }));
 
     //log out

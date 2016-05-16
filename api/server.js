@@ -3,10 +3,12 @@
  */
 
 var express    = require('express');
+var path       = require('path');
 var mongojs    = require('mongojs');
 var passport   = require('passport');
 var session    = require('express-session');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var users      = require('../api/routes/users');
 var authors    = require('../api/routes/authors');
 var chair      = require('../api/routes/chair');
@@ -15,20 +17,13 @@ var authenticate = require('../api/routes/authenticate')(passport);
 var app = express();
 var db = mongojs('testdb',['testdb']);
 
-
-app.use(express.static('../app'));
-var path = require('path');
-/*app.all('/*', function(req, res, next) {
-  // Just send the index.html for other files to support HTML5Mode
-  res.sendfile(path.resolve('../app/index.html'));
-});
-*/
-
 app.use(session({
   secret: 'secret yankee'
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'D:/CMS_Yankee/CMS/app')));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -38,15 +33,21 @@ app.use('/api/author',authors);
 app.use('/api/chair',chair);
 app.use('/api/auth',authenticate);
 
+/*app.all('/*', function(req, res, next) {
+  // Just send the index.html for other files to support HTML5Mode
+  res.sendfile(path.resolve('D:/CMS_Yankee/CMS/app/index.html'));
+});
+*/
+
 //Initialize Passport
-var initPassport = require('../api/passport-init');
+var initPassport = require('./passport-init');
 initPassport(passport);
 
 app.listen(3000);
 console.log("Server running on port 3000");
 
 
-
+module.exports = app;
 
 
 /* --- to start mongodb from nodejs server ---
