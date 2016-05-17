@@ -47,6 +47,19 @@ user.post('/register',function (req,res) {
     });
 });
 
+user.post('/update',function (req,res){
+  console.log("update route works")
+  console.log( req.query.username)
+  db.users.update(
+    {username: req.query.username},
+    {$set : {first_name:req.query.first_name}}
+  ,function (err,result) {
+    if (err){ throw err;}
+    console.log(result)
+    res.send(result)
+  })
+});
+
 
 
 
