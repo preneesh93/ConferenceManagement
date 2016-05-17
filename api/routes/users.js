@@ -15,7 +15,7 @@ user.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-user.get('/getuser',function (req,res) {
+user.get('/list',function (req,res) {
     console.log("i recived a get req");
     db.users.find(function (err,docs) {
     console.log(docs);
@@ -29,13 +29,11 @@ user.get('/login',function (req,res) {
       if(err) { throw err; }
       if(result == null){res.send("username does't exist")}
       else if(result.password === req.query.password){
-        res.send({msg:"login success",isAuthenticated:1})
+        res.send({id:result._id,isAuthenticated:true})
       }
       else {
         res.send("idiot wrong password")
       }
-
-
     });
 });
 
