@@ -1,0 +1,115 @@
+//users  --- create collection called Users
+{
+  _id:id
+  email: String,
+  password: String,
+  first_name: String,
+  last_name: String,
+  timestamp: Timestamp,
+  roles: [
+    author: Boolean,
+    reviewer: Boolean
+    ]
+  address: {
+    street: String,
+    city: String,
+    postal_code: Integer
+    State: String,
+    Country: String
+    }
+  institution: {
+    name: String
+    city: String,
+    State: String,
+    Country: String
+    }
+  submissions : [{id:_id}]
+  assigned_submissions: [{id:_id}]
+}
+
+
+//submission --- create a collection called Submissions
+
+submission: {
+  _id: objectid,
+  title: String,
+  author_id: objectid
+  authors: [{
+    first_name: String,
+    last_name: String,
+    email: String,
+    }],
+  abstract: String,
+  keywords: [String,String..],
+  file: Object,
+  status: String,
+}
+
+// reviews   --- create a collection called reviews
+
+
+review: {
+  _id: objectid,
+  reviewer_id: objectid
+  submission_id: objectid,
+  reviewer_expertise: integer,
+  overall_evaluation: integer,
+  summary: String,
+  strong_points: String,
+  weak_points: String,
+  comments: String
+}
+
+// chair   create chair collection
+
+{
+  _id:id,
+  email: String,
+  password: String,
+  first_name: String,
+  last_name: String,
+
+}
+
+tasks to do
+
+1. login registration - refine
+2. session managment
+3. dashboard show overview of submission and reviews with profile details
+   - implement storing large files in mongodb
+4. submissions page
+5. reviews page
+
+6. chair login
+7. chair dashboard overview of all authors reviewers submissions reviews
+8. assign page to assign submission to authors
+9. schedule management page
+   - deadlines for submissions and reviews
+10. summary charts
+
+bonus: email verification,
+       chat
+       email subcription to authors, reviewers,
+       automatic reviews assignment
+
+documentation: lokesh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
