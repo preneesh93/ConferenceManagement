@@ -20,7 +20,6 @@ module.exports.login = function (req, res){
     if(err) { throw err; }
     if(result == null){res.json("username does't exist")}
     else if(result.password === req.query.password){
-      console.log(result)
       res.json({id:result._id,isAuthenticated:true,token:newToken})
     }
     else {  res.json("idiot wrong password")    }
