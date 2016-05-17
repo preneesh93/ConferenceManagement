@@ -1,0 +1,30 @@
+<div flex="100">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Settings"  ng-click="openLeftMenu()">
+        <i class="material-icons md-48">account_circle</i>
+      </md-button>
+      <h2>
+        <span>Dashboard</span>
+      </h2>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="More">
+        <i class="material-icons">exit_to_app</i>
+      </md-button>
+
+      <md-sidenav md-component-id="right" md-is-open="isSidenavOpen" class="md-sidenav-right">
+        Left Nav!
+      </md-sidenav>
+    </div>
+  </md-toolbar>
+  <div>
+    <md-sidenav md-component-id="left" class="md-sidenav-left">
+      Left Nav!
+    </md-sidenav>
+  </div>
+
+  profile
+  <md-divider></md-divider>
+  submissions
+
+</div>

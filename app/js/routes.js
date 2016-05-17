@@ -14,6 +14,11 @@ angular.module('routes', ['ui.router'])
         templateUrl: 'views/register.html',
         controller: 'RegistrationController',
         data:{}
+      }).state('dashboard', {
+        url: "/dashboard",
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardController',
+        data:{}
       }).state('login', {
         url: "/login",
         templateUrl: 'views/login.html',
