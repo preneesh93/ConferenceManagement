@@ -3,6 +3,7 @@
  */
 angular.module('cms').controller('ProfileController',['$scope', '$http', function($scope,$http){
   console.log("Profile Control!");
+  
 }])
 .config(function($mdThemingProvider) {
 
