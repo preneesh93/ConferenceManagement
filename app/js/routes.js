@@ -24,6 +24,11 @@ angular.module('routes', ['ui.router'])
         templateUrl: 'views/login.html',
         controller: 'LoginController',
         data:{}
+      }).state('update', {
+        url: "/update",
+        templateUrl: 'views/edit_profile.html',
+        controller: 'ProfileController',
+        data: {}
       }).state('404', {
         url: "/404",
         templateUrl: 'views/404.html'

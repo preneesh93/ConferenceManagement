@@ -1,0 +1,87 @@
+<div ng-controller="ProfileController" layout="column" ng-cloak="" class="md-inline-form" ng-app="MyApp">
+
+  <md-content md-theme="docs-dark" layout-gt-sm="column" layout-padding="">
+    <div>
+      <md-input-container>
+        <label>Title</label>
+        <input ng-model="user.firstname">
+      </md-input-container>
+      <md-input-container>
+        <label>Last Name</label>
+        <input ng-model="user.lastname">
+      </md-input-container>
+    </div>
+    <div>
+      <md-input-container>
+        <label>Email</label>
+        <input ng-model="user.email" type="email" disabled>
+      </md-input-container>
+    </div>
+  </md-content>
+
+  <md-content layout-padding="">
+    <div>
+      <form name="profileForm">
+        <h3>Contact Details</h3>
+        <div layout-gt-xs="row">
+          <md-input-container class="md-block" flex-gt-xs="40">
+            <label>Street</label>
+            <input ng-model="user.street">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs="40">
+            <label>City</label>
+            <input ng-model="user.city">
+          </md-input-container>
+        </div>
+        <div layout-gt-xs="row">
+          <md-input-container class="md-block" flex-gt-xs="20">
+            <label>Postal Code</label>
+            <input name="postalCode" ng-model="user.postalCode" placeholder="12345"
+                   required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+            <div ng-messages="profileForm.postalCode.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Enter a valid Postal Code!</div>
+              <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
+                code.
+              </div>
+              <div ng-message="md-maxlength" class="my-message">
+                Don't use the long version silly...we don't need to be that specific...
+              </div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs="30">
+            <label>State</label>
+            <input ng-model="user.pincode">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs="30">
+            <label>Country</label>
+            <input ng-model="user.pincode">
+          </md-input-container>
+        </div>
+        <h3>Affiliation</h3>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm="80">
+            <label>Name of the Institution</label>
+            <input ng-model="user.firstName">
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm="20">
+            <label>City</label>
+            <input ng-model="theMax">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm="30">
+            <label>State</label>
+            <input ng-model="theMax">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm="30">
+            <label>Country</label>
+            <input ng-model="theMax">
+          </md-input-container>
+        </div>
+      </form>
+      <div>
+        <md-button class="md-raised md-primary" ng-disabled="profileForm.$invalid">Update</md-button>
+      </div>
+    </div>
+  </md-content>
+</div>
