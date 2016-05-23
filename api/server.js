@@ -9,6 +9,7 @@ var jwt        = require("jsonwebtoken");
 var users      = require('../api/routes/users');
 var authors    = require('../api/routes/authors');
 var chair      = require('../api/routes/chair');
+var config     = require('./config');
 var bodyParser = require('body-parser');
 
 var app = express();
@@ -18,7 +19,7 @@ var databaseUrl = "cms";
 var collections = ["users", "publications"];
 var db = mongojs(databaseUrl, collections);
 
-app.set('superSecret',"SMURF");
+var secret = config.secret
 
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
@@ -42,21 +43,15 @@ app.post('/api/auth',function (req,res,next) {
       var bearer = bearerHeader.split(" ");
       bearerToken = bearer[1];
       console.log(bearerToken)
-      jwt.verify(bearerToken, "SMURF", function(err, decoded) {
+      jwt.verify(bearerToken,secret, function(err, decoded) {
+        console.log(decoded.email)
         if(err){
-          console.log("not valid")
-          console.log(err)
-          console.log(err.message)
-          res.json(403,{msg:"invalid token"});
+          res.json(403,{msg:err.message});
         }
-        else if (user.token = bearerToken){
+        else if (user.token == bearerToken && decoded.email== user.email){
           res.json({token:user.token,isAuthenticated:true})
-          console.log(decoded)
         }
-
-
       });
-
     }
   });
 

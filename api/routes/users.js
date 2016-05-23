@@ -4,13 +4,14 @@
 
 var mongojs = require('mongojs');
 var express = require('express');
+var config     = require('.././config');
 var user    = express();
 var jwt        = require("jsonwebtoken");
 var databaseUrl = "cms";
 var collections = ["users", "publications"];
 var db = mongojs(databaseUrl, collections);
 
-var secret = "SMURF"
+var secret = config.secret
 user.get('/list',function (req,res) {
     console.log("i recived a get req");
     console.log(req.body);
