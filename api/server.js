@@ -4,6 +4,7 @@
 // MEAN Stack RESTful API Tutorial - Contact List App
 var express    = require('express');
 var mongojs    = require('mongojs');
+var jwt        = require("jsonwebtoken");
 
 var users      = require('../api/routes/users');
 var authors    = require('../api/routes/authors');
@@ -12,8 +13,54 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-app.use(bodyParser.json());
+var user    = express();
+var databaseUrl = "cms";
+var collections = ["users", "publications"];
+var db = mongojs(databaseUrl, collections);
 
+app.set('superSecret',"SMURF");
+
+app.use(bodyParser.json());
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+  next();
+});
+
+app.post('/api/auth',function (req,res,next) {
+  console.log("authhhhhhhhhhhhhhhhhhhhh")
+  console.log(req.body)
+  console.log(req.body.username)
+  var bearerToken;
+  var bearerHeader = req.headers["authorization"];
+
+  db.users.findOne({username:req.body.username},function (err,user) {
+    if(err) { throw err; }
+    if(user == null){res.json("username does't exist")}
+    else if (typeof bearerHeader !== 'undefined') {
+      var bearer = bearerHeader.split(" ");
+      bearerToken = bearer[1];
+      console.log(bearerToken)
+      jwt.verify(bearerToken, "SMURF", function(err, decoded) {
+        if(err){
+          console.log("not valid")
+          console.log(err)
+          console.log(err.message)
+          res.json(403,{msg:"invalid token"});
+        }
+        else if (user.token = bearerToken){
+          res.json({token:user.token,isAuthenticated:true})
+          console.log(decoded)
+        }
+
+
+      });
+
+    }
+  });
+
+})
 //server routes
 app.use('/api/user',users);
 app.use('/api/author',authors);

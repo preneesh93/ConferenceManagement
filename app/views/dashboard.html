@@ -8,13 +8,9 @@
         <span>Dashboard</span>
       </h2>
       <span flex></span>
-      <md-button class="md-icon-button" aria-label="More">
+      <md-button class="md-icon-button" aria-label="More" ng-click="logout()">
         <i class="material-icons">exit_to_app</i>
       </md-button>
-
-      <md-sidenav md-component-id="right" md-is-open="isSidenavOpen" class="md-sidenav-right">
-        Left Nav!
-      </md-sidenav>
     </div>
   </md-toolbar>
   <div>
@@ -26,5 +22,6 @@
   profile
   <md-divider></md-divider>
   submissions
-
+  <a href="/submission">sub here</a>
+  <div ui-view="" > </div>
 </div>
