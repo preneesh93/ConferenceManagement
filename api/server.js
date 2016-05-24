@@ -43,17 +43,21 @@ app.post('/api/auth',function (req,res,next) {
       var bearer = bearerHeader.split(" ");
       bearerToken = bearer[1];
       console.log(bearerToken)
-      jwt.verify(bearerToken,secret, function(err, decoded) {
-        console.log(decoded.email)
-        if(err){
-          res.json(403,{msg:err.message});
-        }
-        else if (user.token == bearerToken && decoded.email== user.email){
-          res.json({token:user.token,isAuthenticated:true})
-        }
-      });
+      verifyToken(bearerToken,user.email)
     }
   });
+  var verifyToken=function (token,email) {
+    jwt.verify(token,secret, function(err, decoded) {
+      console.log(decoded)
+      console.log(email)
+      if(err){
+        res.json(403,{msg:"invalid token"});
+      }
+      else if (decoded.email== email){
+        res.json({token:user.token,isAuthenticated:true})
+      }
+    });
+  }
 
 })
 //server routes
