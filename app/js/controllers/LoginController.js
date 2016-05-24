@@ -23,9 +23,12 @@ angular.module('cms')
         function(response){ // Success callback
           console.log(response)
           $window.localStorage.token=response.data.token;
-          $window.localStorage.userName=$scope.user.username;
+          $window.localStorage.username=$scope.user.username;
+
+          $rootScope.isAuthenticated=response.data.isAuthenticated
+
           if(response.data.isAuthenticated==true){
-            $state.go('dashboard')
+            $state.go('home')
           }
           else{
 

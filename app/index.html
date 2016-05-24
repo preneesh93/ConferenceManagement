@@ -8,12 +8,34 @@
   <link rel="stylesheet" href="lib/angular-bootstrap/ui-bootstrap-csp.css "/>
   <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css "/>
   <link rel="stylesheet" href="styles/main.css" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
-
-  <div ui-view> </div>
+<body ng-cloak>
+  <div ng-controller="NavigationController">
+    <div ng-show="isAuthenticated">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" aria-label="Settings"  ng-click="openLeftMenu()">
+            <i class="material-icons md-48">account_circle</i>
+          </md-button>
+          <h2>
+            <span ng-bind="username"></span>
+          </h2>
+          <span flex></span>
+          <md-button class="md-icon-button" aria-label="More" ng-click="logout()">
+            <i class="material-icons">exit_to_app</i>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <div>
+        <md-sidenav md-component-id="left" class="md-sidenav-left">
+          Left Nav!
+        </md-sidenav>
+      </div>
+    </div>
+  </div>
+  <div ui-view="main">
+  </div>
 
 
 <!-- bower:js -->
@@ -34,6 +56,7 @@
 <script src="js/menu.js"></script>
 <script src="js/routes.js"></script>
 <script src="js/controllers/HomeController.js"></script>
+<script src="js/controllers/NavigationController.js"></script>
 <script src="js/controllers/LoginController.js"></script>
 <script src="js/controllers/RegistrationController.js"></script>
 <script src="js/controllers/DashboardController.js"></script>
