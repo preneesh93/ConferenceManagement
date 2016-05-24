@@ -14,7 +14,8 @@
     "angular-aria": "^1.5.5",
     "angular-messages": "^1.5.5",
     "angular-md5": "^0.1.10",
-    "material-design-icons": "^2.2.3"
+    "material-design-icons": "^2.2.3",
+    "angular-moment": "^0.10.3"
   },
   "authors": [
     "girish <sivadanamgirish@gmail.com>"

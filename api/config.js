@@ -1,5 +1,5 @@
 /**
- * Created by Smurf on 5/24/2016.
+ * Created by Girish on 5/24/2016.
  */
 module.exports = {
 

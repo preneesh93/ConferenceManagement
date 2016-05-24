@@ -1,5 +1,5 @@
 <div class="login-container" layout="row" layout-align="center center" layout-margin>
-  <md-card ng-show="!success" flex="30">
+  <md-card ng-show="!success" >
     <md-toolbar>
       <div class="md-toolbar-tools" layout-align="center center">
         <h2>Register</h2>
@@ -19,6 +19,7 @@
         <input ng-model="user.password" type="password" placeholder="Password">
       </md-input-container>
       <md-button class="md-raised md-primary" ng-click="register()">Register</md-button>
+      <md-button class="md-raised " ui-sref="home.login"> <span>already a member? Login</span> </md-button>
     </md-content>
   </md-card>
 

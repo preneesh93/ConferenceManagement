@@ -59,7 +59,7 @@ angular.module('routes', ['ui.router'])
           },
           'profile@home.dashboard':{
             templateUrl: 'views/dashboard/profileOverview.html',
-            controller: 'DashboardController'
+            controller: 'ProfileOverviewController'
           },
           'submissions@home.dashboard':{
             templateUrl: 'views/dashboard/submissionsOverview.html',
