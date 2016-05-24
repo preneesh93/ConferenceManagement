@@ -2,9 +2,11 @@
  * Created by Giri on 5/10/2016.
  */
 angular.module('cms')
-  .controller('LoginController',['$scope','$http','$state', 'md5','$rootScope', function($scope,$http,$state,md5,$rootScope){
+  .controller('LoginController',['$scope','$http','$state', 'md5','$window','$rootScope', function($scope,$http,$state,md5,$window,$rootScope){
     console.log("inside login controller")
-    $rootScope.currentUser={}
+    $scope.user={}
+    $scope.user.username='anna'
+    $scope.user.password='anna'
     $scope.login = function () {
     $scope.user.password=md5.createHash($scope.user.password);
     console.log($scope.user)
@@ -15,13 +17,13 @@ angular.module('cms')
       params: {username:$scope.user.username,password:$scope.user.password}
     };
 
-    // Send it
+    // send credentials
     $http(req)
       .then(
         function(response){ // Success callback
           console.log(response)
-          $rootScope.currentUser.id=response.data.id;
-          $rootScope.currentUser.username=$scope.user.username;
+          $window.localStorage.token=response.data.token;
+          $window.localStorage.userName=$scope.user.username;
           if(response.data.isAuthenticated==true){
             $state.go('dashboard')
           }
