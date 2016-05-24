@@ -1,6 +1,17 @@
 <div layout="row"  class="login-container" layout-align="center center" >
-  <span>
-    you must <a href="/login">login</a> to proceed
-  </span>
+  <div ng-show="!isAuthenticated">
+    <h3>
+      you must <a href="/login">login</a> to proceed
+    </h3>
+  </div>
+  <div ng-show="isAuthenticated">
+    <h3>
+      welcome to CMS click <a href="/dashboard">here</a> to go to Dashboard
+    </h3>
+  </div>
+
+
+
+
 
 </div>

@@ -1,27 +1,12 @@
 <div flex="100">
-  <md-toolbar>
-    <div class="md-toolbar-tools">
-      <md-button class="md-icon-button" aria-label="Settings"  ng-click="openLeftMenu()">
-        <i class="material-icons md-48">account_circle</i>
-      </md-button>
-      <h2>
-        <span>Dashboard</span>
-      </h2>
-      <span flex></span>
-      <md-button class="md-icon-button" aria-label="More" ng-click="logout()">
-        <i class="material-icons">exit_to_app</i>
-      </md-button>
-    </div>
-  </md-toolbar>
-  <div>
-    <md-sidenav md-component-id="left" class="md-sidenav-left">
-      Left Nav!
-    </md-sidenav>
-  </div>
+dashboard view
 
-  profile
+  <div ui-view="profile"></div>
   <md-divider></md-divider>
-  submissions
-  <a href="/submission">sub here</a>
-  <div ui-view="" > </div>
+
+  <div ui-view="submissions"></div>
+  <md-divider></md-divider>
+
+  <div ui-view="reviews"></div>
+
 </div>

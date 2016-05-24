@@ -6,28 +6,70 @@ angular.module('routes', ['ui.router'])
     $stateProvider
       .state('home', {
         url: "/",
-        templateUrl: 'views/home.html',
-        controller: 'HomeController',
-        data: { requireAuth: false }
-      }).state('register', {
-        url: "/register",
-        templateUrl: 'views/register.html',
-        controller: 'RegistrationController',
-        data: { requireAuth: false }
-      }).state('dashboard', {
-        url: "/dashboard",
-        templateUrl: 'views/dashboard.html',
-        controller: 'DashboardController',
-        data: { requireAuth: true }
-      }).state('login', {
-        url: "/login",
-        templateUrl: 'views/login.html',
-        controller: 'LoginController',
-        data: { requireAuth: false }
-      }).state('dashboard.submission', {
-        url: "^/submission",
-        templateUrl: 'views/submission.html',
-        controller: 'LoginController'
+        views: {
+          'main@':{
+            templateUrl: 'views/home.html',
+            controller: 'HomeController'
+          }
+        },
+        data: { requireAuth: false },
+        resolve:{
+          username:function ($window,$rootScope) {
+            $rootScope.username=$window.localStorage.username;
+            return $rootScope.username
+          }
+        }
+      }).state('home.register', {
+        url: "register",
+        data: { requireAuth: false },
+        views: {
+          'main@':{
+            templateUrl: 'views/register.html',
+            controller: 'RegistrationController'
+          }
+        },
+        onEnter: ['$state','$rootScope',function($state, $rootScope){
+          console.log("checking register")
+          if($rootScope.isAuthenticated){
+            $state.go('home');
+          }
+        }]
+      }).state('home.login', {
+        url: "login",
+        views: {
+          'main@': {
+            templateUrl: 'views/login.html',
+            controller: 'LoginController'
+          }
+        },
+        data: { requireAuth: false },
+        onEnter: ['$state','$rootScope',function($state, $rootScope){
+          console.log("checking login")
+          if($rootScope.isAuthenticated){
+            $state.go('home');
+          }
+        }]
+      }).state('home.dashboard', {
+        url: "dashboard",
+        data: { requireAuth: true },
+        views: {
+          'main@':{
+            templateUrl: 'views/dashboard.html',
+            controller: 'DashboardController'
+          },
+          'profile@home.dashboard':{
+            templateUrl: 'views/dashboard/profileOverview.html',
+            controller: 'DashboardController'
+          },
+          'submissions@home.dashboard':{
+            templateUrl: 'views/dashboard/submissionsOverview.html',
+            controller: 'DashboardController'
+          },
+          'reviews@home.dashboard':{
+            templateUrl: 'views/dashboard/reviewsOverview.html',
+            controller: 'DashboardController'
+          }
+        }
       }).state('404', {
         url: "/404",
         templateUrl: 'views/404.html',
