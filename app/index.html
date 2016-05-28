@@ -22,15 +22,15 @@
             <span ng-bind="username"></span>
           </h2>
           <span flex></span>
+          <span >
+          {{ clock | date:'HH:mm:ss'}}</span>
           <md-button class="md-icon-button" aria-label="More" ng-click="logout()">
             <i class="material-icons">exit_to_app</i>
           </md-button>
         </div>
       </md-toolbar>
       <div>
-        <md-sidenav md-component-id="left" class="md-sidenav-left">
-          Left Nav!
-        </md-sidenav>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
       </div>
     </div>
   </div>

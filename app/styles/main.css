@@ -1,3 +1,11 @@
+@import "dashboard.css";
+
+
+
+body{
+  background-color: #F8F8F8;
+}
+
 .login-container{
   position: absolute;
   top: 0;

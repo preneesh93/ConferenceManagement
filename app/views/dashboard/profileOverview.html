@@ -1,32 +1,38 @@
 profile view
-<div flex="100" layout-gt-sm="row" layout="column" >
-  <div flex="20" ng-repeat="item in list">
-    <div  >
-      <md-card  md-ink-ripple="" style="position: relative">
-        <md-card-title>
-          <md-card-title-text  >
-            <span class="md-headline">Card with image</span>
-            <span class="md-subhead">Small</span>
-          </md-card-title-text>
-          <md-card-title-media>
-            <div class="md-media-sm card-media"></div>
-          </md-card-title-media>
-        </md-card-title>
-      </md-card>
+<div id="profile-overview">
+
+  <div flex="100" layout-gt-sm="row" layout="column" >
+    <div flex="20" ng-repeat="item in list">
+      <div  class="dashboard-prof-card">
+        <md-card  md-ink-ripple="" style="position: relative">
+          <md-card-title>
+            <md-card-title-text  >
+              <span class="md-headline">Card with image</span>
+              <span class="md-subhead">Small</span>
+            </md-card-title-text>
+            <md-card-title-media>
+              <div class="md-media-sm card-media"></div>
+            </md-card-title-media>
+          </md-card-title>
+        </md-card>
+      </div>
+
     </div>
 
-  </div>
-  <div>
-    <div md-ink-ripple="" style="position: relative">
-      <div class="hero-circle">
-        <div class="hero-face">
-          <div id="hour" class="hero-hour"></div>
-          <div id="minute" class="hero-minute"></div>
-          <div id="second" class="hero-second"></div>
+<!--
+    <div>
+      <div md-ink-ripple="" style="position: relative">
+        <div class="hero-circle">
+          <div class="hero-face">
+            <div id="hour" class="hero-hour"></div>
+            <div id="minute" class="hero-minute"></div>
+            <div id="second" class="hero-second"></div>
+          </div>
         </div>
       </div>
     </div>
+-->
   </div>
-</div>
 
+</div>
 
