@@ -31,8 +31,9 @@ angular.module('cms')
           if(response.data.isAuthenticated==true){
             $state.go('home')
           }
-          else{
+          else {
 
+            $state.go('dashboard', {user: $scope.user})
           }
         },
         function(response){ //Error callback

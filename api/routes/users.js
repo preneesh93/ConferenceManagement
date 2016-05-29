@@ -43,9 +43,6 @@ module.exports.register = function (req, res){
   });
 };
 
-var refreshToken = function (email) {
-
-};
 module.exports.authenticate = function (req,res) {
   console.log("authhhhhhhhhhhhhhhhhhhhh");
   var bearerHeader = req.headers["authorization"];
