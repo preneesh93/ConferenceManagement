@@ -18,7 +18,7 @@ angular.module('routes', ['ui.router'])
         url: "/dashboard",
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardController',
-        data:{}
+        params:{user:null}
       }).state('login', {
         url: "/login",
         templateUrl: 'views/login.html',
@@ -28,7 +28,9 @@ angular.module('routes', ['ui.router'])
         url: "/update",
         templateUrl: 'views/edit_profile.html',
         controller: 'ProfileController',
-        data: {}
+        params: {
+          user:null
+        }
       }).state('404', {
         url: "/404",
         templateUrl: 'views/404.html'

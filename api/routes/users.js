@@ -26,6 +26,7 @@ user.get('/login',function (req,res) {
     console.log("i recived a login get req");
     console.log(req.query);
     db.users.findOne({username:req.query.username},function (err,result) {
+      console.log(result)
       if(err) { throw err; }
       if(result == null){res.send("username does't exist")}
       else if(result.password === req.query.password){
@@ -47,7 +48,34 @@ user.post('/register',function (req,res) {
     });
 });
 
-user.post('/update',function (req,res){
+user.route('/userDetails')
+  
+  .get(function(req,res){
+    console.log("i recived a update get req");
+    console.log(req.query);
+    db.users.findOne({username:req.query.username}, function(err, doc){
+      if(err)
+        res.send(err);
+      console.log(doc);
+      res.json(doc);
+    })
+  })
+
+  .post(function(req, res){
+    console.log(req.body)
+    console.log("i received a update post req");
+    db.users.update(
+      {username:req.body.username},
+      {$set : req.body},
+      function(err,result){
+      if(err)
+        res.send(err);
+      console.log(result);
+      res.send(result);
+    })
+  });
+
+/*user.post('/update',function (req,res){
   console.log("update route works")
   console.log( req.query.username)
   db.users.update(
@@ -59,7 +87,7 @@ user.post('/update',function (req,res){
     res.send(result)
   })
 });
-
+*/
 
 
 

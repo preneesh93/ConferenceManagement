@@ -20,14 +20,9 @@ angular.module('cms')
       .then(
         function(response){ // Success callback
           console.log(response)
-          $rootScope.currentUser.id=response.data.id;
-          $rootScope.currentUser.username=$scope.user.username;
-          if(response.data.isAuthenticated==true){
-            $state.go('dashboard')
-          }
-          else{
 
-          }
+            $state.go('dashboard',{user:$scope.user})
+   
         },
         function(response){ //Error callback
           console.log(response)

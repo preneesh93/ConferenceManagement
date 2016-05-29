@@ -2,20 +2,19 @@
  * Created by Girish on 5/16/2016.
  */
 angular.module('cms')
-  .controller('DashboardController', function($scope,$http,$mdSidenav,$rootScope){
+  .controller('DashboardController', function($state,$scope,$http,$mdSidenav,$rootScope,$stateParams){
     console.log("inside dashboard controller");
+    console.log($stateParams.user)
     $scope.isSidenavOpen = false;
     $scope.openLeftMenu = function() {
       $mdSidenav('left').toggle();
     };
+    $scope.edit = function(){
+      $state.go('update',{user:$stateParams.user})
+    }
     $scope.update = function(){
-      console.log($rootScope.currentUser)
-      user=$rootScope.currentUser
 
-      user.first_name="smurf"
-      user.last_name="smurf"
 
-      console.log(user)
 
       var req = {
         method: 'post',
@@ -32,6 +31,5 @@ angular.module('cms')
         )
 
     };
-    console.log($rootScope.currentUser)
   });
 
