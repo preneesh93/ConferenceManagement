@@ -3,6 +3,7 @@
  */
 module.exports = {
 
-  'secret': 'SMURF'
+  'secret': 'SMURF',
+  'tokenLifeTime': '7 days'
 
 };

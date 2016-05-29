@@ -7,20 +7,16 @@ angular.module('cms').controller('RegistrationController', function($scope,$http
     $scope.user.password=md5.createHash($scope.user.password);
     console.log($scope.user)
     $scope.data=JSON.stringify($scope.user)
-    console.log($scope.data)
-
-
     var req = {
       method: 'post',
-      url: "/api/user/register",
+      url: "api/user/register",
       data: $scope.data
     };
-
     // Send it
     $http(req)
       .then(
         function(response){ // Success callback
-          console.log(response)
+          console.log(response);
           if(response.data._id){
             $scope.success=true;
           }

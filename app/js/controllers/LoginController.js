@@ -4,6 +4,7 @@
 angular.module('cms')
   .controller('LoginController',['$scope','$http','$state', 'md5','$window','$rootScope', function($scope,$http,$state,md5,$window,$rootScope){
     console.log("inside login controller")
+    $window.localStorage.clear();
     $scope.user={}
     $scope.user.username='anna'
     $scope.user.password='anna'

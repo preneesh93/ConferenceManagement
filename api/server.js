@@ -3,24 +3,17 @@
  */
 // MEAN Stack RESTful API Tutorial - Contact List App
 var express    = require('express');
-var mongojs    = require('mongojs');
-var jwt        = require("jsonwebtoken");
-
+var mongoose   = require('mongoose');
 var users      = require('../api/routes/users');
 var authors    = require('../api/routes/authors');
 var chair      = require('../api/routes/chair');
 var config     = require('./config');
 var bodyParser = require('body-parser');
-
+var path       = require('path');
 var app = express();
-
-var user    = express();
-var databaseUrl = "cms";
-var collections = ["users", "publications"];
-var db = mongojs(databaseUrl, collections);
-
-var secret = config.secret
-
+var db = mongoose.connection;
+// accept CORS
+app.use(express.static('../app'));
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -29,58 +22,24 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.post('/api/auth',function (req,res,next) {
-  console.log("authhhhhhhhhhhhhhhhhhhhh")
-  console.log(req.body)
-  console.log(req.body.username)
-  var bearerToken;
-  var bearerHeader = req.headers["authorization"];
+// connect to db
+mongoose.connect('mongodb://localhost/cms');
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function(){console.log("yuppieee mongoose is working")});
 
-  db.users.findOne({username:req.body.username},function (err,user) {
-    if(err) { throw err; }
-    if(user == null){res.json("username does't exist")}
-    else if (typeof bearerHeader !== 'undefined') {
-      var bearer = bearerHeader.split(" ");
-      bearerToken = bearer[1];
-      console.log(bearerToken)
-      verifyToken(bearerToken,user.email)
-    }
-  });
-  var verifyToken=function (token,email) {
-    jwt.verify(token,secret, function(err, decoded) {
-      console.log(decoded)
-      console.log(email)
-      if(err){
-        res.json(403,{msg:"invalid token"});
-      }
-      else if (decoded.email== email){
-        res.json({token:user.token,isAuthenticated:true})
-      }
-    });
-  }
+// authentication
+app.get('/api/user/list', users.list);
+app.get('/api/user/login', users.login);
+app.post('/api/user/register', users.register);
+app.post('/api/auth',users.authenticate);
 
-})
-//server routes
-app.use('/api/user',users);
-app.use('/api/author',authors);
-app.use('/api/chair',chair);
-
-
-app.use(express.static('../app'));
-var path = require('path');
-
-
-
-
+// sending index file to handle angular routes
 app.all('/*', function(req, res, next) {
-  // Just send the index.html for other files to support HTML5Mode
   res.sendfile(path.resolve('../app/index.html'));
 });
 
-
 app.listen(3000);
 console.log("Server running on port 3000");
-
 
 /* --- to start mongodb from nodejs server ---
  var child_process = require('child_process');

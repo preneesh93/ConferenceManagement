@@ -6,6 +6,6 @@
     "express": "~4.5.1",
     "jsonwebtoken": "^7.0.0",
     "method-override": "~2.0.2",
-    "mongojs": "latest"
+    "mongoose": "^4.4.19"
   }
 }

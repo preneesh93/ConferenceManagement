@@ -2,63 +2,71 @@
  * Created by Girish on 5/9/2016.
  */
 
-var mongojs = require('mongojs');
-var express = require('express');
-var config     = require('.././config');
-var user    = express();
-var jwt        = require("jsonwebtoken");
-var databaseUrl = "cms";
-var collections = ["users", "publications"];
-var db = mongojs(databaseUrl, collections);
+var User   = require('../schemas/users');
+var jwt    = require("jsonwebtoken");
+var config = require('.././config');
+var secret = config.secret;
+var tokenLifeTime = config.tokenLifeTime;
 
-var secret = config.secret
-user.get('/list',function (req,res) {
-    console.log("i recived a get req");
-    console.log(req.body);
-    console.log(req.params);
-    db.users.find(function (err,docs) {
-    console.log(docs);
-    res.json(docs);
-    })
-});
-user.get('/login',function (req,res) {
+module.exports.list = function (req, res){
+  User.find(function (err,result) {res.send(result)})
+};
 
-  console.log("i recived a login get req");
-  console.log(req.query);
-  var bearerHeader = req.headers["authorization"];
-  console.log(bearerHeader)
-  db.users.findOne({username:req.query.username},function (err,result) {
+module.exports.login = function (req, res){
+  var conditions = {username:req.query.username};
+  var newToken=jwt.sign({email:req.query.email}, secret, {expiresIn: tokenLifeTime});
+  var update = { $set: { token : newToken }};
+  User.findOneAndUpdate(conditions,update,function (err,result) {
     if(err) { throw err; }
     if(result == null){res.json("username does't exist")}
     else if(result.password === req.query.password){
-      res.json({id:result._id,isAuthenticated:true,token:result.token})
+      console.log(result)
+      res.json({id:result._id,isAuthenticated:true,token:newToken})
+    }
+    else {  res.json("idiot wrong password")    }
+  });
+};
+
+module.exports.register = function (req, res){
+  User.find({username:req.body.username},function (err,result) {
+    if(err) { throw err; }
+    if(result.length>0){
+      res.json(409,"user already exists")
     }
     else {
-      res.json("idiot wrong password")
+      var user = new User(req.body);
+      user.token=jwt.sign({email:req.body.email}, secret, {expiresIn: tokenLifeTime});
+      user.save(function (err,result) { // save user into database
+        if(err) { throw err; }
+        res.send(result)
+      });
     }
   });
-});
+};
 
-user.post('/register',function (req,res) {
-    console.log("i recived a post req");
-    user=req.body;
-    console.log(user);
-    console.log(secret);
-    db.users.findOne({email:user.email},function (err,result) {
-      if(result){
-        res.json(403)
+var refreshToken = function (email) {
+
+};
+module.exports.authenticate = function (req,res) {
+  console.log("authhhhhhhhhhhhhhhhhhhhh");
+  var bearerHeader = req.headers["authorization"];
+  User.findOne({username:req.body.username},function (err,user) {
+    if(err) { throw err; }
+    if(user == null){res.json("username does't exist")}
+    else if (typeof bearerHeader !== 'undefined') {
+      var bearer = bearerHeader.split(" ");
+      var bearerToken = bearer[1];
+      verifyToken(bearerToken,user.email)
+    }
+  });
+  var verifyToken=function (token,email,user) {
+    jwt.verify(token,secret, function(err, decoded) {
+      console.log(decoded)
+      console.log(email)
+      if(err){ res.json(403,{msg:"invalid token"}); }
+      else if (decoded.email== email){
+        res.json({token:token,isAuthenticated:true})
       }
     });
-
-    user.token = jwt.sign({email:user.email}, secret, {expiresIn: "2 days"});
-    db.users.insert(user, function(err, result) {
-      if(err) { throw err; }
-      console.log(result)
-      res.json(result)
-    });
-});
-
-
-
-
-module.exports = user;
+  }
+};
