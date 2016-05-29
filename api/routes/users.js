@@ -38,7 +38,7 @@ module.exports.register = function (req, res){
       user.token=jwt.sign({email:req.body.email}, secret, {expiresIn: tokenLifeTime});
       user.save(function (err,result) { // save user into database
         if(err) { throw err; }
-        res.send("registration success")
+        res.send(result)
       });
     }
   });
