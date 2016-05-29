@@ -20,7 +20,7 @@ angular.module('cms').controller('RegistrationController', function($scope,$http
     $http(req)
       .then(
         function(response){ // Success callback
-          console.log(response)
+          console.log(response);
           if(response.data._id){
             $scope.success=true;
           }
@@ -31,39 +31,5 @@ angular.module('cms').controller('RegistrationController', function($scope,$http
       );
 
   }
-})
+});
 
-  .controller('DialogCtrl', function($scope, $mdDialog, $mdMedia) {
-    $scope.status = '  ';
-    $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-  
-    $scope.showTabDialog = function(ev) {
-      $mdDialog.show({
-        controller: DialogController,
-        templateUrl: 'tabDialog.tmpl.html',
-        parent: angular.element(document.body),
-        targetEvent: ev,
-        clickOutsideToClose:true
-      })
-        .then(function(answer) {
-          $scope.status = 'You said the information was "' + answer + '".';
-        }, function() {
-          $scope.status = 'You cancelled the dialog.';
-        });
-    };
-  });
-  
-
-  function DialogController($scope, $mdDialog) {
-    $scope.hide = function() {
-      $mdDialog.hide();
-    };
-
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
-  };
-}
