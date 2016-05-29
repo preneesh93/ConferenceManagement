@@ -13,17 +13,16 @@ module.exports.list = function (req, res){
 };
 
 module.exports.login = function (req, res){
-  var conditions = {username:req.query.username};
-  var newToken=jwt.sign({email:req.query.email}, secret, {expiresIn: tokenLifeTime});
-  var update = { $set: { token : newToken }};
-  User.findOneAndUpdate(conditions,update,function (err,result) {
+  User.findOne({username:req.query.username},function (err,result) {
     if(err) { throw err; }
     if(result == null){res.json("username does't exist")}
     else if(result.password === req.query.password){
-      console.log(result)
-      res.json({id:result._id,isAuthenticated:true,token:newToken})
+      refreshToken(result.email);
+      res.json({id:result._id,isAuthenticated:true,token:result.token})
     }
-    else {  res.json("idiot wrong password")    }
+    else {
+      res.json("idiot wrong password")
+    }
   });
 };
 
@@ -31,21 +30,30 @@ module.exports.register = function (req, res){
   User.find({username:req.body.username},function (err,result) {
     if(err) { throw err; }
     if(result.length>0){
-      res.json(409,"user already exists")
+      res.send(409,"user already exists")
     }
     else {
       var user = new User(req.body);
-      user.token=jwt.sign({email:req.body.email}, secret, {expiresIn: tokenLifeTime});
-      user.save(function (err,result) { // save user into database
-        if(err) { throw err; }
-        res.send("registration success")
-      });
+      console.log(createToken(user));
+      res.send(result)
     }
   });
 };
 
-var refreshToken = function (email) {
+var createToken = function (user) {
+  user.token=getToken(user.email);
+  user.save(function (err,result) { // save user into database
+    if(err) { throw err; }
+    else{res.send(result)}
+  });
+  return true
+};
 
+var getToken = function (email) {
+  console.log(" refreshing token")
+  console.log(email)
+  var token=jwt.sign({email:req.body.email}, secret, {expiresIn: tokenLifeTime});
+  return token
 };
 module.exports.authenticate = function (req,res) {
   console.log("authhhhhhhhhhhhhhhhhhhhh");
