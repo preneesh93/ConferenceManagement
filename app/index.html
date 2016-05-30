@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css "/>
   <link rel="stylesheet" href="styles/main.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 </head>
 <body ng-controller="NavigationController" ng-cloak>
     <div >
@@ -29,6 +30,8 @@
       </md-toolbar>
       <div>
         <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+          yo lefty
+        </md-sidenav>
       </div>
     </div>
   </div>
@@ -39,7 +42,7 @@
       <md-toolbar>
         <div class="footer-container">
           <div class="time">
-            <span >{{clock| date:'medium'}}</span>
+            <span style="font-family: 'Orbitron', sans-serif;">{{clock| date:'medium'}}</span>
           </div>
         </div>
       </md-toolbar>
