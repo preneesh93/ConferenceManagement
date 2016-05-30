@@ -40,7 +40,6 @@ angular.module('cms')
 })
 
   .controller('DialogCtrl', function($scope, $mdDialog) {
-    $scope.status = '  ';
 
     $scope.showTabDialog = function(ev) {
       $mdDialog.show({
@@ -49,16 +48,11 @@ angular.module('cms')
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose:true
-      })
-        .then(function(answer) {
-          $scope.status = 'You said the information was "' + answer + '".';
-        }, function() {
-          $scope.status = 'You cancelled the dialog.';
-        });
+      });
     };
   });
 
-  function DialogController($scope, $mdDialog) {
+  function DialogController($scope, $mdDialog, md5, $http) {
     $scope.hide = function() {
       $mdDialog.hide();
     };
@@ -69,5 +63,17 @@ angular.module('cms')
 
     $scope.answer = function(answer) {
       $mdDialog.hide(answer);
+    };
+
+    $scope.change = function(password){
+      $scope.changePass.pass1=md5.createHash($scope.changePass.pass1);
+      $scope.changePass.pass2=md5.createHash($scope.changePass.pass2);
+      $scope.changePass.pass3=md5.createHash($scope.changePass.pass3);
+
+      $http.post("/api/users/change",password).then(function(result){
+        console.log(result);
+      }, function(error){
+        console.error('Error: '+ error);
+      })
     };
   }

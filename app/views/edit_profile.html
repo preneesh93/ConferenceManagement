@@ -151,7 +151,7 @@
             <h2>Change Password</h2>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="cancel()">
-              <md-icon md-svg-src="img/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+              <i class="material-icons">clear</i>
             </md-button>
           </div>
         </md-toolbar>
@@ -160,26 +160,26 @@
             <div>
               <md-input-container>
                 <label>Enter Current Password</label>
-                <input ng-model="" type="password">
+                <input ng-model="changePass.pass1" type="password">
               </md-input-container>
               <md-input-container>
                 <label>Repeat Current Password</label>
-                <input ng-model="" type="password">
+                <input ng-model="changePass.pass2" type="password">
               </md-input-container>
               <md-input-container>
                 <label>Enter New Password</label>
-                <input ng-model="" type="password">
+                <input ng-model="changePass.pass3" type="password">
               </md-input-container>
             </div>
           </md-content>
         </md-dialog-content>
         <md-dialog-actions layout="row" class="buttonEqual">
           <div>
-            <md-button class="md-raised md-primary" ng-click="answer('Confirm')" >
-              Not Useful
+            <md-button class="md-raised md-primary" ng-click="cancel()" >
+              Cancel
             </md-button>
-            <md-button class="md-raised md-primary" ng-click="answer('Cancel')" style="margin-right:20px;" >
-              Useful
+            <md-button class="md-raised md-primary" ng-click="change(changePass)" style="margin-right:20px;" >
+              Confirm
             </md-button>
           </div>
         </md-dialog-actions>
