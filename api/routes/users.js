@@ -75,6 +75,11 @@ user.route('/userDetails')
     })
   });
 
+user.post('/change', function(req,res){
+  console.log("Received a Change Post Request");
+  console.log(req.body);
+});
+
 /*user.post('/update',function (req,res){
   console.log("update route works")
   console.log( req.query.username)
