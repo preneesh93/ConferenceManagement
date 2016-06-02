@@ -1,24 +1,72 @@
-profile view
-<div id="profile-overview">
-
+<div id="profile-overview" class="container">
   <div flex="100" layout-gt-sm="row" layout="column" >
-    <div flex="20" ng-repeat="item in list">
-      <div  class="dashboard-prof-card">
-        <md-card  md-ink-ripple="" style="position: relative">
-          <md-card-title>
-            <md-card-title-text  >
-              <span class="md-headline">Card with image</span>
-              <span class="md-subhead">Small</span>
-            </md-card-title-text>
-            <md-card-title-media>
-              <div class="md-media-sm card-media"></div>
-            </md-card-title-media>
-          </md-card-title>
+      <div flex="20" >
+        <md-card  class="dashboard-prof-card bg-violet" md-ink-ripple>
+          <div  layout-align="center center" layout="row">
+            <div class="icon col-xs-4 bg-violet-dark">
+              <i class="material-icons">cloud_upload</i>
+            </div>
+            <div class="text col-xs-8">
+              <div>
+                <span  class="md-headline" >{{submissions.length}}</span>
+                <br>
+                <span class="md-subhead">Submissions</span>
+              </div>
+            </div>
+          </div>
+        </md-card>
+      </div>
+      <div flex="20">
+        <md-card  class="dashboard-prof-card bg-purple" md-ink-ripple>
+          <div  layout-align="center center" layout="row">
+            <div class="icon col-xs-4  bg-purple-dark">
+              <i class="material-icons">cloud_upload</i>
+            </div>
+            <div class="text col-xs-8">
+              <div>
+                <span  class="md-headline" >{{submissions.length}}</span>
+                <br>
+                <span class="md-subhead">Reviews</span>
+              </div>
+            </div>
+          </div>
+        </md-card>
+      </div>
+      <div flex="20">
+        <md-card  class="dashboard-prof-card bg-green" md-ink-ripple>
+          <div  layout-align="center center" layout="row">
+            <div class="icon col-xs-4  bg-green-dark">
+              <i class="material-icons">cloud_upload</i>
+            </div>
+            <div class="text col-xs-8">
+              <div>
+                <span  class="md-headline" >{{submissions.length}}</span>
+                <br>
+                <span class="md-subhead">Submissions</span>
+              </div>
+            </div>
+          </div>
         </md-card>
       </div>
 
-    </div>
 
+  </div>
+</div>
+
+
+<!--    <div class="col-lg-3 col-sm-6">&lt;!&ndash; START widget&ndash;&gt;
+      <div class="panel widget bg-primary">
+        <div class="row row-table">
+          <div class="col-xs-4 text-center bg-primary-dark pv-lg">
+            <em class="icon-cloud-upload fa-3x"></em>
+          </div>
+          <div class="col-xs-8 pv-lg">
+            <div class="h2 mt0">1700</div>
+            <div class="text-uppercase">Uploads</div>
+          </div>
+        </div>
+      </div>
+    </div>-->
 <!--
     <div>
       <div md-ink-ripple="" style="position: relative">
@@ -32,7 +80,4 @@ profile view
       </div>
     </div>
 -->
-  </div>
-
-</div>
 
