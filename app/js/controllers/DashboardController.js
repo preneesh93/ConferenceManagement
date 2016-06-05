@@ -5,6 +5,20 @@ angular.module('cms')
   .controller('DashboardController', function($scope,$http,$window,$state){
     console.log("inside dashboard controller");
 
+    var getUserInfo = function () {
+      var req = {
+        method: 'get',
+        url: "/api/user/list"
+      };
+      $http(req)
+        .then(
+          function(response) { // Success callback
+          console.log(response)
+          }
+        );
+    };
+    getUserInfo();
+
     var clock = function(){
 
       function updateClock(){

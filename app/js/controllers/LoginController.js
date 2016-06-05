@@ -14,7 +14,7 @@ angular.module('cms')
 
     var req = {
       method: 'get',
-      url: "/api/user/login",
+      url: "/user/login",
       params: {username:$scope.user.username,password:$scope.user.password}
     };
 
