@@ -14,7 +14,7 @@ module.exports.list = function (req, res){
 
 module.exports.login = function (req, res){
   var conditions = {username:req.query.username};
-  var newToken=jwt.sign({email:req.query.email}, secret, {expiresIn: tokenLifeTime});
+  var newToken=jwt.sign({username:req.query.username}, secret, {expiresIn: tokenLifeTime});
   var update = { $set: { token : newToken }};
   User.findOneAndUpdate(conditions,update,function (err,result) {
     if(err) { throw err; }
@@ -35,7 +35,7 @@ module.exports.register = function (req, res){
     }
     else {
       var user = new User(req.body);
-      user.token=jwt.sign({email:req.body.email}, secret, {expiresIn: tokenLifeTime});
+      user.token=jwt.sign({username:req.body.username}, secret, {expiresIn: tokenLifeTime});
       user.save(function (err,result) { // save user into database
         if(err) { throw err; }
         res.send(result)
@@ -56,17 +56,15 @@ module.exports.authenticate = function (req,res) {
     else if (typeof bearerHeader !== 'undefined') {
       var bearer = bearerHeader.split(" ");
       var bearerToken = bearer[1];
-      verifyToken(bearerToken,user.email)
+      console.log(bearerToken)
+      jwt.verify(bearerToken,secret, function(err, decoded) {
+        console.log(decoded)
+        console.log(user.username)
+        if(err){ res.json(403,{msg:"invalid token"}); }
+        else if (decoded.username== user.username){
+          res.json({token:bearerToken,isAuthenticated:true})
+        }
+      });
     }
   });
-  var verifyToken=function (token,email,user) {
-    jwt.verify(token,secret, function(err, decoded) {
-      console.log(decoded)
-      console.log(email)
-      if(err){ res.json(403,{msg:"invalid token"}); }
-      else if (decoded.email== email){
-        res.json({token:token,isAuthenticated:true})
-      }
-    });
-  }
 };

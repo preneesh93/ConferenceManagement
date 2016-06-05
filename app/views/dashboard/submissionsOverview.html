@@ -1,1 +1,23 @@
-this is submission view
+<div layout="row" layout-align="center center">
+<div flex="60">
+  <md-card >
+  <md-toolbar>
+    <div class="md-toolbar-tools" layout-align="center center">
+      <h2>Submissions</h2>
+    </div>
+  </md-toolbar>
+  <md-content>
+    <md-list flex>
+      <md-list-item md-ink-ripple="true" class="md-2-line" ng-repeat="submission in submissions">
+        <div class="md-list-item-text">
+          <span>{{ submission.title }}  |</span>
+          <span>{{ submission.author_id }}  |</span>
+          <span ng-repeat="author in submission.authors">{{ author.first_name }}{{ author.last_name }}|</span>
+          <span>{{ submission.status}}</span>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-content>
+</md-card>
+</div>
+</div>

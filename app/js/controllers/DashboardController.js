@@ -5,6 +5,42 @@ angular.module('cms')
   .controller('DashboardController', function($scope,$http,$window,$state){
     console.log("inside dashboard controller");
 
+    $scope.submissions=[
+      {
+        title: "some title",
+        author_id: "somerandomid",
+        authors: [
+          {
+            first_name: "rambo",
+            last_name: "mandy",
+            email: "ad@cas.com"
+          },{
+            first_name: "alex",
+            last_name: "max",
+            email: "ad@cas.com"
+          }
+        ],
+        status: "open"
+      },
+      {
+        title: "some title",
+        author_id: "somerandomid",
+        authors: [
+          {
+            first_name: "rambo",
+            last_name: "mandy",
+            email: "ad@cas.com"
+          },{
+            first_name: "alex",
+            last_name: "max",
+            email: "ad@cas.com"
+          }
+        ],
+        status: "open"
+      }
+    ];
+
+
     var clock = function(){
 
       function updateClock(){
@@ -26,5 +62,6 @@ angular.module('cms')
       timedUpdate();
     }
     clock()
+
   });
 
