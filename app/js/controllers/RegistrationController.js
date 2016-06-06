@@ -9,7 +9,7 @@ angular.module('cms').controller('RegistrationController', function($scope,$http
     $scope.data=JSON.stringify($scope.user)
     var req = {
       method: 'post',
-      url: "api/user/register",
+      url: "/user/register",
       data: $scope.data
     };
     // Send it

@@ -29,14 +29,12 @@ angular
   }).service('authService',['$http','$q',function($http,$q) {
     var service = {}
     service.auth = function (token,name) {
-      var deferred = $q.defer();
       console.log("inside auth service")
-      $http.post('/api/auth',{username:name}).then(function (response) {
-        deferred.resolve(response.data.isAuthenticated)
+      return $http.post('/api/auth',{username:name}).then(function (response) {
+        return (response.data.isAuthenticated)
       },function (e) {
-        deferred.reject(e)
-      })
-      return deferred.promise
+        return(e)
+      });
     }
 
     return service

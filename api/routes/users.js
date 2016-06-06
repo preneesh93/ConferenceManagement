@@ -14,7 +14,7 @@ module.exports.list = function (req, res){
 
 module.exports.login = function (req, res){
   var conditions = {username:req.query.username};
-  var newToken=jwt.sign({email:req.query.email}, secret, {expiresIn: tokenLifeTime});
+  var newToken=jwt.sign({username:req.query.username}, secret, {expiresIn: tokenLifeTime});
   var update = { $set: { token : newToken }};
   User.findOneAndUpdate(conditions,update,function (err,result) {
     if(err) { throw err; }
@@ -44,29 +44,52 @@ module.exports.register = function (req, res){
   });
 };
 
-var refreshToken = function (email) {
-
-};
 module.exports.authenticate = function (req,res) {
   console.log("authhhhhhhhhhhhhhhhhhhhh");
   var bearerHeader = req.headers["authorization"];
-  User.findOne({username:req.body.username},function (err,user) {
-    if(err) { throw err; }
-    if(user == null){res.json("username does't exist")}
+  User.findOne({username: req.body.username}, function (err, user) {
+    if (err) {
+      throw err;
+    }
+    if (user == null) {
+      res.json("username does't exist")
+    }
     else if (typeof bearerHeader !== 'undefined') {
       var bearer = bearerHeader.split(" ");
-      var bearerToken = bearer[1];
-      verifyToken(bearerToken,user.email)
+      var token = bearer[1];
+      jwt.verify(token, secret, function (err, decoded) {
+        console.log(decoded)
+        console.log(req.body.username)
+        if (err) {
+          res.json(403, {msg: "invalid token"});
+        }
+        else if (decoded.username == req.body.username) {
+          res.json({token: token, isAuthenticated: true})
+        }
+        else {
+          res.json(403, {msg: "invalid token"});
+        }
+      });
     }
-  });
-  var verifyToken=function (token,email,user) {
-    jwt.verify(token,secret, function(err, decoded) {
-      console.log(decoded)
-      console.log(email)
-      if(err){ res.json(403,{msg:"invalid token"}); }
-      else if (decoded.email== email){
-        res.json({token:token,isAuthenticated:true})
+  })
+};
+
+module.exports.authmiddleware = function (req,res) {
+  console.log("inside authmiddleware");
+  var bearerHeader = req.headers["authorization"];
+  var bearer = bearerHeader.split(" ");
+  var token = bearer[1];
+  if(token) {
+    jwt.verify(token, secret, function (err, decoded) {
+      if (err) {
+        res.json(403, {msg: "invalid token"});
+      }
+      else {
+        res.json("authenticated");
       }
     });
+  }
+  else {
+    res.json("no token")
   }
 };

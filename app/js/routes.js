@@ -4,10 +4,23 @@ angular.module('routes', ['ui.router'])
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise("/404");
     $stateProvider
+      .state('root',{
+        url:"/",
+        abstract:true,
+        views: {
+          'content@':{
+            templateUrl: 'views/content.html',
+            controller: 'HomeController'
+          }
+        },
+        resolve:{
+
+        }
+      })
       .state('home', {
         url: "/",
         views: {
-          'main@':{
+          'content@':{
             templateUrl: 'views/home.html',
             controller: 'HomeController'
           }
@@ -19,11 +32,11 @@ angular.module('routes', ['ui.router'])
             return $rootScope.username
           }
         }
-      }).state('home.register', {
-        url: "register",
+      }).state('register', {
+        url: "/register",
         data: { requireAuth: false },
         views: {
-          'main@':{
+          'content@':{
             templateUrl: 'views/register.html',
             controller: 'RegistrationController'
           }
@@ -34,10 +47,10 @@ angular.module('routes', ['ui.router'])
             $state.go('home');
           }
         }]
-      }).state('home.login', {
-        url: "login",
+      }).state('login', {
+        url: "/login",
         views: {
-          'main@': {
+          'content@': {
             templateUrl: 'views/login.html',
             controller: 'LoginController'
           }
@@ -49,7 +62,7 @@ angular.module('routes', ['ui.router'])
             $state.go('home');
           }
         }]
-      }).state('home.dashboard', {
+      }).state('root.dashboard', {
         url: "dashboard",
         data: { requireAuth: true },
         views: {
@@ -57,22 +70,26 @@ angular.module('routes', ['ui.router'])
             templateUrl: 'views/dashboard.html',
             controller: 'DashboardController'
           },
-          'profile@home.dashboard':{
+          'profile@root.dashboard':{
             templateUrl: 'views/dashboard/profileOverview.html',
             controller: 'ProfileOverviewController'
           },
-          'submissions@home.dashboard':{
+          'submissions@root.dashboard':{
             templateUrl: 'views/dashboard/submissionsOverview.html',
             controller: 'DashboardController'
           },
-          'reviews@home.dashboard':{
+          'reviews@root.dashboard':{
             templateUrl: 'views/dashboard/reviewsOverview.html',
             controller: 'DashboardController'
           }
         }
       }).state('404', {
         url: "/404",
-        templateUrl: 'views/404.html',
+        views: {
+          'content@':{
+            templateUrl: 'views/404.html'
+          }
+        },
         data: { requireAuth: false }
       });
 });
