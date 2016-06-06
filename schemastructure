@@ -24,7 +24,8 @@
     Country: String
     }
   submissions : [{id:_id}]
-  assigned_submissions: [{id:_id}]
+  assigned_submissions: [{id:_id}],
+  conferences:[{id:_id,name:String}]
 }
 
 

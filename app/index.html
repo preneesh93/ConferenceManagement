@@ -11,44 +11,9 @@
   <link rel="stylesheet" href="styles/main.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body ng-controller="NavigationController" ng-cloak>
-    <div >
-    <div ng-show="isAuthenticated" class="md-whiteframe-6dp">
-      <md-toolbar>
-        <div class="md-toolbar-tools">
-          <md-button class="md-icon-button" aria-label="Settings"  ng-click="openLeftMenu()">
-            <i class="material-icons md-48">account_circle</i>
-          </md-button>
-          <h2>
-            <span ng-bind="username"></span>
-          </h2>
-          <span flex></span>
-          <md-button class="md-icon-button" aria-label="More" ng-click="logout()">
-            <i class="material-icons">exit_to_app</i>
-          </md-button>
-        </div>
-      </md-toolbar>
-      <div>
-        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-      </div>
-    </div>
-  </div>
-  <div ui-view="main">
-  </div>
-  <div  ng-show="isAuthenticated">
-    <div id="footer" >
-      <md-toolbar>
-        <div class="footer-container">
-          <div class="time">
-            <span >{{clock| date:'medium'}}</span>
-          </div>
-        </div>
-      </md-toolbar>
-    </div>
-
-  </div>
-
-
+<body ng-cloak>
+    <div ui-view="content">
+</div>
 <!-- bower:js -->
 <script src="lib/jquery/dist/jquery.js"></script>
 <script src="lib/angular/angular.js"></script>
