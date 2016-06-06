@@ -1,0 +1,18 @@
+<div layout="row"  class="login-container" layout-align="center center" >
+  <md-card >
+    <md-toolbar>
+      <div class="md-toolbar-tools" layout-align="center center">
+        <h2>Forgot Password</h2>
+      </div>
+    </md-toolbar>
+
+    <md-content layout="column" class="input-icons" layout-margin layout-padding>
+      <p>We will send you an E-mail with the Password Reset instructions.</p>
+      <md-input-container>
+        <md-icon md-svg-src="img/email.svg" class="email"></md-icon>
+        <input ng-model="user.email" type="email" placeholder="Email">
+      </md-input-container>
+      <md-button class="md-raised md-primary" ng-click="recover(user)">Reset</md-button>
+    </md-content>
+  </md-card>
+</div>

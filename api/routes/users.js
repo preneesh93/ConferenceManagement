@@ -3,66 +3,47 @@
  */
 
 var User   = require('../schemas/users');
-var jwt    = require("jsonwebtoken");
-var config = require('.././config');
-var secret = config.secret;
-var tokenLifeTime = config.tokenLifeTime;
 
 module.exports.list = function (req, res){
   User.find(function (err,result) {res.send(result)})
 };
 
-module.exports.login = function (req, res){
-  var conditions = {username:req.query.username};
-  var newToken=jwt.sign({email:req.query.email}, secret, {expiresIn: tokenLifeTime});
-  var update = { $set: { token : newToken }};
-  User.findOneAndUpdate(conditions,update,function (err,result) {
-    if(err) { throw err; }
-    if(result == null){res.json("username does't exist")}
-    else if(result.password === req.query.password){
-      res.json({id:result._id,isAuthenticated:true,token:newToken})
-    }
-    else {  res.json("idiot wrong password")    }
+module.exports.getDetails = function (req, res) {
+  console.log("getting user details")
+  var conditions = {username: req.query.username};
+  User.findOne(conditions,function (err,result) {
+    if(err){throw err}
+    var userDetail=result;
+    delete userDetail.password;
+    delete userDetail.token;
+    res.json(result)
   });
 };
 
-module.exports.register = function (req, res){
-  User.find({username:req.body.username},function (err,result) {
-    if(err) { throw err; }
-    if(result.length>0){
-      res.json(409,"user already exists")
-    }
+module.exports.postDetails = function (req, res) {
+  console.log("Received a post req...");
+  var conditions = {username: req.body.username};
+  var update =  {$set: req.body};
+  User.findOneAndUpdate(conditions, update, function(err,result){
+    if(err) {throw err;}
     else {
-      var user = new User(req.body);
-      user.token=jwt.sign({email:req.body.email}, secret, {expiresIn: tokenLifeTime});
-      user.save(function (err,result) { // save user into database
-        if(err) { throw err; }
-        res.send(result)
-      });
+      res.json(result);
     }
   });
 };
 
-module.exports.authenticate = function (req,res) {
-  console.log("authhhhhhhhhhhhhhhhhhhhh");
-  var bearerHeader = req.headers["authorization"];
-  User.findOne({username:req.body.username},function (err,user) {
-    if(err) { throw err; }
-    if(user == null){res.json("username does't exist")}
-    else if (typeof bearerHeader !== 'undefined') {
-      var bearer = bearerHeader.split(" ");
-      var bearerToken = bearer[1];
-      verifyToken(bearerToken,user.email)
+module.exports.changePass = function (req, res) {
+  console.log("Received Password Change Request..");
+  var conditions = {password: req.body.pass1};
+  User.findOneAndUpdate(conditions, {
+    $set: {
+      password: req.body.pass3
     }
-  });
-  var verifyToken=function (token,email,user) {
-    jwt.verify(token,secret, function(err, decoded) {
-      console.log(decoded)
-      console.log(email)
-      if(err){ res.json(403,{msg:"invalid token"}); }
-      else if (decoded.email== email){
-        res.json({token:token,isAuthenticated:true})
-      }
-    });
-  }
+  }, function(err, result){
+        if(err) { throw err; }
+        if(result == null){ res.json("Incorrect Password!")}
+        else {
+          res.json(result);
+        }
+  })
 };

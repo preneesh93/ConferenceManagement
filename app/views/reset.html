@@ -1,0 +1,22 @@
+<div layout="row"  class="login-container" layout-align="center center" >
+  <md-card>
+    <md-toolbar>
+      <div class="md-toolbar-tools" layout-align="center center">
+        <h2>Reset Password</h2>
+      </div>
+    </md-toolbar>
+
+    <md-content layout="column" class="input-icons" layout-margin layout-padding>
+      <p>Enter your new Password</p>
+      <md-input-container>
+        <md-icon md-svg-src="img/lock.svg" class="password"></md-icon>
+        <input ng-model="user.pass1" type="email" placeholder="Enter new Password">
+      </md-input-container>
+      <md-input-container>
+        <md-icon md-svg-src="img/lock.svg" class="password"></md-icon>
+        <input ng-model="user.pass2" type="email" placeholder="Repeat new Password">
+      </md-input-container>
+      <md-button class="md-raised md-primary" ng-click="">Reset</md-button>
+    </md-content>
+  </md-card>
+</div>

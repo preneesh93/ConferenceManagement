@@ -74,5 +74,33 @@ angular.module('routes', ['ui.router'])
         url: "/404",
         templateUrl: 'views/404.html',
         data: { requireAuth: false }
-      });
+      }).state('editprofile', {
+        url: "/editprofile",
+      views: {
+        'main@':{
+        templateUrl: 'views/edit-profile.html',
+        controller: 'ProfileDetailsController'
+        }
+      },
+        data: { requireAuth: false }
+      })
+      /*.state('home.recovery', {
+      url: "recovery",
+      views: {
+        'main@':{
+          templateUrl: 'views/recovery.html',
+          controller: 'RecoveryController'
+        }
+      },
+        data: { requireAuth: false }
+      }).state('home.reset', {
+      url: "reset/:token",
+      views: {
+        'main@':{
+          templateUrl: 'views/reset.html',
+          controller: 'ResetController'
+        }
+      },
+        data: { requireAuth: false }
+    });*/
 });
