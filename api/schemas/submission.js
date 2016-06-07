@@ -10,23 +10,23 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var submissionSchema = new Schema(
     {
         title: String,
-        author_details{
+        author_details: {
             first_name: String,
             last_name: String,
-            email: String,
+            email: String
         },
         abstract: String,
-        keywords{
+        keywords: {
             check1: Boolean,
             check2: Boolean,
             check3: Boolean,
             check4: Boolean,
-            check5: Boolean,
+            check5: Boolean
         },
-        file_upload: Boolean,
+        file_upload: Boolean
         /* submissions : [{id:ObjectId}],
          assigned_submissions: [{id:ObjectId}]*/
     }
 );
 
-module.exports = mongoose.model('submission',submissionSchema,'submissions')
+module.exports = mongoose.model('submission',submissionSchema,'submissions');
