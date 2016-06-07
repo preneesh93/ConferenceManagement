@@ -94,7 +94,7 @@ angular.module('routes', ['ui.router'])
       }).state('editprofile', {
         url: "/editprofile",
         views: {
-          'main@': {
+          'content@': {
             templateUrl: 'views/edit-profile.html',
             controller: 'ProfileDetailsController'
           }
