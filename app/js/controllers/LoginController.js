@@ -6,8 +6,8 @@ angular.module('cms')
     console.log("inside login controller")
     $window.localStorage.clear();
     $scope.user={}
-    $scope.user.username='anna'
-    $scope.user.password='anna'
+    //$scope.user.username='anna'
+    //$scope.user.password='anna'
     $scope.login = function () {
     $scope.user.password=md5.createHash($scope.user.password);
     console.log($scope.user)
