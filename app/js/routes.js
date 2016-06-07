@@ -91,5 +91,14 @@ angular.module('routes', ['ui.router'])
           }
         },
         data: { requireAuth: false }
+      }).state('editprofile', {
+        url: "/editprofile",
+        views: {
+          'main@': {
+            templateUrl: 'views/edit-profile.html',
+            controller: 'ProfileDetailsController'
+          }
+        },
+        data: { requireAuth: true }
       });
 });

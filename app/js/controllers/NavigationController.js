@@ -23,6 +23,9 @@ angular.module('cms')
       $window.localStorage.clear();
       $state.go('home')
     }
-
+  
+    $scope.edit= function () {
+      $state.go('')
+    }
   });
 
