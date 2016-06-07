@@ -1,95 +1,48 @@
 /**
- * Created by Girish on 5/9/2016.
+ * Created by Preneesh on 5/9/2016.
  */
-
 var User   = require('../schemas/users');
-var jwt    = require("jsonwebtoken");
-var config = require('.././config');
-var secret = config.secret;
-var tokenLifeTime = config.tokenLifeTime;
 
 module.exports.list = function (req, res){
   User.find(function (err,result) {res.send(result)})
 };
 
-module.exports.login = function (req, res){
-  var conditions = {username:req.query.username};
-  var newToken=jwt.sign({username:req.query.username}, secret, {expiresIn: tokenLifeTime});
-  var update = { $set: { token : newToken }};
-  User.findOneAndUpdate(conditions,update,function (err,result) {
-    if(err) { throw err; }
-    if(result == null){res.json("username does't exist")}
-    else if(result.password === req.query.password){
-      console.log(result)
-      res.json({id:result._id,isAuthenticated:true,token:newToken})
-    }
-    else {  res.json("idiot wrong password")    }
+module.exports.getDetails = function (req, res) {
+  console.log("getting user details")
+  var conditions = {username: req.query.username};
+  User.findOne(conditions,function (err,result) {
+    if(err){throw err}
+    var userDetail=result;
+    delete userDetail.password;
+    delete userDetail.token;
+    res.json(result)
   });
 };
 
-module.exports.register = function (req, res){
-  User.find({username:req.body.username},function (err,result) {
-    if(err) { throw err; }
-    if(result.length>0){
-      res.json(409,"user already exists")
-    }
+module.exports.postDetails = function (req, res) {
+  console.log("Received a post req...");
+  var conditions = {username: req.body.username};
+  var update =  {$set: req.body};
+  User.findOneAndUpdate(conditions, update, function(err,result){
+    if(err) {throw err;}
     else {
-      var user = new User(req.body);
-      user.token=jwt.sign({email:req.body.email}, secret, {expiresIn: tokenLifeTime});
-      user.save(function (err,result) { // save user into database
-        if(err) { throw err; }
-        res.send(result)
-      });
+      res.json(result);
     }
   });
 };
 
-module.exports.authenticate = function (req,res) {
-  console.log("authhhhhhhhhhhhhhhhhhhhh");
-  var bearerHeader = req.headers["authorization"];
-  User.findOne({username: req.body.username}, function (err, user) {
-    if (err) {
-      throw err;
+module.exports.changePass = function (req, res) {
+  console.log("Received Password Change Request..");
+  var conditions = {password: req.body.pass1};
+  User.findOneAndUpdate(conditions, {
+    $set: {
+      password: req.body.pass3
     }
-    if (user == null) {
-      res.json("username does't exist")
-    }
-    else if (typeof bearerHeader !== 'undefined') {
-      var bearer = bearerHeader.split(" ");
-      var token = bearer[1];
-      jwt.verify(token, secret, function (err, decoded) {
-        console.log(decoded)
-        console.log(req.body.username)
-        if (err) {
-          res.json(403, {msg: "invalid token"});
-        }
-        else if (decoded.username == req.body.username) {
-          res.json({token: token, isAuthenticated: true})
-        }
-        else {
-          res.json(403, {msg: "invalid token"});
-        }
-      });
+  }, function(err, result){
+    if(err) { throw err; }
+    if(result == null){ res.json("Incorrect Password!")}
+    else {
+      res.json(result);
     }
   })
-};
-
-module.exports.authmiddleware = function (req,res) {
-  console.log("inside authmiddleware");
-  var bearerHeader = req.headers["authorization"];
-  var bearer = bearerHeader.split(" ");
-  var token = bearer[1];
-  if(token) {
-    jwt.verify(token, secret, function (err, decoded) {
-      if (err) {
-        res.json(403, {msg: "invalid token"});
-      }
-      else {
-        res.json("authenticated");
-      }
-    });
-  }
-  else {
-    res.json("no token")
-  }
 };

@@ -14,10 +14,16 @@
         </md-button>
       </div>
     </md-toolbar>
-    <div> <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left"> </div>
+    <div>
+      <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+        <div>
+          <md-button class="md-raised" ui-sref="editprofile">Edit Profile</md-button>
+        </div>
+      </md-sidenav>
+    </div>
   </div>
 
-  <div ui-view="main@"></div>
+  <div ui-view="main"></div>
 
   <div>
     <div id="footer" >

@@ -13,6 +13,7 @@ var userSchema = new Schema(
     username: String,
     password: String,
     token: String,
+    title: String,
     first_name: String,
     last_name: String,
     timestamp: Date,

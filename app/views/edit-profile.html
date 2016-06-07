@@ -1,0 +1,185 @@
+<div ng-init="upload()" layout="column"  ng-cloak="" class="md-inline-form tabsdemoDynamicHeight">
+
+  <md-content  layout-gt-sm="column" layout-padding="">
+    <md-tabs md-dynamic-height="" md-border-bottom="">
+      <md-tab label="Basic Info">
+        <md-content class="md-padding">
+          <h3>Basic Information</h3>
+          <div>
+            <md-input-container>
+              <label>Title</label>
+              <md-select ng-model="user.title">
+                <md-option>Mr.</md-option>
+                <md-option>Ms.</md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <div>
+            <md-input-container>
+              <label>First Name</label>
+              <input ng-model="user.first_name">
+            </md-input-container>
+            <md-input-container>
+              <label>Last Name</label>
+              <input ng-model="user.last_name">
+            </md-input-container>
+          </div>
+          <div layout-gt-sm="column">
+            <div>
+              <md-button class="md-raised md-primary" ng-click="update(user)">Update</md-button>
+            </div>
+            <div ng-show="success">
+              <p>Updated Successfully!</p>
+            </div>
+          </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Privacy">
+        <md-content class="md-padding" layout-gt-sm="column">
+          <div>
+            <md-input-container>
+              <label>Username</label>
+              <input ng-model="user.username" disabled>
+            </md-input-container>
+            <md-input-container>
+              <label>Email</label>
+              <input ng-model="user.email" type="email" disabled>
+            </md-input-container>
+          </div>
+          <div>
+            <md-input-container>
+              <label>Password</label>
+              <input ng-model="user.password" type="password" disabled>
+            </md-input-container>
+          </div>
+          <div ng-controller="DialogCtrl">
+            <md-button class="md-raised md-primary" class="md-primary md-raised" ng-click="showTabDialog($event)">Change Password</md-button>
+          </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Contact">
+        <md-content class="md-padding">
+          <form name="profileForm">
+            <div>
+              <h3>Contact Details</h3>
+              <div layout-gt-xs="row">
+                <md-input-container class="md-block" flex-gt-xs="25">
+                  <label>Street</label>
+                  <input ng-model="user.address.street">
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-xs="25">
+                  <label>City</label>
+                  <input ng-model="user.address.city">
+                </md-input-container>
+              </div>
+              <div layout-gt-xs="row">
+                <md-input-container class="md-block" flex-gt-xs="10">
+                  <label>Postal Code</label>
+                  <input name="postalCode" ng-model="user.address.postal_code" placeholder="12345"
+                         required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+                  <div ng-messages="profileForm.postalCode.$error" role="alert" multiple>
+                    <div ng-message="pattern" class="my-message">Enter a valid Postal Code!</div>
+                  </div>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-xs="20">
+                  <label>State</label>
+                  <input ng-model="user.address.State">
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-xs="20">
+                  <label>Country</label>
+                  <input ng-model="user.address.Country">
+                </md-input-container>
+              </div>
+              <div layout-gt-sm="column">
+                <div>
+                  <md-button class="md-raised md-primary" ng-disabled="profileForm.$invalid" ng-click="update(user)">Update</md-button>
+                </div>
+                <div ng-show="success">
+                  <p>Updated Successfully!</p>
+                </div>
+              </div>
+            </div>
+          </form>
+        </md-content>
+      </md-tab>
+      <md-tab label="Affiliation">
+        <md-content class="md-padding">
+          <h3>Affiliation Information</h3>
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm="50">
+              <label>Name of the Institution</label>
+              <input ng-model="user.institution.name">
+            </md-input-container>
+          </div>
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm="10">
+              <label>City</label>
+              <input ng-model="user.institution.city">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm="20">
+              <label>State</label>
+              <input ng-model="user.institution.State">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm="20">
+              <label>Country</label>
+              <input ng-model="user.institution.Country">
+            </md-input-container>
+          </div>
+          <div layout-gt-sm="column">
+            <div>
+              <md-button class="md-raised md-primary" ng-click="update(user)">Update</md-button>
+            </div>
+            <div ng-show="success">
+              <p>Updated Successfully!</p>
+            </div>
+          </div>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>
+<div>
+  <script type="text/ng-template" id="tabDialog.tmpl.html">
+    <md-dialog aria-label="Change Password">
+      <form>
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2>Change Password</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+              <i class="material-icons">clear</i>
+            </md-button>
+          </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:350px;max-height:810px; ">
+          <md-content class="md-padding" layout-gt-sm="column">
+            <div>
+              <md-input-container>
+                <label>Enter Current Password</label>
+                <input ng-model="changePass.pass1" type="password">
+              </md-input-container>
+              <md-input-container>
+                <label>Repeat Current Password</label>
+                <input ng-model="changePass.pass2" type="password">
+              </md-input-container>
+              <md-input-container>
+                <label>Enter New Password</label>
+                <input ng-model="changePass.pass3" type="password">
+              </md-input-container>
+            </div>
+          </md-content>
+        </md-dialog-content>
+        <md-dialog-actions layout="row" class="buttonEqual">
+          <div>
+            <md-button class="md-raised md-primary" ng-click="cancel()" >
+              Cancel
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="change(changePass)" style="margin-right:20px;" >
+              Confirm
+            </md-button>
+          </div>
+        </md-dialog-actions>
+      </form>
+    </md-dialog>
+  </script>
+</div>
