@@ -10,22 +10,23 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var submissionSchema = new Schema(
     {
         title: String,
-        author_details: {
+        author: String,
+        authors: {
             first_name: String,
             last_name: String,
             email: String
         },
         abstract: String,
         keywords: {
-            check1: Boolean,
-            check2: Boolean,
-            check3: Boolean,
-            check4: Boolean,
-            check5: Boolean
+            check1: String,
+            check2: String,
+            check3: String,
+            check4: String,
+            check5: String
         },
-        file_upload: Boolean
-        /* submissions : [{id:ObjectId}],
-         assigned_submissions: [{id:ObjectId}]*/
+        file: Object,
+        status: String
+       
     }
 );
 
