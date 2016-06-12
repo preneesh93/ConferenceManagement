@@ -6,6 +6,7 @@ var express    = require('express');
 var mongoose   = require('mongoose');
 var auth       = require('../api/routes/auth');
 var users      = require('../api/routes/users');
+var submissions = require('../api/routes/submissions');
 var authors    = require('../api/routes/authors');
 var chair      = require('../api/routes/chair');
 var config     = require('./config');
@@ -52,6 +53,10 @@ if (decoded.exp <= Date.now()) {
   res.end('Access token has expired', 400);
 }
 */
+
+//submissions
+app.get('/user/submissions', submissions.listSub);
+app.post('/user/add-submission', submissions.postSub);
 
 // authentication
 app.get('/user/login', auth.login);
