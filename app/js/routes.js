@@ -148,6 +148,14 @@ angular.module('routes', ['ui.router'])
           templateUrl: 'views/new-submission.html',
           controller: 'SubmissionsController'
         }
+      }
+      }).state('root.review', {
+      url: "review",
+      views: {
+        'main@': {
+          templateUrl: 'views/review.html',
+          controller: 'ReviewController'
+        }
       },
       data: { requireAuth: true }
     });
