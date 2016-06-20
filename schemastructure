@@ -1,4 +1,5 @@
 //users  --- create collection called Users
+
 {
   _id:id
   email: String,
