@@ -6,12 +6,8 @@ angular.module('cms')
     console.log("Profile Control!");
     console.log($stateParams.user);
     $scope.user=$stateParams.user;
-    $scope.upload = function() {
-      $scope.getProfileItem()
 
-    };
-
-    $scope.getProfileItem= function () {
+    $scope.loadProfileDetails= function () {
       var req = {
         method: 'get',
         url: "/api/user/user-details",
