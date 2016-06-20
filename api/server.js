@@ -4,6 +4,7 @@
 // MEAN Stack RESTful API Tutorial - Contact List App
 var express    = require('express');
 var mongoose   = require('mongoose');
+var auth       = require('../api/routes/auth');
 var users      = require('../api/routes/users');
 var submissions = require('../api/routes/submissions');
 var authors    = require('../api/routes/authors');
@@ -29,14 +30,14 @@ app.use(function(req, res, next) {
 
 // connect to db
 mongoose.connect('mongodb://localhost/cms');
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function(){console.log("mongoose is connected")});
+db.on('error', console.error.bind(console, 'Connection Error: '));
+db.once('open', function(){console.log("Mongoose is Connected!")});
 
 //protecting api routes
 app.all("/api/*", requireLogin);
 
 function requireLogin(req, res, next) {
-  console.log("inside authmiddleware");
+  console.log("inside auth middleware");
   var bearerHeader = req.headers["authorization"];
   if (bearerHeader){
     var token  = bearerHeader.split(" ")[1];
@@ -58,10 +59,15 @@ app.get('/user/submissions', submissions.listSub);
 app.post('/user/add-submission', submissions.postSub);
 
 // authentication
+app.get('/user/login', auth.login);
+app.post('/user/register', auth.register);
+app.post('/api/auth',auth.authenticate);
+
+//User Details
 app.get('/api/user/list', users.list);
-app.get('/user/login', users.login);
-app.post('/user/register', users.register);
-app.post('/api/auth',users.authenticate);
+app.get('/api/user/user-details', users.getDetails);
+app.post('/api/user/user-details', users.postDetails);
+app.post('/api/user/privacy', users.changePass);
 
 // sending index file to handle angular routes
 app.all('/*', function(req, res) {

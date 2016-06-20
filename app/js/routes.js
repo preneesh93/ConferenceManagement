@@ -91,5 +91,14 @@ angular.module('routes', ['ui.router'])
           }
         },
         data: { requireAuth: false }
+      }).state('root.profiledetails', {
+        url: "profiledetails",
+        views: {
+          'main@': {
+            templateUrl: 'views/profile-details.html',
+            controller: 'ProfileDetailsController'
+          }
+        },
+        data: { requireAuth: true }
       });
 });
