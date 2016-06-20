@@ -6,7 +6,7 @@
           <i class="material-icons md-48">account_circle</i>
         </md-button>
         <h2>
-          <span ng-bind="username"></span>
+          <span ui-sref="root.dashboard" ng-bind="username"></span>
         </h2>
         <span flex></span>
         <md-button class="md-icon-button" aria-label="More" ng-click="logout()">
@@ -17,7 +17,7 @@
     <div>
       <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
         <div>
-          <md-button class="md-raised" ui-sref="editprofile">Edit Profile</md-button>
+          <md-button class="md-raised" ui-sref="root.profiledetails">Edit Profile</md-button>
         </div>
       </md-sidenav>
     </div>

@@ -91,11 +91,11 @@ angular.module('routes', ['ui.router'])
           }
         },
         data: { requireAuth: false }
-      }).state('editprofile', {
-        url: "/editprofile",
+      }).state('root.profiledetails', {
+        url: "profiledetails",
         views: {
-          'content@': {
-            templateUrl: 'views/edit-profile.html',
+          'main@': {
+            templateUrl: 'views/profile-details.html',
             controller: 'ProfileDetailsController'
           }
         },
