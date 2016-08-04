@@ -34,7 +34,7 @@ db.on('error', console.error.bind(console, 'Connection Error: '));
 db.once('open', function(){console.log("Mongoose is Connected!")});
 
 //protecting api routes
-app.all("/api/*", requireLogin);
+//app.all("/api/*", requireLogin);
 
 function requireLogin(req, res, next) {
   console.log("inside auth middleware");
