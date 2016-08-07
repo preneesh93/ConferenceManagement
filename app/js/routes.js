@@ -11,6 +11,9 @@ angular.module('routes', ['ui.router'])
           'content@':{
             templateUrl: 'views/content.html',
             controller: 'HomeController'
+          } ,
+          'sidenav@':{
+            templateUrl: 'sidenav.html'
           }
         },
         resolve:{
