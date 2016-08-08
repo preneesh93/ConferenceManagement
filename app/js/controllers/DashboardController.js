@@ -3,7 +3,6 @@
  */
 angular.module('cms')
   .controller('DashboardController', function($scope,$http,$window,$state){
-    console.log("inside dashboard controller");
 
     var getUserInfo = function () {
       var req = {

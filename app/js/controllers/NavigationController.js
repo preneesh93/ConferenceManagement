@@ -3,7 +3,6 @@
  */
 angular.module('cms')
   .controller('NavigationController', function($scope,$mdSidenav, $rootScope, $window,$state,$interval){
-    console.log("inside nav controller");
     if($window.localStorage.token){
       $rootScope.isAuthenticated=true
     }
@@ -16,7 +15,6 @@ angular.module('cms')
     }
     tick();
     $interval(tick, 1000);
-    console.log($window.localStorage.username)
     
     $scope.logout=function () {
       $rootScope.isAuthenticated=false;
