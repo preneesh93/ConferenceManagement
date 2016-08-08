@@ -11,8 +11,13 @@
   <link rel="stylesheet" href="styles/main.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body ng-cloak>
-    <div ui-view="content">
+<body ng-cloak    >
+    <div layout="row"  layout-fill>
+
+      <div ui-view="sidenav"></div>
+
+      <div flex="90" ui-view="content"></div>
+    </div>
 </div>
 <!-- bower:js -->
 <script src="lib/jquery/dist/jquery.js"></script>
