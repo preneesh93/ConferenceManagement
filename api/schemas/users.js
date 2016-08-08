@@ -19,7 +19,8 @@ var userSchema = new Schema(
     timestamp: Date,
     roles: {
       author: Boolean,
-      reviewer: Boolean
+      reviewer: Boolean,
+      chair:Boolean
     },
     address: {
       street: String,
