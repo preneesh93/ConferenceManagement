@@ -32,6 +32,7 @@ angular.module('routes', ['ui.router'])
         resolve:{
           username:function ($window,$rootScope) {
             $rootScope.username=$window.localStorage.username;
+            console.log($rootScope.username)
             return $rootScope.username
           }
         }
@@ -90,6 +91,20 @@ angular.module('routes', ['ui.router'])
           }
         }
       })
+      .state('root.chair',{
+        url:"chair"
+      })
+      .state('root.chair.dashboard', {
+        url: "/dashboard",
+        data: { requireAuth: true },
+        views: {
+          'main@':{
+            templateUrl: 'views/chair/dashboard.html',
+            controller: 'chair.DashboardController'
+          }
+        }
+      })
+
       .state('404', {
         url: "/404",
         views: {

@@ -5,8 +5,11 @@
     </h3>
   </div>
   <div ng-show="isAuthenticated">
-    <h3>
-      welcome to CMS click <a href="/dashboard">here</a> to go to Dashboard
+    <h3 ng-if="!isChair">
+      welcome to CMS click <a ui-sref="root.dashboard">here</a> to go to Dashboard
+    </h3>
+    <h3 ng-if="isChair">
+      welcome to CMS click <a ui-sref="root.chair.dashboard">here</a> to go to Dashboard
     </h3>
   </div>
 

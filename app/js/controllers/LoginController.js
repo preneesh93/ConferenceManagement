@@ -26,7 +26,7 @@ angular.module('cms')
             $state.go('home')
           }
           else{
-
+            
           }
         },
         function(response){ //Error callback
