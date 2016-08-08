@@ -34,3 +34,21 @@ body{
   margin-right:15px;
   position:absolute;
 }
+
+
+#side-nav md-content md-list {
+  padding-left:0 ;
+  padding-right:0;
+}
+h5 {
+  text-align: center;
+}
+
+#side-nav span{
+  text-align: right;
+}
+
+
+md-content {
+  background-color: transparent;
+}
