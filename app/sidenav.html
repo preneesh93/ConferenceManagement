@@ -1,13 +1,26 @@
-<div layout="row" layout-fill flex>
+<div layout="row" layout-fill flex id="side-nav">
 
   <md-sidenav  layout-fill class=" md-sidenav-left" md-component-id="left" md-is-locked-open="true"  md-whiteframe="4">
 
-    <md-toolbar class="md-whiteframe-6dp">
-      <h1 class="md-toolbar-tools">Sidenav Left</h1>
+    <md-toolbar  class="md-whiteframe-4dp">
+      <div class="md-toolbar-tools" ui-sref="root.dashboard" >
+        <md-button class="md-icon-button" aria-label="Settings" >
+          <i class="material-icons md-48">account_circle</i>
+        </md-button>
+        <h2>
+          <span ui-sref="root.dashboard" ng-bind="username"></span>
+        </h2>
+      </div>
     </md-toolbar>
-    <md-content layout-padding flex  >
-
-      <md-button class="md-raised" ui-sref="root.profiledetails">Edit Profile</md-button>
+    <md-content flex>
+      <md-list flex>
+        <md-list-item md-ink-ripple class="md-clickable">
+          <h5 ui-sref="root.profiledetails">Edit Profile</h5>
+        </md-list-item>
+        <md-list-item md-ink-ripple class="md-clickable">
+          <span ui-sref="root.dashboard">Dashboard</span>
+        </md-list-item>
+      </md-list>
     </md-content>
     <div style="bottom:0">
       some sthi
