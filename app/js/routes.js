@@ -9,15 +9,11 @@ angular.module('routes', ['ui.router'])
         abstract:true,
         views: {
           'content@':{
-            templateUrl: 'views/content.html',
-            controller: 'HomeController'
+            templateUrl: 'views/content.html'
           } ,
           'sidenav@':{
             templateUrl: 'sidenav.html'
           }
-        },
-        resolve:{
-
         }
       })
       .state('home', {
@@ -30,10 +26,11 @@ angular.module('routes', ['ui.router'])
         },
         data: { requireAuth: false },
         resolve:{
-          username:function ($window,$rootScope) {
-            $rootScope.username=$window.localStorage.username;
-            console.log($rootScope.username)
-            return $rootScope.username
+          currentuser:function (userService) {
+            return userService.currentUser()
+          },
+          checklogin: function (authService,$window) {
+            return authService.auth($window.localStorage.token,$window.localStorage.username)
           }
         }
       })

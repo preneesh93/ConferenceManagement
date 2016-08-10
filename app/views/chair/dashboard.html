@@ -1,1 +1,56 @@
-yo this is chair dashboard
+<div>
+  <md-content  layout-gt-sm="column" layout-padding="">
+    <md-tabs md-dynamic-height="" md-border-bottom="">
+      <md-tab label="Authors">
+        <md-content class="md-padding">
+          <h3>List of Authors</h3>
+          <div flex="" layout="row">
+            <div flex="20" class="md-whiteframe-6dp" layout-padding>
+              <div ng-repeat="user in users" ng-click="select(user)" >
+                {{user.username}}
+              </div>
+            </div>
+            <div flex="80" class="md-whiteframe-6dp" layout-padding>
+              <div layout="row">
+                <md-input-container>
+                  <label>Title</label>
+                  <md-select ng-model="selectedUser.title" disabled>
+                    <md-option>{{selectedUser.title}}</md-option>
+                  </md-select>
+                </md-input-container>
+                <md-input-container>
+                  <label>First Name</label>
+                  <input ng-model="selectedUser.first_name">
+                </md-input-container>
+                <md-input-container>
+                  <label>Last Name</label>
+                  <input ng-model="selectedUser.last_name">
+                </md-input-container>
+              </div>
+              <li><span flex="30">Email</span><span flex="">{{selectedUser.email}}</span></li>
+              <li><span flex="30">Address</span><span flex="">{{selectedUser.address}}</span></li>
+              <li><span flex="30">Institution</span><span flex="">{{selectedUser.institution}}</span></li>
+            </div>
+          </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Reviewers">
+        <md-content class="md-padding">
+          <h3>List of Reviewrs</h3>
+          <div>
+          </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Submissions">
+        <md-content class="md-padding">
+          <h3>List of Submissions</h3>
+        </md-content>
+      </md-tab>
+      <md-tab label="Reviews">
+        <md-content class="md-padding">
+          <h3>List of Reviews</h3>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>

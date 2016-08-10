@@ -52,3 +52,8 @@ h5 {
 md-content {
   background-color: transparent;
 }
+
+md-pagination-wrapper{
+  margin:0 auto;
+  position:inherit;
+}

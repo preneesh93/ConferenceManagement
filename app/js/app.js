@@ -30,13 +30,20 @@ angular
     var service = {}
     service.auth = function (token,name) {
       console.log("inside auth service")
-      return $http.post('/api/auth',{username:name}).then(function (response) {
-        return (response.data.isAuthenticated)
-      },function (e) {
-        return(e)
-      });
+      return $http.post('/api/auth',{username:name})
     }
 
+    return service
+  }]).service('userService',['$http','$window','$rootScope','authService',function($http,$window,$rootScope,authService) {
+    var service = {}
+    service.currentUser = function () {
+      console.log("calling user")
+      if ($window.localStorage.token && $window.localStorage.username){
+        var req = {method:'get',url:"/api/user/user-details",params:{username:$window.localStorage.username}};
+        return $http(req)
+      }
+      else { console.log("something is wrong ")}
+    }
     return service
   }]).run(['$http','$window','$rootScope','$state','authService', function($http,$window,$rootScope,$state,authService) {
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
@@ -44,8 +51,8 @@ angular
       $rootScope.username=$window.localStorage.username
       if(toState.data.requireAuth ){
         authService.auth($window.localStorage.token,$window.localStorage.username).then(function (auth) {
-          $rootScope.isAuthenticated=auth
-          if ( auth != true) {
+          $rootScope.isAuthenticated=auth.data.isAuthenticated
+          if ( auth.data.isAuthenticated != true) {
             event.preventDefault();
             $state.go('home')
           }
