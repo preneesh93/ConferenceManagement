@@ -9,9 +9,9 @@ angular.module('cms')
     $scope.project.keywords = [];
     $scope.Submit = function() {
         var uploadUrl = '/user/submission';
+        console.log(multipartForm);
         multipartForm.post(uploadUrl, $scope.project);
-        $state.go('root.dashboard');
-    }
+    };
     $scope.Cancel = function(){
             $state.go('root.dashboard');
     }
