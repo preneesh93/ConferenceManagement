@@ -8,9 +8,10 @@ angular.module('cms')
     $scope.reviewer = currentuser.data.roles.reviewer?true:false
     $scope.list=['1','3','2']
 
-    // submission overview
-
     //reviews overview
+  
+
+    // submission overview
 
     $scope.updateReviewer = function (reviewer) {
       currentuser.data.roles.reviewer = reviewer
@@ -21,11 +22,23 @@ angular.module('cms')
       };
       $http(req).then(function (result) {
         console.log(result);
-
       }, function(error){
         console.error('Error: '+ error);
       })
-
-    }
+    };
+    
+    var listSubmissions = function() {
+      var req = {
+        method: 'get',
+        url: "/api/user/submissions"
+      };
+      $http(req)
+        .then(
+          function(response){
+            console.log(response);
+          }
+        );
+    };
+    listSubmissions();
   });
 

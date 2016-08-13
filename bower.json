@@ -16,6 +16,7 @@
     "angular-md5": "^0.1.10",
     "material-design-icons": "^2.2.3",
     "angular-moment": "^0.10.3",
+    "angular-filepicker": "^1.1.4",
     "ng-file-upload": "^12.0.4"
   },
   "authors": [
