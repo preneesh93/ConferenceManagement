@@ -14,11 +14,8 @@
     </md-toolbar>
     <md-content flex>
       <md-list flex>
-        <md-list-item md-ink-ripple class="md-clickable">
-          <h5 ui-sref="root.profiledetails">Edit Profile</h5>
-        </md-list-item>
-        <md-list-item md-ink-ripple class="md-clickable">
-          <span ui-sref="root.dashboard">Dashboard</span>
+        <md-list-item md-ink-ripple class="md-clickable" ng-repeat="item in sideMenu">
+          <h5 ui-sref="{{item.state}}">{{item.label}}</h5>
         </md-list-item>
       </md-list>
     </md-content>

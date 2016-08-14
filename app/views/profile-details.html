@@ -4,8 +4,9 @@
     <md-tabs md-dynamic-height="" md-border-bottom="">
       <md-tab label="Basic Info">
         <md-content class="md-padding">
+
           <h3>Basic Information</h3>
-          <div>
+          <div layout="row">
             <md-input-container>
               <label>Title</label>
               <md-select ng-model="user.title">
@@ -13,8 +14,6 @@
                 <md-option>Ms.</md-option>
               </md-select>
             </md-input-container>
-          </div>
-          <div>
             <md-input-container>
               <label>First Name</label>
               <input ng-model="user.first_name">

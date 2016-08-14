@@ -3,7 +3,8 @@
  */
 angular.module('cms').controller('RegistrationController', function($scope,$http,md5){
   console.log("inside registration controller")
-  $scope.register = function () {
+  $scope.register = function () { 
+    $scope.user.roles={author:true}
     $scope.user.password=md5.createHash($scope.user.password);
     console.log($scope.user)
     $scope.data=JSON.stringify($scope.user)

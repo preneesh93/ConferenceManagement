@@ -3,8 +3,7 @@
  */
 angular.module('cms')
   .controller('ProfileDetailsController', function($stateParams,$scope, $http, $timeout,$window){
-    console.log("Profile Control!");
-    console.log($stateParams.user);
+
     $scope.user=$stateParams.user;
 
     $scope.loadProfileDetails= function () {
@@ -14,9 +13,7 @@ angular.module('cms')
         params: {username: $window.localStorage.username}
       };
       $http(req).then(function (result) {
-        console.log(result)
         $scope.user = result.data;
-        console.log($scope.user)
       },function (error) {
         console.error('Error: ' + error);
       })
@@ -29,7 +26,6 @@ angular.module('cms')
         url:"api/user/user-details",
         data: profile
       };
-      console.log(profile);
       $http(req).then(function (result) {
         console.log(result);
         $scope.success=true;

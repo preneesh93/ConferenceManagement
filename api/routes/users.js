@@ -12,10 +12,14 @@ module.exports.getDetails = function (req, res) {
   var conditions = {username: req.query.username};
   User.findOne(conditions,function (err,result) {
     if(err){throw err}
-    var userDetail=result;
-    delete userDetail.password;
-    delete userDetail.token;
-    res.json(result)
+    else if(result != null){
+      var userDetail=result;
+      delete userDetail.password;
+      delete userDetail.token;
+      res.json(result)
+    }
+    else {
+      res.json(404,"user not found")}
   });
 };
 

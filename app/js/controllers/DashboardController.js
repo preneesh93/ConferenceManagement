@@ -3,7 +3,6 @@
  */
 angular.module('cms')
   .controller('DashboardController', function($scope,$http,$window,$state){
-    console.log("inside dashboard controller");
 
     var getUserInfo = function () {
       var req = {
@@ -13,7 +12,7 @@ angular.module('cms')
       $http(req)
         .then(
           function(response) { // Success callback
-          console.log(response)
+          // console.log(response)
           }
         );
     };
