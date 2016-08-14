@@ -18,7 +18,7 @@ angular.module('cms')
 
       var req = {
         method:'post',
-        url:"api/user/submissions",
+        url:"api/user/submission",
         data: sub
       };
       $http(req).then(function (result) {
