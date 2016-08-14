@@ -4,9 +4,10 @@
 angular.module('cms')
   .controller('HomeController',function($state,$scope,$rootScope,authService,currentuser,checklogin){
     console.log(currentuser);
-    $scope.isChair = currentuser.data.roles.chair
-    console.log($scope.isChair);
-    $rootScope.isAuthenticated=checklogin.data.isAuthenticated
-
+    if(currentuser){
+      $scope.isChair = currentuser.data.roles.chair
+      console.log($scope.isChair);
+      $rootScope.isAuthenticated=checklogin.data.isAuthenticated
+    }
   });
 

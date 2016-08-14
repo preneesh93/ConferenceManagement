@@ -12,7 +12,7 @@ angular.module('cms')
       $http(req)
         .then(
           function(response) { // Success callback
-          console.log(response)
+          // console.log(response)
           }
         );
     };

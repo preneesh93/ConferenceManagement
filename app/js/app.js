@@ -29,7 +29,6 @@ angular
   }).service('authService',['$http','$q',function($http,$q) {
     var service = {}
     service.auth = function (token,name) {
-      console.log("inside auth service")
       return $http.post('/api/auth',{username:name})
     }
 
@@ -37,7 +36,6 @@ angular
   }]).service('userService',['$http','$window','$rootScope','authService',function($http,$window,$rootScope,authService) {
     var service = {}
     service.currentUser = function () {
-      console.log("calling user")
       if ($window.localStorage.token && $window.localStorage.username){
         var req = {method:'get',url:"/api/user/user-details",params:{username:$window.localStorage.username}};
         return $http(req)

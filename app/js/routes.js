@@ -12,7 +12,8 @@ angular.module('routes', ['ui.router'])
             templateUrl: 'views/content.html'
           } ,
           'sidenav@':{
-            templateUrl: 'sidenav.html'
+            templateUrl: 'sidenav.html',
+            controller:'SideNavController'
           }
         }
       })
