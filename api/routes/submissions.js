@@ -3,7 +3,7 @@
  */
 var Sub =  require('../schemas/submissions');
 
-module.exports.getSub = function (req,res) {
+/*module.exports.getSub = function (req,res) {
   console.log("getting project details");
   var conditions = {title: req.query.title};
   Sub.findOne(conditions,function (err,result) {
@@ -12,16 +12,16 @@ module.exports.getSub = function (req,res) {
     console.log("Submission was successful");
   });
 };
+*/
+
 
 module.exports.postSub = function (req, res) {
-  console.log("Updating Project details");
-  var conditions = {title: req.body.title};
-  var update =  {$set: req.body};
-  Sub.findOneAndUpdate(conditions, update, function(err,result){
-    if(err) {throw err;}
+  var add = new Sub(req.body);
+  add.save(function (err,result) {
+    if(err) { throw err; }
     else {
-      res.json(result);
-      console.log("Submission was successful");
+      res.send(result);
     }
-  });
+    console.log("submission was successful");
+    });
 };
