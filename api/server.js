@@ -7,8 +7,6 @@ var mongoose   = require('mongoose');
 var auth       = require('../api/routes/auth');
 var users      = require('../api/routes/users');
 var submissions = require('../api/routes/submissions');
-var authors    = require('../api/routes/authors');
-var chair      = require('../api/routes/chair');
 var config     = require('./config');
 var bodyParser = require('body-parser');
 var path       = require('path');
@@ -55,8 +53,8 @@ if (decoded.exp <= Date.now()) {
 */
 
 //submissions
-app.get('/user/submissions', submissions.listSub);
-app.post('/user/add-submission', submissions.postSub);
+app.get('/user/submission', submissions.getSub);
+app.post('/user/submission', submissions.postSub);
 
 // authentication
 app.get('/user/login', auth.login);
