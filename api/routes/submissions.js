@@ -3,12 +3,25 @@
  */
 var Sub =  require('../schemas/submissions');
 
-module.exports.listSub = function (req,res) {
-  Sub.find(function (err,result) {
-    res.send(result);
-  })
+/*module.exports.getSub = function (req,res) {
+  console.log("getting project details");
+  var conditions = {title: req.query.title};
+  Sub.findOne(conditions,function (err,result) {
+    if(err){throw err}
+    res.json(result);
+    console.log("Submission was successful");
+  });
 };
-
-module.exports.postSub = function (req,res) {
-  
-}
+*/
+module.exports.postSub = function (req, res) {
+  console.log("Updating Project details");
+  var conditions = {title: req.body.title};
+  var update =  {$set: req.body};
+  User.findOneAndUpdate(conditions, update, function(err,result){
+    if(err) {throw err;}
+    else {
+      res.json(result);
+      console.log("Submission was successful");
+    }
+  });
+};
