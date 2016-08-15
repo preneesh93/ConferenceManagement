@@ -117,5 +117,6 @@ angular.module('routes', ['ui.router'])
         }
       },
       data: { requireAuth: true }
+
     });
 });
