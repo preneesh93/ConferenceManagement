@@ -14,8 +14,8 @@ var Sub =  require('../schemas/submissions');
 };
 */
 
-
 module.exports.postSub = function (req, res) {
+  console.log("Getting the Submission");
   var add = new Sub(req.body);
   add.save(function (err,result) {
     if(err) { throw err; }
