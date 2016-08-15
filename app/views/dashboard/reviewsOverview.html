@@ -1,1 +1,8 @@
-reviewssssss
+<div>
+  <div layout="row" layout-align="center">
+    <md-switch ng-model="reviewer" ng-change="updateReviewer(reviewer)" aria-label="reviewer">
+      <span ng-if="!reviewer"> become a reviewer</span>
+      <span ng-if="reviewer"> remove from reviewers list</span>
+    </md-switch>
+  </div>
+</div>

@@ -2,42 +2,30 @@
  * Created by Girish on 5/16/2016.
  */
 angular.module('cms')
-  .controller('DashboardController', function($scope,$http,$window,$state){
+  .controller('DashboardController', function($scope,$http,$window,currentuser){
+    console.log(currentuser)
+    currentuser.data.roles.author=true
+    $scope.reviewer = currentuser.data.roles.reviewer?true:false
+    $scope.list=['1','3','2']
 
-    var getUserInfo = function () {
+    // submission overview
+
+    //reviews overview
+
+    $scope.updateReviewer = function (reviewer) {
+      currentuser.data.roles.reviewer = reviewer
       var req = {
-        method: 'get',
-        url: "/api/user/list"
+        method:'post',
+        url:"/api/user/"+currentuser.data.username+"/roles",
+        data: currentuser.data.roles
       };
-      $http(req)
-        .then(
-          function(response) { // Success callback
-          // console.log(response)
-          }
-        );
-    };
-    getUserInfo();
+      $http(req).then(function (result) {
+        console.log(result);
 
-    var clock = function(){
+      }, function(error){
+        console.error('Error: '+ error);
+      })
 
-      function updateClock(){
-        var now = moment(),
-          second = now.seconds() * 6,
-          minute = now.minutes() * 6 + second / 60,
-          hour = ((now.hours() % 12) / 12) * 360 + 90 + minute / 12;
-
-        $('#hour').css("transform", "rotate(" + hour + "deg)");
-        $('#minute').css("transform", "rotate(" + minute + "deg)");
-        $('#second').css("transform", "rotate(" + second + "deg)");
-      }
-
-      function timedUpdate () {
-        updateClock();
-        setTimeout(timedUpdate, 1000);
-      }
-
-      timedUpdate();
     }
-    clock()
   });
 

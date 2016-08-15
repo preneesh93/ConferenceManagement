@@ -36,6 +36,16 @@ module.exports.postDetails = function (req, res) {
     }
   });
 };
+module.exports.updateRoles = function (req, res) {
+  var conditions = {username: req.params.username};
+  var update =  {$set: {roles: req.body}};
+  User.findOneAndUpdate(conditions, update, function(err,result){
+    if(err) {throw err;}
+    else {
+      res.json("update successful");
+    }
+  });
+};
 
 module.exports.changePass = function (req, res) {
   console.log("Received Password Change Request..");
