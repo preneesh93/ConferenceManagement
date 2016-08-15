@@ -14,8 +14,8 @@
     </md-toolbar>
     <md-content flex>
       <md-list flex>
-        <md-list-item md-ink-ripple class="md-clickable" ng-repeat="item in sideMenu">
-          <h5 ui-sref="{{item.state}}">{{item.label}}</h5>
+        <md-list-item md-ink-ripple class="md-clickable" ng-repeat="item in sideMenu" ui-sref="{{item.state}}">
+          <h5 >{{item.label}}</h5>
         </md-list-item>
       </md-list>
     </md-content>

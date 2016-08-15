@@ -6,28 +6,19 @@ angular.module('routes', ['ui.router'])
     $stateProvider
       .state('root',{
         url:"/",
-        abstract:true,
+        data: { boo : false },
         views: {
           'content@':{
-            templateUrl: 'views/content.html'
+            templateUrl: 'views/content.html',
+            controller: 'RootController'
           } ,
           'sidenav@':{
             templateUrl: 'sidenav.html',
             controller:'SideNavController'
           }
-        }
-      })
-      .state('home', {
-        url: "/",
-        views: {
-          'content@':{
-            templateUrl: 'views/home.html',
-            controller: 'HomeController'
-          }
-        },
-        data: { requireAuth: false },
-        resolve:{
-          currentuser:function (userService) {
+        } ,
+        resolve: {
+          currentuser: function (userService) {
             return userService.currentUser()
           },
           checklogin: function (authService,$window) {
@@ -43,13 +34,7 @@ angular.module('routes', ['ui.router'])
             templateUrl: 'views/register.html',
             controller: 'RegistrationController'
           }
-        },
-        onEnter: ['$state','$rootScope',function($state, $rootScope){
-          console.log("checking register")
-          if($rootScope.isAuthenticated){
-            $state.go('home');
-          }
-        }]
+        }
       })
       .state('login', {
         url: "/login",
@@ -63,7 +48,7 @@ angular.module('routes', ['ui.router'])
         onEnter: ['$state','$rootScope',function($state, $rootScope){
           console.log("checking login")
           if($rootScope.isAuthenticated){
-            $state.go('home');
+            $state.go('root');
           }
         }]
       })
@@ -77,7 +62,7 @@ angular.module('routes', ['ui.router'])
           },
           'profile@root.dashboard':{
             templateUrl: 'views/dashboard/profileOverview.html',
-            controller: 'ProfileOverviewController'
+            controller: ''
           },
           'submissions@root.dashboard':{
             templateUrl: 'views/dashboard/submissionsOverview.html',
