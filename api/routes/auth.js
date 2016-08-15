@@ -15,7 +15,6 @@ module.exports.login = function (req, res){
     if(err) { throw err; }
     if(result == null){res.json("username does't exist")}
     else if(result.password === req.query.password){
-      console.log(result)
       res.json({id:result._id,isAuthenticated:true,token:newToken})
     }
     else {  res.json("idiot wrong password")    }
@@ -53,8 +52,6 @@ module.exports.authenticate = function (req,res) {
       var bearer = bearerHeader.split(" ");
       var token = bearer[1];
       jwt.verify(token, secret, function (err, decoded) {
-        console.log(decoded)
-        console.log(req.body.username)
         if (err) {
           res.json(403, {msg: "invalid token"});
         }

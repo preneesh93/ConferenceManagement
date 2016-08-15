@@ -23,7 +23,7 @@ angular.module('cms')
           $window.localStorage.username=$scope.user.username;
           $rootScope.isAuthenticated=response.data.isAuthenticated
           if(response.data.isAuthenticated==true){
-            $state.go('home')
+            $state.go('root')
           }
           else{
             

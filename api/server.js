@@ -67,6 +67,7 @@ app.post('/api/auth',auth.authenticate);
 app.get('/api/user/list', users.list);
 app.get('/api/user/user-details', users.getDetails);
 app.post('/api/user/user-details', users.postDetails);
+app.post('/api/user/:username/roles', users.updateRoles);
 app.post('/api/user/privacy', users.changePass);
 
 // sending index file to handle angular routes
