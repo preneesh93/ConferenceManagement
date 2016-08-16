@@ -4,24 +4,24 @@
 var User   = require('../schemas/users');
 
 module.exports.list = function (req, res){
-  User.find(function (err,result) {res.send(result)})
+  var exclude = {token: 0,password:0}
+  User.find({}, exclude,function (err,result) {res.send(result)})
+};
+
+module.exports.reviewersList = function (req, res){
+  var conditions = {"roles.reviewer": true};
+  var exclude = {token: 0,password:0}
+  User.find( conditions,exclude,function (err,result) {res.send(result)})
 };
 
 module.exports.getDetails = function (req, res) {
   console.log("getting user details")
   var conditions = {username: req.query.username};
-  User.findOne(conditions,function (err,result) {
+  var exclude = {token: 0,password:0}
+  User.findOne(conditions,exclude,function (err,result) {
     if(err){throw err}
-    else if(result != null){
-      var user = result.toObject(); // swap for a plain javascript object instance
-      delete user["_id"];
-      delete user["password"];
-      delete user["token"];
-      console.log(user)
-      res.json(user)
-    }
-    else {
-      res.json(404,"user not found")}
+    else if(result != null){res.json(result)}
+    else { res.json(404,"user not found")}
   });
 };
 

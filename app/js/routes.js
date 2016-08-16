@@ -9,12 +9,14 @@ angular.module('routes', ['ui.router'])
         data: { boo : false },
         views: {
           'content@':{
-            templateUrl: 'views/content.html',
-            controller: 'RootController'
+            templateUrl: 'views/content.html'
           } ,
           'sidenav@':{
             templateUrl: 'sidenav.html',
             controller:'SideNavController'
+          },
+          'main@':{
+            controller: 'RootController'
           }
         } ,
         resolve: {
