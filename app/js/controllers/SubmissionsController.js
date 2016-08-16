@@ -5,7 +5,7 @@ angular.module('cms')
   .config(['$mdIconProvider', function($mdIconProvider) {
     $mdIconProvider.icon('md-close', 'img/icons/ic_close_24px.svg', 24);
   }])
-  .controller('SubmissionsController', ['$scope','Upload', '$timeout', '$http', function($scope,Upload,$timeout,$http){
+  .controller('SubmissionsController', ['$scope','Upload', '$timeout', '$http', '$window', function($scope,Upload,$timeout,$http,$window){
     console.log("inside submissions controller");
     
     $scope.keywords = [];
@@ -18,16 +18,17 @@ angular.module('cms')
 
       var req = {
         method:'post',
-        url:"api/user/submission",
-        data: sub
+        url:"/api/user/submission",
+        data: sub,
+        params: {username : $window.localStorage.username}
       };
       $http(req).then(function (result) {
         console.log(result);
-        $scope.success=true;
-        $timeout(function () { $scope.success = false; }, 2000);
-      }, function(error){
-        console.error('Error: '+ error);
-      })
+          $scope.success = true;
+          $timeout(function () {$scope.success = false;}, 2000);
+        }, function (error) {
+          console.error('Error: ' + error);
+      });
     };
 
     $scope.uploadFile = function(file) {
