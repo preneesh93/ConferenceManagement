@@ -35,10 +35,9 @@ var userSchema = new Schema(
       State: String,
       Country: String
     },
-    submissions : [{id:ObjectId}]
-    /* submissions : [{id:ObjectId}],
-     assigned_submissions: [{id:ObjectId}]*/
+     submission : [{id:String}]
+     //assigned_submissions: [{id:ObjectId}]
   }
 );
 
-module.exports = mongoose.model('user',userSchema,'users')
+module.exports = mongoose.model('user',userSchema,'users');
