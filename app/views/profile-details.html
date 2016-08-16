@@ -22,11 +22,12 @@
               <label>Last Name</label>
               <input ng-model="user.last_name">
             </md-input-container>
+            <md-input-container>
+              <label></label>
+              <input type="button" class="md-raised md-primary" ng-click="update(user)">Update</input>
+            </md-input-container>
           </div>
           <div layout-gt-sm="column">
-            <div>
-              <md-button class="md-raised md-primary" ng-click="update(user)">Update</md-button>
-            </div>
             <div ng-show="success">
               <p>Updated Successfully!</p>
             </div>

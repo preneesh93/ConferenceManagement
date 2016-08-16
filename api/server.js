@@ -65,6 +65,7 @@ app.post('/api/auth',auth.authenticate);
 
 //User Details
 app.get('/api/user/list', users.list);
+app.get('/api/reviewers/list', users.reviewersList);
 app.get('/api/user/user-details', users.getDetails);
 app.post('/api/user/user-details', users.postDetails);
 app.post('/api/user/:username/roles', users.updateRoles);

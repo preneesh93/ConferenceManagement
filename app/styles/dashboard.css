@@ -5,3 +5,7 @@
 #profile-overview md-card{
   margin:20px;
 }
+
+.selected{
+  background-color: rgb(33,150,243);;
+}
