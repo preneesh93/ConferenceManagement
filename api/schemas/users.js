@@ -35,7 +35,7 @@ var userSchema = new Schema(
       State: String,
       Country: String
     },
-    submissions : [{id:String}]   // a user can have multiple submissions, hence array
+    submissions : [{id:String}]
   }
 );
 

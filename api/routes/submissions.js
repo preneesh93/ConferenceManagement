@@ -75,8 +75,8 @@ module.exports.postSub = function (req, res) {
       //var subid = result1.toString();
       console.log("submission was successful");
       var conditions = {username: req.query.username};
-      var update = {$set: {submission: result1}};
-      User.findOneAndUpdate(conditions, update, function (err1, result) {
+      var update = {$push: {submission: result1}};
+      User.findOneAndUpdate(conditions, update, {new: true}, function (err1, result) {
         if (err1) {
           throw err1;
         }
