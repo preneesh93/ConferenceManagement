@@ -11,18 +11,20 @@ module.exports.list = function (req, res){
 module.exports.postSub = function (req, res) {
   console.log("Getting the Submission");
   var add = new Sub(req.body);
+  console.log(req.body);
   add.save(function (err,result1) {
     if(err) { throw err; }
     else {
       console.log(result1);
       console.log("submission was successful");
       var conditions = {username: req.query.username};
-      var update = {$push: {submission: result1}};
+      var update = {$push: {submissions: result1}};
       User.findOneAndUpdate(conditions, update, {new: true}, function (err1, result) {
         if (err1) {
           throw err1;
         }
         else {
+          
           res.json(result);
           console.log(result);
         }
@@ -30,4 +32,20 @@ module.exports.postSub = function (req, res) {
     }
   });
 };
-  
+
+/*module.exports.getSublist = function (req, res) {
+  console.log("Getting the Submission List for User");
+  var conditions = {author_id: req.query.author_id};
+  Sub.find(conditions, function(err, result){
+    if(err){throw err}
+    else {
+         res.json(result);
+      console.log(result);
+
+    }
+  });
+
+};
+ 
+ */
+    
