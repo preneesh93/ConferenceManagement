@@ -4,6 +4,8 @@
 // MEAN Stack RESTful API Tutorial - Contact List App
 var express    = require('express');
 var mongoose   = require('mongoose');
+var multer     = require('multer');
+var fs         = require('fs');
 var auth       = require('../api/routes/auth');
 var users      = require('../api/routes/users');
 var submissions = require('../api/routes/submissions');
@@ -27,6 +29,7 @@ app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
   next();
 });
+
 
 // connect to db
 mongoose.connect('mongodb://localhost/cms');
@@ -55,8 +58,10 @@ if (decoded.exp <= Date.now()) {
 */
 
 //submissions
-app.get('/user/submissions', submissions.listSub);
-app.post('/user/add-submission', submissions.postSub);
+//app.get('/user/submissions', submissions.listSub);
+app.post('/api/user/submissions', submissions.postSub);
+app.get('/api/user/sub-list', submissions.list);
+app.post('/api/user/uploads', submissions.uploadSub);
 
 // authentication
 app.get('/user/login', auth.login);
