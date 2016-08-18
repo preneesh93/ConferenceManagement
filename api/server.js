@@ -79,6 +79,10 @@ app.post('/api/user/user-details', users.postDetails);
 app.post('/api/user/:username/roles', users.updateRoles);
 app.post('/api/user/privacy', users.changePass);
 
+//chair
+app.get('/api/chair/deadlines',chair.getDeadlines)
+app.put('/api/chair/deadlines',chair.putDeadlines)
+
 // sending index file to handle angular routes
 app.all('/*', function(req, res) {
   res.sendfile(path.resolve('../app/index.html'));
