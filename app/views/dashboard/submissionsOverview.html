@@ -1,13 +1,18 @@
+<div ng-init="loadProfileDetails()" layout="column"  ng-cloak="" class="md-inline-form ">
+
 <div>
-  <div>
     <p>Click Here to <a ui-sref="root.submission">Add a new Submission</a></p>
   </div>
-  <div>
-    List of Submissions will be displayed here<br>
-    .<br>
-    .<br>
-    .<br>
-    .<br>
-    .<br>
+  <div>List of Submissions will be displayed here<br>
+    <table class="table">
+      <tbody>
+    <tr ng-repeat="sub in submission">
+      <td>{{sub.title}}</td>
+      <td><md-button class="btn btn-info" ng-click="update(sub._id)">Update</md-button> </td>
+      </tr>
+      </tbody>
+      </table>
+
+
   </div>
 </div>

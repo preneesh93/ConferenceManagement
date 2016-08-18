@@ -20,8 +20,15 @@ module.exports.getDetails = function (req, res) {
   var exclude = {token: 0,password:0}
   User.findOne(conditions,exclude,function (err,result) {
     if(err){throw err}
-    else if(result != null){res.json(result)}
-    else { res.json(404,"user not found")}
+    else if(result != null){
+      var user = result.toObject(); // swap for a plain javascript object instance
+      delete user["password"];
+      delete user["token"];
+      console.log(user)
+      res.json(user)
+    }
+    else {
+      res.json(404,"user not found")}
   });
 };
 

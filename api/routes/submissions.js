@@ -8,10 +8,16 @@ module.exports.list = function (req, res){
   Sub.find(function (err,result) {res.send(result)})
 };
 
+var Sub =  require('../schemas/submissions');
+var User   = require('../schemas/users');
+
+module.exports.list = function (req, res){
+  Sub.find(function (err,result) {res.send(result)})
+};
+
 module.exports.postSub = function (req, res) {
   console.log("Getting the Submission");
   var add = new Sub(req.body);
-  console.log(req.body);
   add.save(function (err,result1) {
     if(err) { throw err; }
     else {
@@ -24,7 +30,7 @@ module.exports.postSub = function (req, res) {
           throw err1;
         }
         else {
-          
+
           res.json(result);
           console.log(result);
         }
@@ -33,7 +39,7 @@ module.exports.postSub = function (req, res) {
   });
 };
 
-/*module.exports.getSublist = function (req, res) {
+module.exports.getSublist = function (req, res){
   console.log("Getting the Submission List for User");
   var conditions = {author_id: req.query.author_id};
   Sub.find(conditions, function(err, result){
@@ -46,6 +52,18 @@ module.exports.postSub = function (req, res) {
   });
 
 };
- 
- */
+
+module.exports.updateSub = function (req, res) {
+  console.log("Updating the Submission");
+  var conditions = {_id: req.query._id};
+  var update =  {$set: req.body};
+  Sub.findOneAndUpdate(conditions, update, function(err,result){
+    if(err) {throw err;}
+    else {
+      res.json(result);
+      console.log(result);
+    }
+  });
+};
+
     

@@ -55,6 +55,8 @@ if (decoded.exp <= Date.now()) {
 //submissions
 app.get('/api/user/submission-list', submissions.list);
 app.post('/api/user/submission', submissions.postSub);
+app.get('/api/user/submission', submissions.getSublist);
+app.post('/api/user/submission', submissions.updateSub);
 
 // authentication
 app.get('/user/login', auth.login);

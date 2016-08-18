@@ -5,15 +5,15 @@ angular.module('cms')
   .config(['$mdIconProvider', function($mdIconProvider) {
     $mdIconProvider.icon('md-close', 'img/icons/ic_close_24px.svg', 24);
   }])
-  .controller('SubmissionsController', ['$scope','Upload', '$timeout', '$http', '$window', function($scope,Upload,$timeout,$http,$window){
+  .controller('SubmissionsController', ['$scope','Upload', '$timeout', '$http', '$window','currentuser', function($scope,Upload,$timeout,$http,$window,currentuser){
     console.log("inside submissions controller");
-    
+    console.log(currentuser);
     $scope.keywords = [];
 
 
     $scope.submit = function(sub){
       sub.keywords = $scope.keywords;
-
+      sub.author_id = currentuser.data._id;
       console.log(sub);
 
       var req = {
@@ -22,6 +22,7 @@ angular.module('cms')
         data: sub,
         params: {username : $window.localStorage.username}
       };
+      console.log(req.body);
       $http(req).then(function (result) {
         console.log(result);
           $scope.success = true;
