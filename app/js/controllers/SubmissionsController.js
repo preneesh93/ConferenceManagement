@@ -5,11 +5,30 @@ angular.module('cms')
   .config(['$mdIconProvider', function($mdIconProvider) {
     $mdIconProvider.icon('md-close', 'img/icons/ic_close_24px.svg', 24);
   }])
-  .controller('SubmissionsController', ['$scope','Upload', '$timeout', '$http','$window', function($scope,Upload,$timeout,$http,$window){
+  .controller('SubmissionsController', ['$scope','Upload', '$timeout', '$http','$window','$routeParams', function($scope,Upload,$timeout,$http,$window,$routeParams){
     console.log("inside submissions controller");
     
     $scope.keywords = [];
-  
+
+    $scope.download = function(resource){
+      window.open(resource);
+    };
+
+    var id = $routeParams.id;
+    $scope.loadSubDetails = function(){
+      var req = {
+        method: 'get',
+        url: '/submission/' + id
+      };
+      $http(req).then(function (result) {
+        console.log(id);
+        console.log(result);
+        $scope.sub = result.data;
+        console.log($scope.sub)
+      },function (error) {
+        console.error('Error: ' + error);
+      })
+    };
   
     $scope.submit = function(sub) {
       sub.keywords = $scope.keywords;

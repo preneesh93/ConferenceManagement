@@ -19,6 +19,15 @@ module.exports.list = function (req, res){
   Sub.find(function (err,result) {res.send(result)})
 };
 
+module.exports.getSub = function (req, res) {
+  console.log("getting sub details")
+  var conditions = {id: req.params.id};
+  Sub.findOne(conditions, function (err,result) {
+    if(err){throw err}
+    res.json(result)
+  });
+};
+
 module.exports.uploadSub = function (req, res){
   console.log('inside file upload');
   var storage = multer.diskStorage({
@@ -31,8 +40,8 @@ module.exports.uploadSub = function (req, res){
       cb(null, dir);
   
       var conditions = {_id: req.query.submission};
-      var fileName = file.fieldname + '-' + file.originalname;
-      var url = dir.toString()+fileName.toString();
+      var fileName = file.fieldname + file.originalname;
+      var url = './api'+dir.toString().slice(1)+fileName.toString();
       console.log(url);
       var update = {$set: {path: url}};
       Sub.findOneAndUpdate(conditions, update, function (err1, result) {
@@ -47,7 +56,7 @@ module.exports.uploadSub = function (req, res){
     },
     filename: function (req, file, cb) {
       //var datetimestamp = Date.now();
-      var fileName = file.fieldname + '-' + file.originalname;
+      var fileName = file.fieldname +  file.originalname;
       cb(null, fileName)
     }
   });

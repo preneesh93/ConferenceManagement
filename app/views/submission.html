@@ -1,4 +1,4 @@
-<div class="md-inline-form">
+<div ng-init="loadSubDetails()" class="md-inline-form">
   <md-content class="md-padding">
     <form name="myForm">
       <div>
@@ -38,7 +38,7 @@
       <div>
           <h4>Upload Paper</h4>
           <p>Please upload your paper in .pdf format!</p>
-          File:
+          File: <a target="_self" ng-href="{{sub.path}}" download="boarding.pdf">Download</a>
           <input type="file" ngf-select ng-model="subFile" name="file"
                accept="application/pdf*" ngf-max-size="20MB" required
                ngf-model-invalid="errorFile">

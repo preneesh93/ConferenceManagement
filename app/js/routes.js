@@ -117,5 +117,14 @@ angular.module('routes', ['ui.router'])
         }
       },
       data: { requireAuth: true }
+    }).state('root.submission/:id', {
+      url: "submission/:id",
+      views: {
+        'main@': {
+          templateUrl: 'views/submission.html',
+          controller: 'SubmissionsController'
+        }
+      },
+      data: {requireAuth: true}
     });
 });
