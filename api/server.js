@@ -22,6 +22,7 @@ var apiRoutes = express.Router();
 var db = mongoose.connection;
 // accept CORS
 app.use(express.static('../app'));
+app.use('/api/uploads', express.static('uploads'));
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -58,7 +59,7 @@ if (decoded.exp <= Date.now()) {
 */
 
 //submissions
-app.get('/submission/:id', submissions.getSub);
+app.get('/api/user/submissions', submissions.getSub);
 app.post('/api/user/submissions', submissions.postSub);
 app.get('/api/user/sub-list', submissions.list);
 app.post('/api/user/uploads', submissions.uploadSub);
