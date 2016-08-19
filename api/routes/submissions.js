@@ -19,10 +19,23 @@ module.exports.list = function (req, res){
   Sub.find(function (err,result) {res.send(result)})
 };
 
+module.exports.getSublist = function (req, res){
+  console.log("Getting the Submission List for User");
+  var conditions = {author_id: req.query.author_id};
+  Sub.find(conditions, function(err, result){
+    if(err){throw err}
+    else {
+      res.json(result);
+      console.log(result);
+
+    }
+  });
+};
+
 module.exports.getSub = function (req, res) {
-  console.log("getting sub details")
-  var conditions = {id: req.params.id};
-  Sub.findOne(conditions, function (err,result) {
+  console.log("getting sub details");
+  //var conditions = {id: req.params.id};
+  Sub.findOne(function (err,result) {
     if(err){throw err}
     res.json(result)
   });
@@ -84,7 +97,7 @@ module.exports.postSub = function (req, res) {
       //var subid = result1.toString();
       console.log("submission was successful");
       var conditions = {username: req.query.username};
-      var update = {$push: {submission: result1}};
+      var update = {$push: {submissions: result1}};
       User.findOneAndUpdate(conditions, update, {new: true}, function (err1, result) {
         if (err1) {
           throw err1;

@@ -3,11 +3,12 @@
  */
 angular.module('cms')
   .controller('DashboardController', function($scope,$http,$window,currentuser){
-    console.log(currentuser)
-    currentuser.data.roles.author=true
-    $scope.reviewer = currentuser.data.roles.reviewer?true:false
-    $scope.list=['1','3','2']
-
+    console.log(currentuser);
+    currentuser.data.roles.author=true;
+    $scope.reviewer = currentuser.data.roles.reviewer?true:false;
+    $scope.list=['1','3','2'];
+    var a_id =  currentuser.data._id;
+    $scope.submission = {};
     //reviews overview
   
 
@@ -27,18 +28,21 @@ angular.module('cms')
       })
     };
     
-    var listSubmissions = function() {
+    $scope.listSubmissions = function() {
       var req = {
         method: 'get',
-        url: "/api/user/submissions"
+        url: "/api/user/list-sub",
+        params: {author_id: a_id}
       };
       $http(req)
         .then(
-          function(response){
-            console.log(response);
-          }
-        );
+          function(result){
+            console.log("Retrieving Submission List")
+            $scope.submission = result.data;
+            console.log($scope.submission);
+          }, function (error) {
+            console.error('Error: ' + error);
+          });
     };
-    listSubmissions();
   });
 
