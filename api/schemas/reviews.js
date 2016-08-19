@@ -8,6 +8,8 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var reviewSchema = new Schema(
     {
+        reviewer_id:String,
+        submission_id:String,
         review_expertise: String,
         overall_evaluation: String,
         summary: String,
