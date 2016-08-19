@@ -9,11 +9,6 @@ angular.module('cms')
     $scope.list=['1','3','2'];
     var a_id =  currentuser.data._id;
     $scope.submission = {};
-    //reviews overview
-  
-
-    // submission overview
-
     $scope.updateReviewer = function (reviewer) {
       currentuser.data.roles.reviewer = reviewer
       var req = {
@@ -27,7 +22,23 @@ angular.module('cms')
         console.error('Error: '+ error);
       })
     };
-    
+      
+    $scope.headers = [
+          {
+              name:'Title',
+              field:'title'
+          },{
+              name: 'Author',
+              field: 'author_id'
+          },{
+              name:'Keywords',
+              field: 'keywords'
+          },{
+              name: 'Status',
+              field: 'status'
+          }
+  ];
+      
     $scope.listSubmissions = function() {
       var req = {
         method: 'get',
@@ -45,4 +56,3 @@ angular.module('cms')
           });
     };
   });
-

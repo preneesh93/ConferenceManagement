@@ -1,38 +1,44 @@
 
-<md-radio-group ng-model="data.group1">
-    <md-radio-button value="Apple" class="md-primary">Apple</md-radio-button>
-    <md-radio-button value="Banana"> Banana </md-radio-button>
-    <md-radio-button value="Mango">Mango</md-radio-button>
-</md-radio-group>
-<form action = "">
-    1<input type="radio" name="RevExp" value="1" > Not familiar with the topic <br>
-    2<input type="radio" name="RevExp" value="2" > Familiar with the topic <br>
-    3<input type="radio" name="RevExp" value="3" > Neutral <br>
-    4<input type="radio" name="RevExp" value="4" > Read and understood the topic <br>
-    5<input type="radio" name="RevExp" value="5" > Expert <br>
-</form>
-
-//overall evaluation
-<form action = "">
-    1<input type="radio" name="OvrEva" value="1"> Strong Reject <br>
-    2<input type="radio" name="OvrEva" value="2" > Can be better <br>
-    3<input type="radio" name="OvrEva" value="3" > Neutral <br>
-    4<input type="radio" name="OvrEva" value="4" > Accept <br>
-    5<input type="radio" name="OvrEva" value="5" > Strong Accept <br>
-</form>
-
-Summary
-<textarea>
- Enter the summary of your review
-</textarea>
-<br>
-Major Strong Points
-<textarea>
-    If the author has positive points
-</textarea>
-<br>
-Major Negative Points
-<textarea>
-    If the author has negative points
-</textarea>
-<br>
+<div  ng-controller="ReviewController" >
+    <md-content layout-padding>
+        <md-input-container class="md-block">
+            <label>Reviewer Expertise</label>
+        </md-input-container>
+        <md-radio-group class="md-primary">
+            <md-radio-button ng-repeat="d in reviewerExpertise"
+                             ng-value="d.value"
+                             ng-model="reviewer.reviewerExpertise"
+                             ng-class="{'md-align-top-left': $index==1}" >
+                {{ d.label }}<br/>
+            </md-radio-button>
+        </md-radio-group>
+        <md-input-container class="md-block">
+            <label>Overall Evaluation</label>
+        </md-input-container>
+        <md-radio-group class="md-primary">
+            <md-radio-button ng-repeat="d in overallEvaluation"
+                             ng-value="d.value"
+                             ng-model="reviewer.overallEvaluation"
+                             ng-class="{'md-align-top-left': $index==1}" >
+                {{ d.label }}<br/>
+            </md-radio-button>
+        </md-radio-group>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Summary</label>
+            <input ng-model="reviewer.summary"/>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Major Strong Points</label>
+            <input ng-model="reviewer.majorStrongPoints"/>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Major Weak Points</label>
+            <input ng-model="reviewer.majorWeakPoints"/>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Detailed Summary</label>
+            <input ng-model="reviewer.detailedSummary"/>
+        </md-input-container>
+        <md-button class="md-raised md-primary" ng-click="submitReview()">Submit Review</md-button>
+    </md-content>
+</div>
