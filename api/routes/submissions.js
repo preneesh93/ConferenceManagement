@@ -25,18 +25,16 @@ module.exports.getSublist = function (req, res){
     if(err){throw err}
     else {
       res.json(result);
-      console.log(result);
-
     }
   });
 };
 
 module.exports.getSub = function (req, res) {
   console.log("getting sub details");
-  //var conditions = {id: req.params.id};
-  Sub.findOne(function (err,result) {
+  var conditions = {_id: req.query.submissionId};
+  Sub.findOne(conditions, function (err,result) {
     if(err){throw err}
-    res.json(result)
+    res.json(result);
   });
 };
 
@@ -62,7 +60,6 @@ module.exports.uploadSub = function (req, res){
         }
         else {
           console.log('url updated..');
-          console.log(result);
         }
       });
     },
@@ -91,7 +88,6 @@ module.exports.postSub = function (req, res) {
   add.save(function (err,result1) {
     if(err) { throw err; }
     else {
-      console.log(result1);
       res.send(result1);
       //var subid = result1.toString();
       console.log("submission was successful");
