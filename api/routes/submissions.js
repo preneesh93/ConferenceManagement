@@ -4,7 +4,6 @@
 var multer     = require('multer');
 var path       = require('path');
 var fs         = require('fs');
-var mkdir      = require('mkdirp');
 var Sub =  require('../schemas/submissions');
 var User   = require('../schemas/users');
 
