@@ -1,0 +1,19 @@
+<div style="margin-top:255px;margin-left:150px;">
+
+
+  <md-button class="primary" ng-click="addSubmissionDeadline(sub)">Add Deadline sub</md-button>
+  <md-datepicker style="background: transparent"
+    ng-model="sub"
+    ng-change="change(sub)"
+    md-placeholder="Enter date"
+    md-min-date="today">
+  </md-datepicker>
+  <br>
+  <md-button class="primary" ng-click="addReviewDeadline(rev)">Add Deadline rev</md-button>
+  <md-datepicker style="background: transparent"
+     ng-model="rev"
+     ng-change="change(rev)"
+     md-placeholder="Enter date"
+     md-min-date="today">
+  </md-datepicker>
+</div>

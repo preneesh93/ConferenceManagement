@@ -12,8 +12,7 @@ module.exports.getDeadlines = function (req, res){
   });
 };
 module.exports.putDeadlines = function (req, res){
-  var date = new Date().toISOString()
-  data = req.body? req.body:date
+  data = req.body
   Chair.findOneAndUpdate(req.query,data, {upsert:true}, function(err, doc){
     if (err) return res.send(500, { error: err });
     return res.send(doc);
