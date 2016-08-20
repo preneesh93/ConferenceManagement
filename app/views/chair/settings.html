@@ -1,19 +1,31 @@
-<div style="margin-top:255px;margin-left:150px;">
-
-
-  <md-button class="primary" ng-click="addSubmissionDeadline(sub)">Add Deadline sub</md-button>
-  <md-datepicker style="background: transparent"
-    ng-model="sub"
-    ng-change="change(sub)"
-    md-placeholder="Enter date"
-    md-min-date="today">
-  </md-datepicker>
-  <br>
-  <md-button class="primary" ng-click="addReviewDeadline(rev)">Add Deadline rev</md-button>
-  <md-datepicker style="background: transparent"
-     ng-model="rev"
-     ng-change="change(rev)"
-     md-placeholder="Enter date"
-     md-min-date="today">
-  </md-datepicker>
+<div layout="row"  class="login-container" layout-align="center center" >
+  <md-card >
+    <md-toolbar>
+      <div class="md-toolbar-tools" layout-align="center center">
+        <h2>Conference: <span>{{name}}</span></h2>
+      </div>
+    </md-toolbar>
+    <md-content layout="column" layout-align="center center" layout-margin layout-padding>
+      <div>
+        <span>Submissions Deadline</span>
+        <md-datepicker style="background: transparent"
+                       ng-model="sub"
+                       ng-change="change(sub)"
+                       md-placeholder="Enter date"
+                       md-min-date="today">
+        </md-datepicker>
+        <md-button class="md-raised md-primary" ng-click="addSubmissionDeadline(sub)">Update</md-button>
+      </div>
+      <div>
+        <span>Reviews Deadline</span>
+        <md-datepicker style="background: transparent"
+                       ng-model="rev"
+                       ng-change="change(rev)"
+                       md-placeholder="Enter date"
+                       md-min-date="today">
+        </md-datepicker>
+        <md-button class="md-raised md-primary" ng-click="addReviewDeadline(rev)">Update</md-button>
+      </div>
+    </md-content>
+  </md-card>
 </div>

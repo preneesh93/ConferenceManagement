@@ -22,8 +22,7 @@ angular
     'ngFileUpload',
     'ngMd5'
   ]).constant('config', {
-    baseUrl : '/' , // Baseurl to load site resources
-    carouselInterval:3000
+    conference_name:"cms"
   }).config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
       .primaryPalette('blue')
@@ -32,7 +31,6 @@ angular
     service.auth = function (token,name) {
       return $http.post('/api/auth',{username:name})
     }
-
     return service
   }]).service('userService',['$http','$window','$rootScope','authService',function($http,$window,$rootScope,authService) {
     var service = {}
