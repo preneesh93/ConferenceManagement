@@ -33,8 +33,7 @@ angular.module('cms')
                     function(response){ // Success callback
                         console.log(response);
                         if(response.data._id){
-                            $scope.success=true;
-                            $location.path('/dashboard');
+                            $scope.showSuccess=true;
                         }
                     },
                     function(response){ //Error callback
