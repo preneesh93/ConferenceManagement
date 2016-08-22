@@ -12,8 +12,8 @@ angular.module('cms')
     };
     $http.get("/api/chair/deadlines?conference="+config.conference_name).then(function(response){
       if(response.data != null){
-        $scope.conf.sub = new Date(response.data.submission_deadline);
-        $scope.conf.rev = new Date(response.data.review_deadline);
+        $scope.conf.sub = (response.data.submission_deadline)? new Date(response.data.submission_deadline) : undefined;
+        $scope.conf.rev = (response.data.review_deadline)? new Date(response.data.review_deadline) : undefined;
         console.log($scope.conf)
       }
     },function (error) {  console.log(error)  }
