@@ -9,7 +9,6 @@ var fs         = require('fs');
 var auth       = require('../api/routes/auth');
 var users      = require('../api/routes/users');
 var submissions = require('../api/routes/submissions');
-var authors    = require('../api/routes/authors');
 var chair      = require('../api/routes/chair');
 var config     = require('./config');
 var bodyParser = require('body-parser');
