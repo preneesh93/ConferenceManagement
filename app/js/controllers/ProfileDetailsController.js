@@ -23,7 +23,7 @@ angular.module('cms')
       delete profile._id;
       var req = {
         method:'post',
-        url:"api/user/user-details",
+        url:"/api/user/user-details",
         data: profile
       };
       $http(req).then(function (result) {

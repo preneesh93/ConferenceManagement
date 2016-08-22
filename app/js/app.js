@@ -19,6 +19,7 @@ angular
     'ngRoute',
     'routes',
     'ui.bootstrap',
+    'ngFileUpload',
     'ngMd5'
   ]).constant('config', {
     baseUrl : '/' , // Baseurl to load site resources

@@ -4,6 +4,8 @@
 // MEAN Stack RESTful API Tutorial - Contact List App
 var express    = require('express');
 var mongoose   = require('mongoose');
+var multer     = require('multer');
+var fs         = require('fs');
 var auth       = require('../api/routes/auth');
 var users      = require('../api/routes/users');
 var submissions = require('../api/routes/submissions');
@@ -20,6 +22,7 @@ var apiRoutes = express.Router();
 var db = mongoose.connection;
 // accept CORS
 app.use(express.static('../app'));
+app.use('/api/uploads', express.static('uploads'));
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -27,6 +30,7 @@ app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
   next();
 });
+
 
 // connect to db
 mongoose.connect('mongodb://localhost/cms');
@@ -55,8 +59,12 @@ if (decoded.exp <= Date.now()) {
 */
 
 //submissions
-app.get('/user/submissions', submissions.listSub);
-app.post('/user/add-submission', submissions.postSub);
+app.get('/api/user/sub-list', submissions.list);
+app.get('/api/user/submissions', submissions.getSub);
+app.get('/api/user/list-sub', submissions.getSublist);
+app.post('/api/user/submissions', submissions.postSub);
+app.post('/api/user/update-sub', submissions.updateSub);
+app.post('/api/user/uploads', submissions.uploadSub);
 
 // authentication
 app.get('/user/login', auth.login);

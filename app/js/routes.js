@@ -108,5 +108,23 @@ angular.module('routes', ['ui.router'])
           }
         },
         data: { requireAuth: true }
-      });
+      }).state('root.submission', {
+      url: "submission/:submissionId",
+      views: {
+        'main@': {
+          templateUrl: 'views/submission-details.html',
+          controller: 'SubmissionsController'
+        }
+      },
+      data: { requireAuth: true }
+    }).state('root.newsub', {
+      url: "newsub",
+      views: {
+        'main@': {
+          templateUrl: 'views/new-submission.html',
+          controller: 'SubmissionsController'
+        }
+      },
+      data: { requireAuth: true }
+    });
 });

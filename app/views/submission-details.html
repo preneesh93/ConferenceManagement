@@ -1,0 +1,63 @@
+<div ng-init="loadSubDetails()" class="md-inline-form">
+  <md-content class="md-padding">
+    <form name="myForm">
+      <div>
+        <h4>Title</h4>
+        <md-input-container>
+          <label>Project Title</label>
+          <input ng-model="sub.title">
+        </md-input-container>
+      </div>
+      <div ng-repeat="author in sub.authors">
+        <h4>Authors</h4>
+        <md-input-container>
+          <label>First Name</label>
+          <input ng-model="author.first_name">
+        </md-input-container>
+        <md-input-container>
+          <label>Last Name</label>
+          <input ng-model="author.last_name">
+        </md-input-container>
+        <md-input-container>
+          <label>E-Mail Address</label>
+          <input ng-model="author.email">
+        </md-input-container>
+      </div>
+      <div class="chipsdemoBasicUsage">
+        <h4>Paper</h4>
+        <md-chips ng-model="keywords"
+                  placeholder="Enter a Keyword" delete-button-label="Remove Keyword"
+                  delete-hint="Press delete to remove Keyword" secondary-placeholder="+Keyword"></md-chips>
+      </div>
+      <div>
+        <md-input-container class="md-block">
+          <label>Abstract</label>
+          <textarea ng-model="sub.abstract" md-maxlength="1000" rows="5" md-select-on-focus=""></textarea>
+        </md-input-container>
+      </div>
+      <div>
+          <h4>Upload Paper</h4>
+          <p>Please upload your paper in .pdf format!</p>
+          File: <a target="_self" ng-href="{{sub.path}}" download="{{sub.path}}">Download</a>
+          <input type="file" ngf-select ng-model="subFile" name="file"
+               accept="application/pdf*" ngf-max-size="20MB" required
+               ngf-model-invalid="errorFile">
+          <i ng-show="myForm.file.$error.maxSize">File too large
+          {{errorFile.size / 1000000|number:1}}MB: max 20M</i>
+          <button ng-click="subFile = null" ng-show="subFile">Remove</button>
+          <br><br>
+            <span ng-show="subFile.result">Upload Successful</span>
+            <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+          {{errorMsg}}
+      </div>
+      <div layout-gt-sm="column">
+        <div>
+          <md-button class="md-raised md-primary" ng-click="update(sub)">Update</md-button>
+        </div>
+        <div ng-show="success">
+          <p>Updated Successfully!</p>
+        </div>
+      </div>
+    </form>
+  </md-content>
+</div>
