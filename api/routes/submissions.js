@@ -8,10 +8,8 @@ var Sub =  require('../schemas/submissions');
 var User   = require('../schemas/users');
 
 
-//Multer Disk Storage Settings
 
 
-//Upload Files API
 
 
 module.exports.list = function (req, res){
@@ -40,6 +38,8 @@ module.exports.getSub = function (req, res) {
 
 module.exports.uploadSub = function (req, res){
   console.log('inside file upload');
+
+  //Multer Disk Storage Settings
   var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       var dir = './uploads/'+req.query.username+'/';
@@ -64,11 +64,13 @@ module.exports.uploadSub = function (req, res){
       });
     },
     filename: function (req, file, cb) {
-      //var datetimestamp = Date.now();
       var fileName = file.fieldname +  file.originalname;
       cb(null, fileName)
     }
   });
+
+
+  //Upload Files API
   var upload = multer({
     storage: storage
   }).single('file');
@@ -77,7 +79,6 @@ module.exports.uploadSub = function (req, res){
       res.json({error_code:1,err_desc:err});
       return;
     }
-    //var path = './uploads/' + fileName
     res.json({error_code:0,err_desc:null});
   })
 };
@@ -89,7 +90,6 @@ module.exports.postSub = function (req, res) {
     if(err) { throw err; }
     else {
       res.send(result1);
-      //var subid = result1.toString();
       console.log("submission was successful");
       var conditions = {username: req.query.username};
       var update = {$push: {submissions: result1}};
@@ -104,3 +104,17 @@ module.exports.postSub = function (req, res) {
     }
   });
 };
+
+module.exports.updateSub = function (req, res) {
+  console.log("Received sub update req..");
+  var condition = {_id : req.body._id};
+  var update = req.body;
+  Sub.findOneAndUpdate(condition, update, function(err, result1){
+    if(err) { throw err; }
+    else {
+      res.send(result1);
+      console.log("submission was successful");
+    }
+  });
+};
+

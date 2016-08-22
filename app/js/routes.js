@@ -112,10 +112,19 @@ angular.module('routes', ['ui.router'])
       url: "submission/:submissionId",
       views: {
         'main@': {
-          templateUrl: 'views/submission.html',
+          templateUrl: 'views/submission-details.html',
           controller: 'SubmissionsController'
         }
       },
       data: { requireAuth: true }
-    })
+    }).state('root.newsub', {
+      url: "newsub",
+      views: {
+        'main@': {
+          templateUrl: 'views/new-submission.html',
+          controller: 'SubmissionsController'
+        }
+      },
+      data: { requireAuth: true }
+    });
 });

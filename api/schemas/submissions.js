@@ -10,7 +10,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var submissionSchema = new Schema(
   {
     title: String,
-    author_id: ObjectId,
+    author_id: String,
     authors: [{
       first_name: String,
       last_name: String,

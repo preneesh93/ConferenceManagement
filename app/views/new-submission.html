@@ -1,4 +1,4 @@
-<div ng-init="loadSubDetails()" class="md-inline-form">
+<div class="md-inline-form">
   <md-content class="md-padding">
     <form name="myForm">
       <div>
@@ -8,19 +8,19 @@
           <input ng-model="sub.title">
         </md-input-container>
       </div>
-      <div ng-repeat="author in sub.authors">
+      <div>
         <h4>Authors</h4>
         <md-input-container>
           <label>First Name</label>
-          <input ng-model="author.first_name">
+          <input ng-model="sub.authors.first_name">
         </md-input-container>
         <md-input-container>
           <label>Last Name</label>
-          <input ng-model="author.last_name">
+          <input ng-model="sub.authors.last_name">
         </md-input-container>
         <md-input-container>
           <label>E-Mail Address</label>
-          <input ng-model="author.email">
+          <input ng-model="sub.authors.email">
         </md-input-container>
       </div>
       <div class="chipsdemoBasicUsage">
@@ -36,26 +36,25 @@
         </md-input-container>
       </div>
       <div>
-          <h4>Upload Paper</h4>
-          <p>Please upload your paper in .pdf format!</p>
-          File: <a target="_self" ng-href="{{sub.path}}" download="{{sub.path}}">Download</a>
-          <input type="file" ngf-select ng-model="subFile" name="file"
+        <h4>Upload Paper</h4>
+        <p>Please upload your paper in .pdf format!</p>
+        <input type="file" ngf-select ng-model="subFile" name="file"
                accept="application/pdf*" ngf-max-size="20MB" required
                ngf-model-invalid="errorFile">
-          <i ng-show="myForm.file.$error.maxSize">File too large
+        <i ng-show="myForm.file.$error.maxSize">File too large
           {{errorFile.size / 1000000|number:1}}MB: max 20M</i>
-          <button ng-click="subFile = null" ng-show="subFile">Remove</button>
-          <br><br>
-            <span ng-show="subFile.result">Upload Successful</span>
-            <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-          {{errorMsg}}
+        <button ng-click="subFile = null" ng-show="subFile">Remove</button>
+        <br><br>
+        <span ng-show="subFile.result">Upload Successful</span>
+        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+        {{errorMsg}}
       </div>
       <div layout-gt-sm="column">
         <div>
           <md-button class="md-raised md-primary" ng-click="submit(sub)">Submit</md-button>
         </div>
         <div ng-show="success">
-          <p>Updated Successfully!</p>
+          <p>Submission Successful!</p>
         </div>
       </div>
     </form>
