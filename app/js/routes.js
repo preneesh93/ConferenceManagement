@@ -89,6 +89,16 @@ angular.module('routes', ['ui.router'])
           }
         }
       })
+      .state('root.chair.settings', {
+        url: "/settings",
+        data: { requireAuth: true },
+        views: {
+          'main@':{
+            templateUrl: 'views/chair/settings.html',
+            controller: 'chair.SettingsController'
+          }
+        }
+      })
 
       .state('404', {
         url: "/404",

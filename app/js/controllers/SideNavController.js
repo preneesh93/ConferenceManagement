@@ -11,7 +11,8 @@ angular.module('cms')
     ]
     $scope.chairSidenavMenu = [
       {'label':'Edit Profile','state':'root.profiledetails'},
-      {'label':'Dashboard','state':'root.chair.dashboard'}
+      {'label':'Dashboard','state':'root.chair.dashboard'},
+      {'label':'Settings','state':'root.chair.settings'}
     ]
 
     if(currentuser) {

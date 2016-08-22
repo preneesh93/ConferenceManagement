@@ -22,3 +22,14 @@ Project Structure
     - .bowerrc <!-- tells bower where to put files (public/libs) -->
     - bower.json <!-- tells bower which files we need -->
     - package.json <!-- tells npm which packages we need -->
+
+    {
+      DB_Name: "cms",
+      collections:
+        [
+          "users",
+          "submissions",
+          "reviews",
+          "chair"
+        ]
+    }

@@ -3,19 +3,18 @@
  */
 
 
-var express = require('express');
-var chair = express.Router();
-var mongojs = require('mongojs');
-var db = mongojs('testdb',['testdb']);
+var Chair   = require('../schemas/chair');
 
-
-chair.get('/getuser',function (req,res) {
-  console.log("i recived a get req");
-  db.testdb.find(function (err,docs) {
-    console.log(docs);
-    res.json(docs);
-  })
-});
-
-
-module.exports = chair;
+module.exports.getDeadlines = function (req, res){
+  Chair.findOne(req.query, function(err, doc){
+    if (err) return res.send(500, { error: err });
+    return res.json(doc);
+  });
+};
+module.exports.putDeadlines = function (req, res){
+  data = req.body
+  Chair.findOneAndUpdate(req.query,data, {upsert:true}, function(err, doc){
+    if (err) return res.send(500, { error: err });
+    return res.send(doc);
+  });
+};
