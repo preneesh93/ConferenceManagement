@@ -1,5 +1,5 @@
 /**
- * Created by Preneesh on 12-08-2016.
+ * Created by Pranu on 12-08-2016.
  */
 angular.module('cms')
   .controller('SubmissionsController', ['$scope','Upload', '$timeout', '$http','$window','currentuser','$stateParams', 
