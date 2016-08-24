@@ -1,0 +1,33 @@
+<md-content class="md-padding">
+  <h3>List of Submissions</h3>
+  <md-list flex="">
+    <div  ng-repeat="sub in submissions">
+      <md-list-item ng-click="isCollapsed = !isCollapsed" ng-class="{'selected': !isCollapsed}">
+        <div class="md-list-item-text" layout="column"> <h3>{{sub.title}} <small>{{sub.reviewer}}</small>  </h3></div>
+      </md-list-item>
+      <div uib-collapse="isCollapsed">
+        <div class="well well-lg">
+          <div>ID: {{sub._id}}</div>
+          <div>Title: {{sub.title}}</div>
+          <div> Author: {{sub.author_id}}</div>
+          <div>Keywords: {{sub.keywords}}</div>
+          <div>Authors: {{sub.authors}}</div>
+          <div layout="row" layout-align="" >
+            <md-input-container >
+              <md-select ng-model="selectedReviewer">
+                <md-option><em>Reviewer</em></md-option>
+                <md-option ng-repeat="reviewer in reviewers" ng-value="reviewer.username">
+                  {{reviewer.username}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+
+
+            <md-button class="md-raised md-primary" ng-click="assign(sub._id)">Assign</md-button>
+          </div>
+        </div>
+      </div>
+      <md-divider ></md-divider>
+    </div>
+  </md-list>
+</md-content>

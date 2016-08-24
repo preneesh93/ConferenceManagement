@@ -4,6 +4,8 @@
 
 
 var Chair   = require('../schemas/chair');
+var Sub =  require('../schemas/submissions');
+var User   = require('../schemas/users');
 
 module.exports.getDeadlines = function (req, res){
   Chair.findOne(req.query, function(err, doc){
@@ -18,3 +20,7 @@ module.exports.putDeadlines = function (req, res){
     return res.send(doc);
   });
 };
+
+module.exports.assignPapers = function (req,res) {
+
+}

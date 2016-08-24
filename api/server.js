@@ -81,6 +81,7 @@ app.post('/api/user/privacy', users.changePass);
 //chair
 app.get('/api/chair/deadlines',chair.getDeadlines)
 app.put('/api/chair/deadlines',chair.putDeadlines)
+app.post('/api/chair/assign',chair.assignPapers)
 
 // sending index file to handle angular routes
 app.all('/*', function(req, res) {

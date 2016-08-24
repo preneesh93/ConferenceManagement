@@ -20,11 +20,15 @@ angular.module('routes', ['ui.router'])
           }
         } ,
         resolve: {
+          checklogin: function (authService,$window,$state) {
+            authService.auth($window.localStorage.token,$window.localStorage.username).then(function(response){
+                if(!response.data.isAuthenticated){$state.go('login')}
+              },
+              function (err) { console.log(err) }
+            );
+          },
           currentuser: function (userService) {
             return userService.currentUser()
-          },
-          checklogin: function (authService,$window) {
-            return authService.auth($window.localStorage.token,$window.localStorage.username)
           }
         }
       })
@@ -96,6 +100,16 @@ angular.module('routes', ['ui.router'])
           'main@':{
             templateUrl: 'views/chair/settings.html',
             controller: 'chair.SettingsController'
+          }
+        }
+      })
+      .state('root.chair.assign', {
+        url: "/assign",
+        data: { requireAuth: true },
+        views: {
+          'main@':{
+            templateUrl: 'views/chair/assign.html',
+            controller: 'chair.AssignController'
           }
         }
       })

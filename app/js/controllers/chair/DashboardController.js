@@ -10,21 +10,26 @@ angular.module('cms')
       console.log(user)
       $scope.selectedUser=user
     };
-    var req = {
-      method: 'get',
-      url: "/api/user/list"
-    };
-    $http(req)
-      .then(
-        function(response) { // Success callback
-          // console.log(response)
+    $http.get("/api/user/list")
+      .then(function(response) {
           $scope.users=response.data
+        }
+      );
+    $http.get("/api/user/sub-list")
+      .then(function(response) { console.log(response)
+          $scope.submissions=response.data
         }
       );
 
     $http.get("/api/reviewers/list").then( function(response){
       $scope.reviewers = response.data
     })
+
+    $scope.call = function () {
+      $http.get("/api/chair/assign").then(function (response){
+        console.log(response)
+      })
+    }
 
   });
 

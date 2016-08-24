@@ -35,7 +35,8 @@ var userSchema = new Schema(
       State: String,
       Country: String
     },
-    submissions : [{id:String}]
+    submissions : [{id:String}],
+    assigned_submissions: [String]
   }
 );
 
