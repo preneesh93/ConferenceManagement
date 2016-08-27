@@ -13,17 +13,15 @@
           <div>Keywords: {{sub.keywords}}</div>
           <div>Authors: {{sub.authors}}</div>
           <div layout="row" layout-align="" >
-            <md-input-container >
-              <md-select ng-model="selectedReviewer">
-                <md-option><em>Reviewer</em></md-option>
-                <md-option ng-repeat="reviewer in reviewers" ng-value="reviewer.username">
+            <md-input-container flex="">
+              <md-select flex="" placeholder="Reviewer" ng-model="selectedReviewer" aria-label="selectedReviewer">
+                <md-option ng-repeat="reviewer in reviewers" ng-value="reviewer" ng-disabled="reviewer._id === sub.author_id">
                   {{reviewer.username}}
+                  <span ng-if="reviewer._id === sub.author_id">Author</span>
                 </md-option>
               </md-select>
             </md-input-container>
-
-
-            <md-button class="md-raised md-primary" ng-click="assign(sub._id)">Assign</md-button>
+            <md-button class="md-raised md-primary" ng-click="assign(sub._id,selectedReviewer._id)">Assign</md-button>
           </div>
         </div>
       </div>

@@ -22,5 +22,15 @@ module.exports.putDeadlines = function (req, res){
 };
 
 module.exports.assignPapers = function (req,res) {
+  console.log(req.body)
+  var update = null
+  Sub.findOneAndUpdate({"_id":req.body.sub},{$set:{reviewer:req.body.rev}},function (err,res) {
+    if (err) return res.send(500, { error: err });
+    console.log(res)
+    User.findOneAndUpdate({"_id":req.body.rev},{$push:{assigned_submissions:req.body.sub}},function (err,res) {
+      if (err) return res.send(500, { error: err });
+      console.log(res)
+    })
+  })
 
 }

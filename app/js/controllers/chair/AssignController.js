@@ -3,8 +3,15 @@
  */
 
 angular.module('cms')
-  .controller('chair.AssignController', function($scope,$http){
+  .controller('chair.AssignController',['$scope','$http','$element', function($scope,$http,$element){
     $scope.isCollapsed = false;
+    $scope.searchTerm;
+    $element.find('input').on('keydown', function(ev) {
+      ev.stopPropagation();
+    });
+    $scope.clearSearchTerm = function() {
+      $scope.searchTerm = '';
+    };
     $http.get("/api/user/sub-list",{params:{"unassigned":true}})
       .then(function(response) { console.log(response)
           $scope.submissions=response.data
@@ -20,6 +27,13 @@ angular.module('cms')
         console.log(response)
       })
     }
+    $scope.assign = function (subid, revid) {
+      console.log(subid)
+      console.log(revid)
+      $http.post("/api/chair/assign",{sub:subid,rev:revid}).then(function (response) {
+        console.log(response)
+      })
+    }
 
-  });
+  }]);
 
