@@ -11,14 +11,14 @@
   <link rel="stylesheet" href="styles/main.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body ng-cloak    >
-    <div layout="row"  layout-fill>
+<body ng-cloak  layout="row" layout-fill="" flex>
+    <md-content style="min-width: 10%;" >
+      <div ui-view="sidenav" layout-fill="" ></div>
+    </md-content>
+    <md-content layout-fill="">
+      <div  ui-view="content" layout-fill=""></div>
+    </md-content>
 
-      <div ui-view="sidenav"></div>
-
-      <div flex ui-view="content"></div>
-    </div>
-</div>
 <!-- bower:js -->
 <script src="lib/jquery/dist/jquery.js"></script>
 <script src="lib/angular/angular.js"></script>
@@ -50,6 +50,7 @@
 <script src="js/controllers/chair/DashboardController.js"></script>
 <script src="js/controllers/SubmissionsController.js"></script>
 <script src="js/controllers/chair/SettingsController.js"></script>
+<script src="js/controllers/chair/AssignController.js"></script>
 
 
 </body>

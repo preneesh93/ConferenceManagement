@@ -9,7 +9,6 @@ var fs         = require('fs');
 var auth       = require('../api/routes/auth');
 var users      = require('../api/routes/users');
 var submissions = require('../api/routes/submissions');
-var authors    = require('../api/routes/authors');
 var chair      = require('../api/routes/chair');
 var config     = require('./config');
 var bodyParser = require('body-parser');
@@ -82,6 +81,7 @@ app.post('/api/user/privacy', users.changePass);
 //chair
 app.get('/api/chair/deadlines',chair.getDeadlines)
 app.put('/api/chair/deadlines',chair.putDeadlines)
+app.post('/api/chair/assign',chair.assignPapers)
 
 // sending index file to handle angular routes
 app.all('/*', function(req, res) {

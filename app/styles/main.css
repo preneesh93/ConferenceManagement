@@ -1,7 +1,10 @@
 @import "dashboard.css";
 
 
+md-sidenav  {
+height:100%;
 
+}
 body{
   background-color: #F8F8F8;
 }
@@ -52,7 +55,9 @@ h5 {
 md-content {
   background-color: transparent;
 }
-
+md-select-menu md-content {
+  background-color:white;
+}
 md-pagination-wrapper{
   margin:0 auto;
   position:inherit;

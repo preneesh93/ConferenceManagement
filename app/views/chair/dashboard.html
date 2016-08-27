@@ -3,18 +3,18 @@
     <md-tabs md-dynamic-height="" md-border-bottom="">
       <md-tab label="Authors">
         <md-content class="md-padding">
-          <h3>List of Authors</h3>
           <div flex="" layout="row">
             <md-list flex="">
               <div  ng-repeat="user in users">
                 <md-list-item ng-click="isCollapsed = !isCollapsed" ng-class="{'selected': !isCollapsed}">
                   <div class="md-list-item-text" layout="column">
-                    <h3>    {{user.username}} </h3>
+                    <h3>  {{user.username}} <small>  | submissions: {{user.submissions.length}}</small> </h3>
                   </div>
                 </md-list-item>
                 <div uib-collapse="isCollapsed">
                   <div class="well well-lg">{{user}}</div>
                 </div>
+                <md-divider ></md-divider>
               </div>
             </md-list>
 
@@ -27,22 +27,37 @@
           <md-list flex="">
             <div  ng-repeat="reviewer in reviewers">
               <md-list-item ng-click="isCollapsed = !isCollapsed" ng-class="{'selected': !isCollapsed}">
-                <div class="md-list-item-text" layout="column">
-                  <h3>    {{reviewer.username}} </h3>
-                </div>
+                <div class="md-list-item-text" layout="column"> <h3>{{reviewer.username}} <small>{{reviewer.assigned_submissions.length}}</small> </h3> </div>
               </md-list-item>
               <div uib-collapse="isCollapsed">
                 <div class="well well-lg">{{reviewer}}</div>
               </div>
+              <md-divider ></md-divider>
             </div>
           </md-list>
-
         </md-content>
       </md-tab>
       <md-tab label="Submissions">
         <md-content class="md-padding">
           <h3>List of Submissions</h3>
-
+          <md-list flex="">
+            <div  ng-repeat="sub in submissions">
+              <md-list-item ng-click="isCollapsed = !isCollapsed" ng-class="{'selected': !isCollapsed}">
+                <div class="md-list-item-text" layout="column"> <h3>{{sub.title}} <small>{{sub.reviewer}}</small>  </h3></div>
+              </md-list-item>
+              <div uib-collapse="isCollapsed">
+                <div class="well well-lg">
+                 <div>ID: {{sub._id}}</div>
+                 <div>Title: {{sub.title}}</div>
+                 <div> Author: {{sub.author_id}}</div>
+                 <div>Keywords: {{sub.keywords}}</div>
+                 <div>Authors: {{sub.authors}}</div>
+                 <div>Reviewer: {{sub.reviewer}}</div>
+                </div>
+              </div>
+              <md-divider ></md-divider>
+            </div>
+          </md-list>
         </md-content>
       </md-tab>
       <md-tab label="Reviews">
@@ -53,3 +68,4 @@
     </md-tabs>
   </md-content>
 </div>
+<md-button ng-click="call()">assign</md-button>

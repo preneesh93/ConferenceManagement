@@ -2,29 +2,29 @@
   <md-card >
     <md-toolbar>
       <div class="md-toolbar-tools" layout-align="center center">
-        <h2>Conference: <span>{{name}}</span></h2>
+        <h2>Conference: <span>{{conf.name}}</span></h2>
       </div>
     </md-toolbar>
     <md-content layout="column" layout-align="center center" layout-margin layout-padding>
       <div>
         <span>Submissions Deadline</span>
         <md-datepicker style="background: transparent"
-                       ng-model="sub"
-                       ng-change="change(sub)"
+                       ng-model="conf.sub"
+                       ng-change="change(conf.sub)"
                        md-placeholder="Enter date"
                        md-min-date="today">
         </md-datepicker>
-        <md-button class="md-raised md-primary" ng-click="addSubmissionDeadline(sub)">Update</md-button>
+        <md-button class="md-raised md-primary" ng-click="addSubmissionDeadline(conf.sub)">Update</md-button>
       </div>
       <div>
         <span>Reviews Deadline</span>
         <md-datepicker style="background: transparent"
-                       ng-model="rev"
-                       ng-change="change(rev)"
+                       ng-model="conf.rev"
+                       ng-change="change(conf.rev)"
                        md-placeholder="Enter date"
                        md-min-date="today">
         </md-datepicker>
-        <md-button class="md-raised md-primary" ng-click="addReviewDeadline(rev)">Update</md-button>
+        <md-button class="md-raised md-primary" ng-click="addReviewDeadline(conf.rev)">Update</md-button>
       </div>
     </md-content>
   </md-card>

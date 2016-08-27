@@ -13,7 +13,10 @@ var User   = require('../schemas/users');
 
 
 module.exports.list = function (req, res){
-  Sub.find(function (err,result) {res.send(result)})
+  if(req.query.unassigned)
+    Sub.find({reviewer:{$exists:false}},function (err,result) {res.send(result)})
+  else
+    Sub.find(function (err,result) {res.send(result)})
 };
 
 module.exports.getSublist = function (req, res){

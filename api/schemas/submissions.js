@@ -11,6 +11,7 @@ var submissionSchema = new Schema(
   {
     title: String,
     author_id: String,
+    reviewer:String,
     authors: [{
       first_name: String,
       last_name: String,
