@@ -9,8 +9,7 @@
 
 <div>
 
-  <div>
-    <a href="/review">Make Review</a>
+  <div ng-hide="!reviewer">
     <table class="table">
       <thead>
       <tr class="table-headers">
@@ -20,12 +19,11 @@
       </tr>
       </thead>
       <tbody>
-      <tr ng-repeat="c in content" class="table-content">
-        <td class="table-content">{{c.title}}</td>
-        <td class="table-content">{{c.author_id}}</td>
-        <td class="table-content">{{c.keywords}}</td>
-        <td class="table-content">{{c.status}}</td>
-        <td><a href="/review">Make Review</a></td>
+      <tr ng-repeat="s in assignedSubDetails track by $index" class="table-content">
+        <td class="table-content">{{s.title}}</td>
+        <td class="table-content">{{s.authors[0].first_name}}</td>
+        <td class="table-content">{{s.keywords}}</td>
+        <td class="table-content"><md-button ng-disabled="!reviewBtn" class="md-raised md-primary" ui-sref="root.review({submissionId:s._id})">Review</md-button></td>
       </tr>
       </tbody>
     </table>

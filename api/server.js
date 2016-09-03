@@ -15,6 +15,7 @@ var config     = require('./config');
 var bodyParser = require('body-parser');
 var path       = require('path');
 var jwt        = require("jsonwebtoken");
+var chair      = require('../api/routes/chair');
 
 var secret = config.secret;
 var app = express();
@@ -84,7 +85,8 @@ app.get('/api/chair/deadlines',chair.getDeadlines)
 app.put('/api/chair/deadlines',chair.putDeadlines)
 app.post('/api/chair/assign',chair.assignPapers)
 //Reviews
-app.post('/review/submit', reviews.postDetails);
+app.post('/api/user/review', reviews.postDetails);
+app.get('/api/user/review',reviews.getDetails);
 
 // sending index file to handle angular routes
 app.all('/*', function(req, res) {
