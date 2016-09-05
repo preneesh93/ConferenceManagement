@@ -16,7 +16,7 @@
             <md-input-container flex="">
               <md-select flex="" placeholder="Reviewer" ng-model="selectedReviewer" aria-label="selectedReviewer">
                 <md-option ng-repeat="reviewer in reviewers" ng-value="reviewer" ng-disabled="reviewer._id === sub.author_id">
-                  {{reviewer.username}}
+                  {{reviewer.username}} | assigned submissions:{{reviewer.assigned_submissions.length}}
                   <span ng-if="reviewer._id === sub.author_id">Author</span>
                 </md-option>
               </md-select>

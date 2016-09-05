@@ -12,7 +12,17 @@
                   </div>
                 </md-list-item>
                 <div uib-collapse="isCollapsed">
-                  <div class="well well-lg">{{user}}</div>
+                  <div class="well well-lg">
+                    <div>Username: {{user.username}}</div>
+                    <div>Email: {{user.email}}</div>
+                    <div>{{user.title}} <span>{{user.first_name}}</span>
+                      <span>{{user.last_name}}</span>
+                    </div>
+                    <div>Address:  {{user.address}}</div>
+                    <div>Institution {{user.institution}}</div>
+                    <div>Submissions: {{user.submissions.length}}</div>
+                    <div>Assigned Submissions: {{user.assigned_submissions.length}}</div>
+                  </div>
                 </div>
                 <md-divider ></md-divider>
               </div>
@@ -30,7 +40,17 @@
                 <div class="md-list-item-text" layout="column"> <h3>{{reviewer.username}} <small>{{reviewer.assigned_submissions.length}}</small> </h3> </div>
               </md-list-item>
               <div uib-collapse="isCollapsed">
-                <div class="well well-lg">{{reviewer}}</div>
+                <div class="well well-lg">
+                  <div>Username: {{reviewer.username}}</div>
+                  <div>Email: {{reviewer.email}}</div>
+                  <div>{{reviewer.title}} <span>{{reviewer.first_name}}</span>
+                    <span>{{reviewer.last_name}}</span>
+                  </div>
+                  <div>Address:  {{reviewer.address}}</div>
+                  <div>Institution: {{reviewer.institution}}</div>
+                  <div>Submissions: {{reviewer.submissions.length}}</div>
+                  <div>Assigned Submissions: {{reviewer.assigned_submissions.length}}</div>
+                </div>
               </div>
               <md-divider ></md-divider>
             </div>
@@ -47,12 +67,14 @@
               </md-list-item>
               <div uib-collapse="isCollapsed">
                 <div class="well well-lg">
+                  {{sub}}
                  <div>ID: {{sub._id}}</div>
                  <div>Title: {{sub.title}}</div>
                  <div> Author: {{sub.author_id}}</div>
                  <div>Keywords: {{sub.keywords}}</div>
                  <div>Authors: {{sub.authors}}</div>
                  <div>Reviewer: {{sub.reviewer}}</div>
+                  <a target="_self" ng-href="{{sub.path}}" download="{{sub.path}}">Download</a>
                 </div>
               </div>
               <md-divider ></md-divider>
@@ -68,4 +90,3 @@
     </md-tabs>
   </md-content>
 </div>
-<md-button ng-click="call()">assign</md-button>

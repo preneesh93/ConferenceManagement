@@ -7,24 +7,24 @@
 
           <h3>Basic Information</h3>
           <div layout="row">
-            <md-input-container>
+            <md-input-container flex="">
               <label>Title</label>
               <md-select ng-model="user.title">
                 <md-option>Mr.</md-option>
                 <md-option>Ms.</md-option>
               </md-select>
             </md-input-container>
-            <md-input-container>
+            <md-input-container flex="40">
               <label>First Name</label>
               <input ng-model="user.first_name">
             </md-input-container>
-            <md-input-container>
+            <md-input-container flex="40">
               <label>Last Name</label>
               <input ng-model="user.last_name">
             </md-input-container>
-            <md-input-container>
+            <md-input-container flex="">
               <label></label>
-              <input type="button" class="md-raised md-primary" ng-click="update(user)">Update</input>
+              <md-button  class="md-raised md-primary" ng-click="update(user)"> Update</md-button>
             </md-input-container>
           </div>
           <div layout-gt-sm="column">
@@ -77,9 +77,6 @@
                   <label>Postal Code</label>
                   <input name="postalCode" ng-model="user.address.postal_code" placeholder="12345"
                          required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
-                  <div ng-messages="profileForm.postalCode.$error" role="alert" multiple>
-                    <div ng-message="pattern" class="my-message">Enter a valid Postal Code!</div>
-                  </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-xs="20">
                   <label>State</label>

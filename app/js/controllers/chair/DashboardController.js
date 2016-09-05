@@ -25,11 +25,7 @@ angular.module('cms')
       $scope.reviewers = response.data
     })
 
-    $scope.call = function () {
-      $http.get("/api/chair/assign").then(function (response){
-        console.log(response)
-      })
-    }
+
 
   });
 
