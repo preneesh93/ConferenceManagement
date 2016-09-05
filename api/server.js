@@ -10,10 +10,12 @@ var auth       = require('../api/routes/auth');
 var users      = require('../api/routes/users');
 var submissions = require('../api/routes/submissions');
 var chair      = require('../api/routes/chair');
+var reviews = require('../api/routes/reviews');
 var config     = require('./config');
 var bodyParser = require('body-parser');
 var path       = require('path');
 var jwt        = require("jsonwebtoken");
+var chair      = require('../api/routes/chair');
 
 var secret = config.secret;
 var app = express();
@@ -52,10 +54,10 @@ function requireLogin(req, res, next) {
   else { res.redirect("/login");}
 }
 /*
-if (decoded.exp <= Date.now()) {
-  res.end('Access token has expired', 400);
-}
-*/
+ if (decoded.exp <= Date.now()) {
+ res.end('Access token has expired', 400);
+ }
+ */
 
 //submissions
 app.get('/api/user/sub-list', submissions.list);
@@ -82,6 +84,9 @@ app.post('/api/user/privacy', users.changePass);
 app.get('/api/chair/deadlines',chair.getDeadlines)
 app.put('/api/chair/deadlines',chair.putDeadlines)
 app.post('/api/chair/assign',chair.assignPapers)
+//Reviews
+app.post('/api/user/review', reviews.postDetails);
+app.get('/api/user/review',reviews.getDetails);
 
 // sending index file to handle angular routes
 app.all('/*', function(req, res) {

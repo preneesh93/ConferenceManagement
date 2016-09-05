@@ -1,8 +1,31 @@
 <div>
   <div layout="row" layout-align="center">
     <md-switch ng-model="reviewer" ng-change="updateReviewer(reviewer)" aria-label="reviewer">
-      <span ng-if="!reviewer"> become a reviewer</span>
-      <span ng-if="reviewer"> remove from reviewers list</span>
+      <span ng-if="!reviewer"> Become a Reviewer</span>
+      <span ng-if="reviewer"> Remove from Reviewer's list</span>
     </md-switch>
+  </div>
+</div>
+
+<div>
+
+  <div ng-hide="!reviewer">
+    <table class="table">
+      <thead>
+      <tr class="table-headers">
+        <th ng-repeat="h in headers" class="table-header">
+          <a href="#">{{h.name}}</a>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="s in assignedSubDetails track by $index" class="table-content">
+        <td class="table-content">{{s.title}}</td>
+        <td class="table-content">{{s.authors[0].first_name}}</td>
+        <td class="table-content">{{s.keywords}}</td>
+        <td class="table-content"><md-button ng-disabled="!reviewBtn" class="md-raised md-primary" ui-sref="root.review({submissionId:s._id})">Review</md-button></td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>

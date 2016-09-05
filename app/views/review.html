@@ -1,0 +1,58 @@
+
+<div  ng-controller="ReviewController" ng-init="getReview()" >
+    <div ng-init="loadSubDetails()"  class="md-inline-form">
+        <md-content class="md-padding">
+            <h4>Submission Details</h4>
+            <div>
+                <label>Project Title:</label>
+                {{sub.title}}
+            </div>
+            <div ng-repeat="author in sub.authors">
+                <label>Author's Name:</label>
+                {{author.first_name + author.last_name}}
+            </div>
+            <div>
+                <label>Abstract:</label>
+                {{sub.abstract}}
+            </div>
+            <div>
+                <label>Uploaded Paper:</label>
+                File: <a target="_self" ng-href="{{sub.path}}" download="{{sub.path}}">Download</a>
+            </div>
+        </md-content>
+    </div>
+    <md-content layout-padding>
+        <h4>Review Submission</h4>
+        <md-input-container class="md-block">
+            <label>Reviewer Expertise</label>
+            <md-select ng-model="review.review_expertise">
+                <md-option ng-value="d.value" ng-repeat="d in reviewerExpertise">{{ d.label }}</md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Overall Evaluation</label>
+            <md-select ng-model="review.overall_evaluation">
+                <md-option ng-value="d.value" ng-repeat="d in overallEvaluation">{{ d.label }}</md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Summary</label>
+            <textarea ng-model="review.summary" md-maxlength="1000" rows="5" md-select-on-focus=""/>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Major Strong Points</label>
+            <textarea ng-model="review.major_strong_points" md-maxlength="1000" rows="5" md-select-on-focus=""/>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Major Weak Points</label>
+            <textarea ng-model="review.major_weak_points" md-maxlength="1000" rows="5" md-select-on-focus=""/>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Detailed Summary</label>
+            <textarea ng-model="review.detailed_summary" md-maxlength="1000" rows="5" md-select-on-focus=""/>
+        </md-input-container>
+        <md-button class="md-raised md-primary" ng-click="submitReview()">Submit Review</md-button>
+        <span ng-show="showSuccess">"review succesfully submitted"</span>
+    </md-content>
+</div>
+</div>
