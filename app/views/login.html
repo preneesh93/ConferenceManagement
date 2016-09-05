@@ -17,9 +17,9 @@
         <input ng-model="user.password" type="password" placeholder="Password">
       </md-input-container>
 
+      <div class="red" ng-if="error" align="center"> <span >*{{error}}</span> </div>
       <md-button class="md-raised md-primary" ng-click="login()">Login</md-button>
       <md-button class="md-raised" ui-sref="register">Register</md-button>
-
     </md-content>
   </md-card>
 </div>

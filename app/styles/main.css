@@ -9,6 +9,9 @@ body{
   background-color: #F8F8F8;
 }
 
+.red {
+  color:red;
+}
 .login-container{
   position: absolute;
   top: 0;

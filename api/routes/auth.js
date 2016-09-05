@@ -17,12 +17,14 @@ module.exports.login = function (req, res){
     else if(result.password === req.query.password){
       res.json({id:result._id,isAuthenticated:true,token:newToken})
     }
-    else {  res.json("idiot wrong password")    }
+    else {  res.json(403,"wrong password")    }
   });
 };
 
 module.exports.register = function (req, res){
-  User.find({username:req.body.username},function (err,result) {
+  if(req.body.email == null || req.body.username == null){ res.send(403,"incomplete data"); return}
+  else{
+    User.find({$or:[{username:req.body.username},{email:req.body.email}]},function (err,result) {
     if(err) { throw err; }
     if(result.length>0){
       res.json(409,"user already exists")
@@ -36,6 +38,7 @@ module.exports.register = function (req, res){
       });
     }
   });
+  }
 };
 
 module.exports.authenticate = function (req,res) {

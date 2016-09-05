@@ -26,11 +26,12 @@ angular.module('cms')
             $state.go('root')
           }
           else{
-            
+            $scope.error=response.data
           }
         },
         function(response){ //Error callback
           console.log(response)
+          $scope.error=response.data
         }
       );
 
