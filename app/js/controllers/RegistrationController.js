@@ -2,8 +2,13 @@
  * Created by Giri on 5/13/2016.
  */
 angular.module('cms').controller('RegistrationController', function($scope,$http,md5){
-  console.log("inside registration controller")
-  $scope.register = function () { 
+  $scope.validate = function (user) {
+    if(!user){return true}
+    if(!user.username){return true}
+    if(!user.email){return true}
+    if(!user.password){return true}
+  }
+  $scope.register = function () {
     $scope.user.roles={author:true}
     $scope.user.password=md5.createHash($scope.user.password);
     console.log($scope.user)
@@ -24,6 +29,7 @@ angular.module('cms').controller('RegistrationController', function($scope,$http
         },
         function(response){ //Error callback
           console.log(response)
+          $scope.error=response.data
         }
       );
 

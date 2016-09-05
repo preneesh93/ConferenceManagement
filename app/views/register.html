@@ -18,7 +18,9 @@
         <md-icon md-svg-src="img/lock.svg" class="password"></md-icon>
         <input ng-model="user.password" type="password" placeholder="Password">
       </md-input-container>
-      <md-button class="md-raised md-primary" ng-click="register()">Register</md-button>
+
+      <div class="red" ng-if="error" align="center"> <span >*{{error}}</span> </div>
+      <md-button class="md-raised md-primary" ng-disabled="validate(user)" ng-click="register()">Register</md-button>
       <md-button class="md-raised " ui-sref="login"> <span>already a member? Login</span> </md-button>
     </md-content>
   </md-card>
