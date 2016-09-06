@@ -58,11 +58,11 @@ angular.module('cms')
               data: {file: file},
               params: {username: $window.localStorage.username, submission: response.data._id}
             }).then(function (resp) { //upload function returns a promise
-              if (resp.data.error_code === 0) { //validate success
+/*              if (resp.data.error_code === 0) { //validate success
                 $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
               } else {
                 $window.alert('an error occured');
-              }
+              }*/
             });
 
             //Submit Notification
@@ -104,11 +104,11 @@ angular.module('cms')
               data: {file: file},
               params: {username: $window.localStorage.username, submission: response.data._id}
             }).then(function (resp) { //upload function returns a promise
-              if (resp.data.error_code === 0) { //validate success
+/*              if (resp.data.error_code === 0) { //validate success
                 $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
               } else {
                 $window.alert('an error occured');
-              }
+              }*/
             });
 
             //Submit Notification
