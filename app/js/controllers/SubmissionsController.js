@@ -4,8 +4,6 @@
 angular.module('cms')
   .controller('SubmissionsController', ['$scope','Upload', '$timeout', '$http','$window','currentuser','$stateParams', 
     function($scope,Upload,$timeout,$http,$window,currentuser,$stateParams){
-
-      console.log(currentuser);
       //$scope.sub = {};
       $scope.keywords = [];
 
@@ -21,10 +19,8 @@ angular.module('cms')
           params: {submissionId : $stateParams.submissionId}
         };
         $http(req).then(function (result) {
-          console.log(result);
           $scope.sub = result.data;
           $scope.keywords = $scope.sub.keywords;
-          console.log($scope.sub)
         },function (error) {
           console.error('Error: ' + error);
         })
@@ -37,8 +33,9 @@ angular.module('cms')
         else {
           sub.keywords = $scope.keywords;
           sub.author_id = currentuser.data._id;
-          console.log(sub);
-
+          if($scope.checkStatusNewSub(sub)){
+            sub.status = "complete"
+          } else {sub.status = "incomplete"}
           //Data Submission
           var req = {
             method: 'post',
@@ -46,9 +43,7 @@ angular.module('cms')
             data: sub,
             params: {username: $window.localStorage.username}
           };
-          console.log(sub);
           $http(req).then(function (response) {
-            console.log(response.data);
             console.log('starting second call...');
             var file = $scope.subFile;
 
@@ -77,13 +72,13 @@ angular.module('cms')
       }
 
       $scope.update = function(sub) {
+        $scope.checkStatusUpdate(sub);
         if(sub == null){
           console.log("form is empty")
         }
         else {
           sub.keywords = $scope.keywords;
           sub.author_id = currentuser.data._id;
-          console.log(sub);
 
           //Data Submission
           var req = {
@@ -92,9 +87,7 @@ angular.module('cms')
             data: sub,
             params: {username: $window.localStorage.username}
           };
-          console.log(sub);
           $http(req).then(function (response) {
-            console.log(response.data);
             console.log('starting second call...');
             var file = $scope.subFile;
 
@@ -121,4 +114,16 @@ angular.module('cms')
           });
         }
       }
+      $scope.checkStatusNewSub = function (sub) {
+        console.log(sub)
+        console.log($scope.subFile)
+        if(!sub.title || !sub.authors || !sub.abstract || !sub.keywords || !$scope.subFile ){
+          console.log("status incomplete")
+          return false
+        }
+        else{
+          console.log("status complete")
+          return true
+        }
+      };
     }]);
