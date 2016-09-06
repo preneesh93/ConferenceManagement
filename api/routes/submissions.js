@@ -109,7 +109,6 @@ module.exports.postSub = function (req, res) {
 };
 
 module.exports.updateSub = function (req, res) {
-  console.log("Received sub update req..");
   var condition = {_id : req.body._id};
   var update = req.body;
   Sub.findOneAndUpdate(condition, update, function(err, result1){
@@ -121,3 +120,13 @@ module.exports.updateSub = function (req, res) {
   });
 };
 
+module.exports.updateStatus = function (req, res) {
+  var condition = {_id : req.body.id};
+  var update =  {$set: {status: req.body.status}};
+  Sub.findOneAndUpdate(condition, update, function(err, result){
+    if(err) { throw err; }
+    else {
+      res.send(result);
+    }
+  });
+};
