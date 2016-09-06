@@ -34,7 +34,7 @@ app.use(function(req, res, next) {
 
 
 // connect to db
-mongoose.connect('mongodb://localhost/cms');
+mongoose.connect('mongodb://127.0.0.1/cms');
 db.on('error', console.error.bind(console, 'Connection Error: '));
 db.once('open', function(){console.log("Mongoose is Connected!")});
 
@@ -74,6 +74,7 @@ app.post('/api/auth',auth.authenticate);
 
 //User Details
 app.get('/api/user/list', users.list);
+app.post('/api/user/remove', users.remove);
 app.get('/api/reviewers/list', users.reviewersList);
 app.get('/api/user/user-details', users.getDetails);
 app.post('/api/user/user-details', users.postDetails);

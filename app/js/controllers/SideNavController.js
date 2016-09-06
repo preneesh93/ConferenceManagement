@@ -7,7 +7,8 @@ angular.module('cms')
 
     $scope.userSidenavMenu = [
       {'label':'Edit Profile','state':'root.profiledetails'},
-      {'label':'Dashboard','state':'root.dashboard'}
+      {'label':'Dashboard','state':'root.dashboard'},
+      {'label':'Settings','state':'root.settings'}
     ]
     $scope.chairSidenavMenu = [
       {'label':'Edit Profile','state':'root.profiledetails'},

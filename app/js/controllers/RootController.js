@@ -6,13 +6,10 @@ angular.module('cms')
     console.log(currentuser);
     if(currentuser){
       $scope.isChair = currentuser.data.roles.chair
-      console.log($scope.isChair);
       if (currentuser.data.roles.chair) {
-        console.log("going to chairboard")
         $state.go('root.chair.dashboard')
       }
       else {
-        console.log("going to author")
         $state.go('root.dashboard')
       }
     }

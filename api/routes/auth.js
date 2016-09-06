@@ -42,7 +42,6 @@ module.exports.register = function (req, res){
 };
 
 module.exports.authenticate = function (req,res) {
-  console.log("authhhhhhhhhhhhhhhhhhhhh");
   var bearerHeader = req.headers["authorization"];
   User.findOne({username: req.body.username}, function (err, user) {
     if (err) {

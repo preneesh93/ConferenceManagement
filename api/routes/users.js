@@ -15,7 +15,6 @@ module.exports.reviewersList = function (req, res){
 };
 
 module.exports.getDetails = function (req, res) {
-  console.log("getting user details")
   var conditions = {username: req.query.username};
   var exclude = {token: 0,password:0}
   User.findOne(conditions,exclude,function (err,result) {
@@ -43,6 +42,17 @@ module.exports.updateRoles = function (req, res) {
     if(err) {throw err;}
     else {
       res.json("update successful");
+    }
+  });
+};
+
+module.exports.remove = function (req, res) {
+  console.log("deleting: "+req.query.id)
+  var conditions = {_id: req.query.id};
+  User.remove(conditions, function(err,result){
+    if(err) {throw err;}
+    else {
+      res.json(result);
     }
   });
 };
