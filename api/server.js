@@ -67,6 +67,7 @@ app.post('/api/user/submissions', submissions.postSub);
 app.post('/api/user/update-sub', submissions.updateSub);
 app.post('/api/user/uploads', submissions.uploadSub);
 app.post('/api/user/submission/status',submissions.updateStatus)
+app.delete("/api/user/submission",submissions.deleteSub)
 // authentication
 app.get('/user/login', auth.login);
 app.post('/user/register', auth.register);

@@ -25,7 +25,6 @@ module.exports.getDetails = function (req, res) {
 };
 
 module.exports.postDetails = function (req, res) {
-  console.log("Received a post req...");
   var conditions = {username: req.body.username};
   var update =  {$set: req.body};
   User.findOneAndUpdate(conditions, update, function(err,result){
@@ -58,7 +57,6 @@ module.exports.remove = function (req, res) {
 };
 
 module.exports.changePass = function (req, res) {
-  console.log("Received Password Change Request..");
   var conditions = {password: req.body.pass1};
   User.findOneAndUpdate(conditions, {
     $set: {

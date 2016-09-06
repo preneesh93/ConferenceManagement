@@ -22,10 +22,14 @@
           <input ng-model="author.email">
         </md-input-container>
       </div>
-      <div class="chipsdemoBasicUsage">
-        <md-chips ng-model="keywords"
-                  placeholder="Enter a Keyword" delete-button-label="Remove Keyword"
-                  delete-hint="Press delete to remove Keyword" secondary-placeholder="+Keyword"></md-chips>
+      <div>
+        <md-input-container class="md-block">
+          <label>Keywords</label>
+          <md-chips ng-model="keywords"
+                    placeholder="Enter a Keyword" delete-button-label="Remove Keyword"
+                    delete-hint="Press delete to remove Keyword">
+          </md-chips>
+        </md-input-container>
       </div>
       <div>
         <md-input-container class="md-block">
@@ -35,26 +39,28 @@
       </div>
       <div>
           <h4>Update Paper</h4>
-          <p>Please upload your paper in .pdf format!</p>.
-          Download uploaded submission:
-          <md-button  target="_self" ng-href="{{sub.path}}" download="{{sub.path}}" class="md-fab" aria-label="Comment">
-            <span class="glyphicon glyphicon-download-alt"></span>
-          </md-button>
-          <br/>
-          <md-divider></md-divider>
-          <span>Change submission:</span>
+          <div ng-if="sub.path">
+            <span>Download uploaded submission:</span>
+            <md-button  target="_self" ng-href="{{sub.path}}" download="{{sub.path}}" class="md-fab md-primary md-hue-2" aria-label="Comment">
+              <span class="glyphicon glyphicon-download-alt"></span>
+            </md-button>
+          </div>
+          <span>Update submission:</span>
           <md-button class="md-raised" type="file" ngf-select ng-model="subFile" name="file"
                accept="application/pdf*" ngf-max-size="20MB" required
                ngf-model-invalid="errorFile">Select File</md-button>
-          {{subFile.name}}
+          <span ng-if="subFile">{{subFile.name}}</span>
+          <span ng-if="!subFile">No file chosen</span>
           <i ng-show="myForm.file.$error.maxSize">File too large
           {{errorFile.size / 1000000|number:1}}MB: max 20M</i>
-          <md-button class="md-raised md-primary" ng-click="subFile = null" ng-show="subFile">Remove</md-button>
+          <md-button class="md-fab md-mini md-default" ng-click="subFile = null" ng-show="subFile">X</md-button>
           <br><br>
             <span ng-show="subFile.result">Upload Successful</span>
             <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
           {{errorMsg}}
 
+          <md-divider></md-divider>
+          <md-button class="md-raised md-warn" ng-click="remove(sub)">Remove</md-button>
           <md-button class="pull-right md-raised md-primary" ng-click="update(sub)">Update</md-button>
       </div>
       <div layout-gt-sm="column">

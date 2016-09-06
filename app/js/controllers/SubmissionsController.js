@@ -72,14 +72,17 @@ angular.module('cms')
       }
 
       $scope.update = function(sub) {
-        $scope.checkStatusUpdate(sub);
         if(sub == null){
           console.log("form is empty")
         }
         else {
           sub.keywords = $scope.keywords;
           sub.author_id = currentuser.data._id;
-
+          if($scope.checkStatusNewSub(sub)){
+            console.log("complete")
+            sub.status = "complete"
+          } else {sub.status = "incomplete"
+            console.log("incomplete")}
           //Data Submission
           var req = {
             method: 'post',
@@ -115,15 +118,16 @@ angular.module('cms')
         }
       }
       $scope.checkStatusNewSub = function (sub) {
-        console.log(sub)
-        console.log($scope.subFile)
-        if(!sub.title || !sub.authors || !sub.abstract || !sub.keywords || !$scope.subFile ){
-          console.log("status incomplete")
-          return false
-        }
-        else{
-          console.log("status complete")
-          return true
-        }
+        return (sub.title && sub.authors && sub.abstract && sub.keywords && ($scope.subFile || sub.path) )
       };
+      $scope.checkStatus = function (sub) {
+        console.log(sub)
+        return (sub.title && sub.authors && sub.abstract && sub.keywords && sub.path )
+      };
+      $scope.remove = function (sub) {
+        console.log(sub._id)
+        $http.delete("/api/user/submission",{params:{id:sub._id}}).then( function (response){
+          console.log(response)
+        })
+      }
     }]);

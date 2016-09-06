@@ -24,7 +24,12 @@ angular.module('cms')
     $http.get("/api/reviewers/list").then( function(response){
       $scope.reviewers = response.data
     })
-
+    $scope.remove = function (sub,index) {
+      $scope.submissions.splice(index,1)
+      $http.delete("/api/user/submission",{params:{id:sub._id}}).then( function (response){
+        console.log(response)
+      })
+    }
 
 
   });
