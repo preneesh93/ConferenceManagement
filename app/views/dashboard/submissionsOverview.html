@@ -4,12 +4,16 @@
   </div>
   <div>
     <div>
-      <md-content class="md-padding" ng-init="isCollapsed=true">
+      <md-card class="md-padding" ng-init="isCollapsed=true">
         <h3>List of Submissions</h3>
         <md-list flex="">
           <div  ng-repeat="sub in submission">
             <md-list-item ng-click="isCollapsed = !isCollapsed" ng-class="{'selected': !isCollapsed}">
-              <div class="md-list-item-text" layout="column"> <h3>{{sub.title}} <small>{{sub.status}}</small>  </h3></div>
+              <div class="md-list-item-text" layout="column">
+                <h4>
+                  <span class="glyphicon glyphicon-chevron-right"></span>  {{sub.title}} | <small>{{sub.status}}</small>
+                </h4>
+              </div>
             </md-list-item>
             <div uib-collapse="isCollapsed">
               <div class="well well-lg">
@@ -18,7 +22,6 @@
                 <div>Keywords: {{sub.keywords}}</div>
                 <div>Authors: {{sub.authors}}</div>
                 <div>
-                  <span> .</span>
                   <md-button  ng-if="sub.path" target="_self" ng-href="{{sub.path}}" download="{{sub.path}}" class="md-fab md-primary" aria-label="Comment">
                     <md-tooltip md-direction="left"> Download Paper </md-tooltip>
                     <span class="glyphicon glyphicon-download-alt">
@@ -37,16 +40,9 @@
                 </div>
               </div>
             </div>
-            <md-divider ></md-divider>
           </div>
         </md-list>
-      </md-content>
+      </md-card>
     </div>
-    List of Submissions: <br>
-    <ul>
-      <li ng-repeat="sub in submission">
-        <a ui-sref="root.submission({submissionId:sub._id})">{{sub.title}}</a>
-      </li>
-    </ul>
   </div>
 </div>

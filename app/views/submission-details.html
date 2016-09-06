@@ -23,14 +23,12 @@
         </md-input-container>
       </div>
       <div>
-        <md-input-container class="md-block">
           <label>Keywords</label>
           <md-chips ng-model="keywords"
-                    placeholder="Enter a Keyword" delete-button-label="Remove Keyword"
-                    delete-hint="Press delete to remove Keyword">
+                    placeholder="Enter a Keyword">
           </md-chips>
-        </md-input-container>
       </div>
+      <br>
       <div>
         <md-input-container class="md-block">
           <label>Abstract</label>
@@ -41,7 +39,7 @@
           <h4>Update Paper</h4>
           <div ng-if="sub.path">
             <span>Download uploaded submission:</span>
-            <md-button  target="_self" ng-href="{{sub.path}}" download="{{sub.path}}" class="md-fab md-primary md-hue-2" aria-label="Comment">
+            <md-button  target="_self" ng-href="{{sub.path}}" download="{{sub.path}}" class="md-fab md-mini md-primary md-hue-2" aria-label="Comment">
               <span class="glyphicon glyphicon-download-alt"></span>
             </md-button>
           </div>
