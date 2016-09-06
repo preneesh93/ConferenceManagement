@@ -17,7 +17,10 @@
             </div>
             <div>
                 <label>Uploaded Paper:</label>
-                File: <a target="_self" ng-href="{{sub.path}}" download="{{sub.path}}">Download</a>
+                File:
+                <md-button ng-if="sub.path" target="_self" ng-href="{{sub.path}}" download="{{sub.path}}" class="md-fab" aria-label="Comment">
+                <span class="glyphicon glyphicon-download-alt"></span>
+                 </md-button>
             </div>
         </md-content>
     </div>

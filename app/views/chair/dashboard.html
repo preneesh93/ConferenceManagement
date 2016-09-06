@@ -74,7 +74,7 @@
                  <div>Keywords: {{sub.keywords}}</div>
                  <div>Authors: {{sub.authors}}</div>
                  <div>Reviewer: {{sub.reviewer}}</div>
-                  <a target="_self" ng-href="{{sub.path}}" download="{{sub.path}}">Download</a>
+                  <a ng-if="sub.path" target="_self" ng-href="{{sub.path}}" download="{{sub.path}}">Download</a>
                 </div>
               </div>
               <md-divider ></md-divider>

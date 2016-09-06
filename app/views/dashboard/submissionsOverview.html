@@ -17,7 +17,9 @@
                 <div>Abstract: {{sub.abstract}}</div>
                 <div>Keywords: {{sub.keywords}}</div>
                 <div>Authors: {{sub.authors}}</div>
-                <a target="_self" ng-href="{{sub.path}}" download="{{sub.path}}">Download</a>
+                <md-button ng-if="sub.path" target="_self" ng-href="{{sub.path}}" download="{{sub.path}}" class="md-fab" aria-label="Comment">
+                  <span class="glyphicon glyphicon-download-alt"></span>
+                </md-button>
               </div>
             </div>
             <md-divider ></md-divider>

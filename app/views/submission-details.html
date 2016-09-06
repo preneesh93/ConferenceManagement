@@ -37,7 +37,7 @@
           <h4>Update Paper</h4>
           <p>Please upload your paper in .pdf format!</p>.
           Download uploaded submission:
-          <md-button  target="_self" ng-href="{{sub.path}}" download="{{sub.path}}" class="md-fab" aria-label="Comment">
+          <md-button ng-if="sub.path" target="_self" ng-href="{{sub.path}}" download="{{sub.path}}" class="md-fab" aria-label="Comment">
             <span class="glyphicon glyphicon-download-alt"></span>
           </md-button>
           <br/>
