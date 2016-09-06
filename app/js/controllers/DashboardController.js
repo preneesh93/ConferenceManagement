@@ -3,7 +3,6 @@
  */
 angular.module('cms')
   .controller('DashboardController', function($scope,$http,$window,currentuser,config){
-    console.log(currentuser);
     $scope.reviewBtn = true;
     $scope.conf = {}
     $scope.assignedSubDetails=[]
@@ -52,9 +51,7 @@ angular.module('cms')
       $http(req)
         .then(
           function(result){
-            console.log("Retrieving Submission List")
             $scope.submission = result.data;
-            console.log($scope.submission);
           }, function (error) {
             console.error('Error: ' + error);
           });

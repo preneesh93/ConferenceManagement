@@ -24,7 +24,10 @@ angular.module('routes', ['ui.router'])
             authService.auth($window.localStorage.token,$window.localStorage.username).then(function(response){
                 if(!response.data.isAuthenticated){$state.go('login')}
               },
-              function (err) { console.log(err) }
+              function (err) {
+                console.log(err)
+                $window.localStorage.clear();
+                $state.go('login')}
             );
           },
           currentuser: function (userService) {
@@ -159,6 +162,16 @@ angular.module('routes', ['ui.router'])
           'main@': {
             templateUrl: 'views/review.html',
             controller: 'ReviewController'
+          }
+        },
+        data: { requireAuth: true }
+      })
+      .state('root.settings', {
+        url: "settings",
+        views: {
+          'main@': {
+            templateUrl: 'views/settings.html',
+            controller: 'SettingsController'
           }
         },
         data: { requireAuth: true }

@@ -46,19 +46,5 @@ angular
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
       $http.defaults.headers.common['Authorization'] =  'Bearer ' + $window.localStorage.token;
       $rootScope.username=$window.localStorage.username
-/*      if(toState.data.requireAuth ){
-        authService.auth($window.localStorage.token,$window.localStorage.username).then(function (auth) {
-          $rootScope.isAuthenticated=auth.data.isAuthenticated
-          if ( auth.data.isAuthenticated != true) {
-            event.preventDefault();
-            $state.go('login')
-          }
-        },function (err) {
-          $rootScope.isAuthenticated=undefined
-          console.log(err)
-          event.preventDefault();
-          $state.go('login')
-        });
-      }*/
     });
   }]);
