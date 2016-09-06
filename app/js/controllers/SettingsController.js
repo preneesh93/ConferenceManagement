@@ -10,13 +10,13 @@ angular.module('cms').controller('SettingsController', function($scope,$http,$ro
       params: {id : currentuser.data._id}
     };
     $http(req).then(function (result){
-      console.log(result)
-      $rootScope.isAuthenticated=false;
-      $window.localStorage.clear();
-      $state.go('login')
-    }
-    ,function (error) {
-      console.error('Error: ' + error);
-    })
+        console.log(result)
+        $rootScope.isAuthenticated=false;
+        $window.localStorage.clear();
+        $state.go('login')
+      }
+      ,function (error) {
+        console.error('Error: ' + error);
+      })
   }
 });
