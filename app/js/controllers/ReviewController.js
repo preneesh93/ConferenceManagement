@@ -48,14 +48,15 @@ angular.module('cms')
             })
         }
         $scope.submitReview = function(){
-
+            $scope.updateSubmissionStatus()
             console.log($scope.review)
             $scope.data=JSON.stringify($scope.review);
 
             var req = {
                 method: 'post',
                 url: "/api/user/review",
-                data: $scope.review
+                data: $scope.review,
+                params: {submissionId : $stateParams.submissionId}
             };
             // Send it
             $http(req)
@@ -72,5 +73,18 @@ angular.module('cms')
                     }
                 );
         };
+        $scope.updateSubmissionStatus = function () {
+          console.log($scope.status)
+          var req = {
+            method: 'post',
+            url: '/api/user/submission/status',
+            data: {id:$stateParams.submissionId,status:$scope.status}
+          };
+          $http(req)
+            .then(
+              function(response){
+
+            })
+        }
 
     }]);

@@ -66,7 +66,7 @@ app.get('/api/user/list-sub', submissions.getSublist);
 app.post('/api/user/submissions', submissions.postSub);
 app.post('/api/user/update-sub', submissions.updateSub);
 app.post('/api/user/uploads', submissions.uploadSub);
-
+app.post('/api/user/submission/status',submissions.updateStatus)
 // authentication
 app.get('/user/login', auth.login);
 app.post('/user/register', auth.register);

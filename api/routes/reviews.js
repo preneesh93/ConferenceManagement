@@ -8,16 +8,13 @@ var Sub =  require('../schemas/submissions');
 
 module.exports.postDetails = function (req, res) {
     console.log("Received a post req...");
-    var review = new Review(req.body);
-    review.save(req.body, function (err,result) {
-        if (err) {
-            throw err
-        }
-        else {
-            res.json(result)
-        }
-    }
-)};
+    var conditions = {submission_id: req.query.submissionId};
+    var options = { upsert: true, new: true, setDefaultsOnInsert: true };
+    Review.findOneAndUpdate(conditions, req.body, options, function(err, result) {
+        if(err){throw err}
+        res.json(result);
+    });
+};
 module.exports.getDetails = function (req, res) {
     console.log("Received a get req...");
     console.log(req.query);

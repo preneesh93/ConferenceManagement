@@ -51,6 +51,13 @@
             <label>Detailed Summary</label>
             <textarea ng-model="review.detailed_summary" md-select-on-focus=""/>
         </md-input-container>
+        <md-input-container>
+            <label>Status</label>
+            <md-select ng-model="status">
+                <md-option value="accepted"><em>Accept</em></md-option>
+                <md-option value="rejected"><em>Reject</em></md-option>
+            </md-select>
+        </md-input-container>
         <md-button class="md-raised md-primary" ng-click="submitReview()">Submit Review</md-button>
         <span ng-show="showSuccess">"review succesfully submitted"</span>
     </md-content>

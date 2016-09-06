@@ -3,7 +3,7 @@
  */
 
 angular.module('cms')
-  .controller('chair.AssignController',['$scope','$http','$element', function($scope,$http,$element){
+  .controller('chair.AssignController',['$scope','$http','$element','$window', function($scope,$http,$element,$window){
     $scope.isCollapsed = false;
     $scope.searchTerm;
     $element.find('input').on('keydown', function(ev) {
@@ -28,6 +28,7 @@ angular.module('cms')
       console.log(revid)
       $http.post("/api/chair/assign",{sub:subid,rev:revid}).then(function (response) {
         console.log(response)
+        $window.location.reload();
       })
     }
 
