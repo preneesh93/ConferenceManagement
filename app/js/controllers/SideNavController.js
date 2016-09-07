@@ -14,7 +14,7 @@ angular.module('cms')
       {'label':'Edit Profile','state':'root.profiledetails'},
       {'label':'Dashboard','state':'root.chair.dashboard'},
       {'label':'Settings','state':'root.chair.settings'},
-      {'label':'Assign Papers','state':'root.chair.assign'}
+      {'label':'Assign','state':'root.chair.assign'}
     ]
 
     if(currentuser) {
