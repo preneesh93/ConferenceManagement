@@ -16,7 +16,7 @@
               <div class="well well-lg">
                 <div>Title: {{sub.title}}</div>
                 <div>Abstract: {{sub.abstract}}</div>
-                <div>Keywords: {{sub.keywords}}</div>
+                <div> <span>Keywords:</span> <span ng-repeat="key in sub.keywords"> {{key}},</span></div>
                 Authors:
                 <div ng-repeat="author in sub.authors">
                    {{author.email}} | {{author.first_name}} {{author.last_name}}

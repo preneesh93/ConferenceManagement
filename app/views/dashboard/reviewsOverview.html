@@ -21,7 +21,7 @@
 
             <div>Title: {{sub.title}}</div>
             <div>Abstract: {{sub.abstract}}</div>
-            <div>Keywords: {{sub.keywords}}</div>
+            <div> <span>Keywords:</span> <span ng-repeat="key in sub.keywords"> {{key}},</span></div>
             <md-button ng-disabled="!reviewBtn" class="md-raised md-primary" ui-sref="root.review({submissionId:sub._id})">Review</md-button>
           </div>
         </div>

@@ -10,7 +10,7 @@
           <div>ID: {{sub._id}}</div>
           <div>Title: {{sub.title}}</div>
           <div> Author: {{sub.author_id}}</div>
-          <div>Keywords: {{sub.keywords}}</div>
+          <div> <span>Keywords:</span> <span ng-repeat="key in sub.keywords"> {{key}},</span></div>
           <div>Authors: {{sub.authors}}</div>
           <div layout="row" layout-align="" >
             <md-input-container flex="">
