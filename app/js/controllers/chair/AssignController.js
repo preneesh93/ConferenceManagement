@@ -23,10 +23,7 @@ angular.module('cms')
     })
 
     $scope.assign = function (subid, revid) {
-      console.log(subid)
-      console.log(revid)
       $http.post("/api/chair/assign",{sub:subid,rev:revid}).then(function (response) {
-        console.log(response)
         $window.location.reload();
       })
     }
