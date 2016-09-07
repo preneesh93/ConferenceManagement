@@ -4,6 +4,7 @@
 angular.module('cms')
   .controller('DashboardController', function($scope,$http,$window,currentuser,config){
     $scope.reviewBtn = true;
+    $scope.subBtn = true;
     $scope.conf = {}
     $scope.assignedSubDetails=[]
     currentuser.data.roles.author=true;
@@ -85,6 +86,10 @@ angular.module('cms')
         if(currDate >= $scope.conf.rev)
         {
           $scope.reviewBtn = false;
+        }
+        if(currDate >= $scope.conf.sub)
+        {
+          $scope.subBtn = false;
         }
       }
       },function (error) {  console.log(error)  }

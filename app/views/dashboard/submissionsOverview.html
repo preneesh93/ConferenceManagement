@@ -27,13 +27,15 @@
                     <span class="glyphicon glyphicon-download-alt">
                     </span>
                   </md-button>
-                  <md-button ui-sref="root.submission({submissionId:sub._id})" class=" md-fab md-primary" aria-label="Comment">
-                    <md-tooltip md-direction="right"> Edit Submission </md-tooltip>
+                  <md-button ng-disabled="!subBtn" ui-sref="root.submission({submissionId:sub._id})" class=" md-fab md-primary" aria-label="Comment">
+                    <md-tooltip ng-if="subBtn" md-direction="right"> Edit Submission </md-tooltip>
+                    <md-tooltip ng-if="!subBtn" md-direction="right"> Submissions closed </md-tooltip>
                     <span class="glyphicon glyphicon-pencil">
                     </span>
                   </md-button>
-                  <md-button  ng-click="remove(sub,$index)" class=" md-fab md-primary" aria-label="Comment">
-                    <md-tooltip md-direction="right"> Remove Submission </md-tooltip>
+                  <md-button ng-disabled="!subBtn"  ng-click="remove(sub,$index)" class=" md-fab md-primary" aria-label="Comment">
+                    <md-tooltip ng-if="subBtn" md-direction="right"> Remove Submission </md-tooltip>
+                    <md-tooltip ng-if="!subBtn" md-direction="right"> Submissions closed </md-tooltip>
                     <span class="glyphicon glyphicon-remove">
                     </span>
                   </md-button>
