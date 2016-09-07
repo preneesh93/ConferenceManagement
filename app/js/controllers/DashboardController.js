@@ -80,6 +80,7 @@ angular.module('cms')
     $http.get("/api/chair/deadlines?conference="+config.conference_name).then(function(response){
       if(response.data != null)
       {
+        $scope.conf.sub = (response.data.submission_deadline)? new Date(response.data.submission_deadline) : undefined;
         $scope.conf.rev = (response.data.review_deadline)? new Date(response.data.review_deadline) : undefined;
         if(currDate >= $scope.conf.rev)
         {

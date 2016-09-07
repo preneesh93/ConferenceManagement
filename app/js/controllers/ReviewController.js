@@ -80,11 +80,7 @@ angular.module('cms')
             url: '/api/user/submission/status',
             data: {id:$stateParams.submissionId,status:$scope.status}
           };
-          $http(req)
-            .then(
-              function(response){
-
-            })
+          $http(req).then(function(response){console.log(response)})
         }
 
     }]);

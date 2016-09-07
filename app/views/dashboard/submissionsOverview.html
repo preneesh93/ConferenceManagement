@@ -1,8 +1,5 @@
 <div ng-init="listSubmissions()">
   <div>
-    <p>Click Here to <a ui-sref="root.newsub">Add a new Submission</a></p>
-  </div>
-  <div>
     <div>
       <md-card class="md-padding" ng-init="isCollapsed=true">
         <h3>List of Submissions</h3>
@@ -20,7 +17,10 @@
                 <div>Title: {{sub.title}}</div>
                 <div>Abstract: {{sub.abstract}}</div>
                 <div>Keywords: {{sub.keywords}}</div>
-                <div>Authors: {{sub.authors}}</div>
+                Authors:
+                <div ng-repeat="author in sub.authors">
+                   {{author.email}} | {{author.first_name}} {{author.last_name}}
+                </div>
                 <div>
                   <md-button  ng-if="sub.path" target="_self" ng-href="{{sub.path}}" download="{{sub.path}}" class="md-fab md-primary" aria-label="Comment">
                     <md-tooltip md-direction="left"> Download Paper </md-tooltip>
@@ -32,7 +32,7 @@
                     <span class="glyphicon glyphicon-pencil">
                     </span>
                   </md-button>
-                  <md-button  ng-click="remove(sub,$index)" class=" md-fab md-warn" aria-label="Comment">
+                  <md-button  ng-click="remove(sub,$index)" class=" md-fab md-primary" aria-label="Comment">
                     <md-tooltip md-direction="right"> Remove Submission </md-tooltip>
                     <span class="glyphicon glyphicon-remove">
                     </span>
@@ -41,6 +41,7 @@
               </div>
             </div>
           </div>
+          <md-button  class="md-raised md-primary" ui-sref="root.newsub">Add Submission</md-button>
         </md-list>
       </md-card>
     </div>

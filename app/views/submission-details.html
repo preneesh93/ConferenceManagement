@@ -7,20 +7,42 @@
           <input ng-model="sub.title">
         </md-input-container>
       </div>
-      <div ng-repeat="author in sub.authors">
-        <h4>Authors</h4>
-        <md-input-container>
-          <label>First Name</label>
-          <input ng-model="author.first_name">
-        </md-input-container>
-        <md-input-container>
-          <label>Last Name</label>
-          <input ng-model="author.last_name">
-        </md-input-container>
-        <md-input-container>
-          <label>E-Mail Address</label>
-          <input ng-model="author.email">
-        </md-input-container>
+      <div>
+        <div flex layout-fill="" ng-init="searchText=''">
+          <label>Authors</label>
+          <md-chips ng-init="sub.authors=[]"
+                    ng-model="sub.authors"
+                    md-autocomplete-snap
+                    md-require-match="true"
+                    placeholder="Add an author">
+            <md-autocomplete
+              style="width:100%"
+              md-selected-item="selectedAuthor"
+              md-search-text="searchText"
+              md-no-cache="true"
+              md-items="user in users | filter:searchText "
+              md-item-text="user.email"
+              placeholder="Search for a user">
+              <span md-highlight-text="searchText">{{user.email}} | {{user.first_name}} {{user.last_name}}</span>
+            </md-autocomplete>
+            <md-chip-template>
+              <strong>{{$chip.email}}</strong>
+            </md-chip-template>
+          </md-chips>
+        </div>
+
+        <h2 class="md-title">Current Authors</h2>
+
+        <md-list layout="row">
+          <md-list-item  flex="20" ng-repeat="author in sub.authors"
+                        layout-wrap>
+            <div class="authors-list md-item-text md-whiteframe-z1" flex>
+              <h3>{{author.email}}</h3>
+              <h4>{{author.first_name}}</h4>
+              <h4>{{author.last_name}}</h4>
+            </div>
+          </md-list-item>
+        </md-list>
       </div>
       <div>
           <label>Keywords</label>
@@ -35,6 +57,8 @@
           <textarea ng-model="sub.abstract" md-select-on-focus=""></textarea>
         </md-input-container>
       </div>
+
+    </form>
       <div>
           <h4>Update Paper</h4>
           <div ng-if="sub.path">
@@ -66,6 +90,5 @@
           <p>Updated Successfully!</p>
         </div>
       </div>
-    </form>
   </md-content>
 </div>
