@@ -104,7 +104,7 @@ module.exports.postSub = function (req, res) {
 
 module.exports.updateSub = function (req, res) {
   var condition = {_id : req.body._id};
-  var update = req.body;
+  var update = {$set: req.body};
   Sub.findOneAndUpdate(condition, update, function(err, result1){
     if(err) { throw err; }
     else {

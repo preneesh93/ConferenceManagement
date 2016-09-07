@@ -2,11 +2,17 @@
  * Created by Preneesh on 12-08-2016.
  */
 angular.module('cms')
-  .controller('SubmissionsController', ['$scope','Upload', '$timeout', '$http','$window','currentuser','$stateParams', 
-    function($scope,Upload,$timeout,$http,$window,currentuser,$stateParams){
+  .controller('SubmissionsController', ['$scope','Upload', '$timeout', '$http','$window','currentuser','$stateParams', '$element',
+    function($scope,Upload,$timeout,$http,$window,currentuser,$stateParams,$element){
       //$scope.sub = {};
       $scope.keywords = [];
-
+      $scope.searchTerm = undefined;
+      $scope.clearSearchTerm = function() {
+        $scope.searchTerm = '';
+      };
+      $element.find('input').on('keydown', function(ev) {
+        ev.stopPropagation();
+      });
       $scope.download = function(resource){
         window.open(resource);
       };
@@ -21,6 +27,7 @@ angular.module('cms')
         $http(req).then(function (result) {
           $scope.sub = result.data;
           $scope.keywords = $scope.sub.keywords;
+          $scope.authors = $scope.sub.authors;
         },function (error) {
           console.error('Error: ' + error);
         })
@@ -44,21 +51,11 @@ angular.module('cms')
             params: {username: $window.localStorage.username}
           };
           $http(req).then(function (response) {
-            console.log('starting second call...');
-            var file = $scope.subFile;
-
-            //File Upload
             Upload.upload({
               url: "/api/user/uploads",
-              data: {file: file},
+              data: {file: $scope.subFile},
               params: {username: $window.localStorage.username, submission: response.data._id}
-            }).then(function (resp) { //upload function returns a promise
-/*              if (resp.data.error_code === 0) { //validate success
-                $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
-              } else {
-                $window.alert('an error occured');
-              }*/
-            });
+            }).then(function (resp) { });
 
             //Submit Notification
             $scope.success = true;
@@ -99,13 +96,7 @@ angular.module('cms')
               url: "/api/user/uploads",
               data: {file: file},
               params: {username: $window.localStorage.username, submission: response.data._id}
-            }).then(function (resp) { //upload function returns a promise
-/*              if (resp.data.error_code === 0) { //validate success
-                $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
-              } else {
-                $window.alert('an error occured');
-              }*/
-            });
+            }).then(function (resp) {});
 
             //Submit Notification
             $scope.success = true;
@@ -130,4 +121,20 @@ angular.module('cms')
           console.log(response)
         })
       }
+      $http.get("/api/user/list")
+        .then(function(response) {
+          $scope.users=[]
+
+          console.log(response)
+          response.data.forEach(function (user) {
+            var temp = {};
+            temp.email=user.email;
+            temp.first_name = user.first_name;
+            temp.last_name = user.last_name;
+            $scope.users.push(temp)
+          })
+          }
+        );
+
+
     }]);

@@ -9,18 +9,24 @@
         </md-input-container>
       </div>
       <div>
-        <h4>Authors</h4>
-        <md-input-container>
-          <label>First Name</label>
-          <input ng-model="sub.authors.first_name">
-        </md-input-container>
-        <md-input-container>
-          <label>Last Name</label>
-          <input ng-model="sub.authors.last_name">
-        </md-input-container>
-        <md-input-container>
-          <label>E-Mail Address</label>
-          <input ng-model="sub.authors.email">
+        <md-input-container flex="50" layout-fill="">
+          <label>Authors</label>
+          <md-select ng-model="sub.authors"
+                     md-on-close="clearSearchTerm()"
+                     data-md-container-class="selectdemoSelectHeader"
+                     multiple>
+            <md-select-header class="demo-select-header">
+              <input ng-model="searchTerm"
+                     type="search"
+                     placeholder="Search for a author.."
+                     class="demo-header-searchbox md-text">
+            </md-select-header>
+            <md-optgroup label="authors">
+              <md-option ng-value="author" ng-repeat="author in users | filter:searchTerm">
+                {{author.email}} | {{author.first_name}} {{author.last_name}}
+              </md-option>
+            </md-optgroup>
+          </md-select>
         </md-input-container>
       </div>
       <div class="chipsdemoBasicUsage">

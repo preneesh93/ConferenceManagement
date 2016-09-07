@@ -5,18 +5,18 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var ObjectId = mongoose.Schema.Types.ObjectId;
+var subSchema = mongoose.Schema({
+  first_name: String,
+  last_name: String,
+  email: String
+},{ _id : false });
 
 var submissionSchema = new Schema(
   {
     title: String,
     author_id: String,
     reviewer:String,
-    authors: [{
-      first_name: String,
-      last_name: String,
-      email: String
-    }],
+    authors: [subSchema],
     abstract: String,
     keywords: [
       String

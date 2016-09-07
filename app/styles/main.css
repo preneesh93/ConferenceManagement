@@ -65,3 +65,23 @@ md-pagination-wrapper{
   margin:0 auto;
   position:inherit;
 }
+.chipsdemoCustomInputs .veggie-option .md-item-text {
+  padding: 8px;
+  background: #f0f0f0;
+  border-radius: 3px; }
+
+.chipsdemoCustomInputs .veggie-option .md-item-text h3,
+.chipsdemoCustomInputs .veggie-option .md-item-text p {
+  padding: 0;
+  margin: 0; }
+
+.chipsdemoCustomInputs .veggie-option {
+  float: left;
+  width: 20%;
+  box-sizing: border-box;
+  padding: 0 8px; }
+
+.authors-list{
+  background-color:white;
+  padding:6px;
+}
