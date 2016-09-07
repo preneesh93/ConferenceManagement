@@ -4,8 +4,8 @@
 
 angular.module('cms')
   .controller('chair.AssignController',['$scope','$http','$element','$window', function($scope,$http,$element,$window){
-    $scope.isCollapsed = false;
-    $scope.searchTerm;
+    $scope.isCollapsed = true;
+    $scope.searchTerm = undefined;
     $element.find('input').on('keydown', function(ev) {
       ev.stopPropagation();
     });
@@ -21,7 +21,6 @@ angular.module('cms')
     $http.get("/api/reviewers/list").then( function(response){
       $scope.reviewers = response.data
     })
-
 
     $scope.assign = function (subid, revid) {
       console.log(subid)

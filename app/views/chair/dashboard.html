@@ -33,7 +33,6 @@
       </md-tab>
       <md-tab label="Reviewers">
         <md-content class="md-padding">
-          <h3>List of Reviewrs</h3>
           <md-list flex="">
             <div  ng-repeat="reviewer in reviewers">
               <md-list-item ng-click="isCollapsed = !isCollapsed" ng-class="{'selected': !isCollapsed}">
@@ -59,21 +58,18 @@
       </md-tab>
       <md-tab label="Submissions">
         <md-content class="md-padding">
-          <h3>List of Submissions</h3>
           <md-list flex="">
             <div  ng-repeat="sub in submissions">
               <md-list-item ng-click="isCollapsed = !isCollapsed" ng-class="{'selected': !isCollapsed}">
-                <div class="md-list-item-text" layout="column"> <h3>{{sub.title}} <small>{{sub.status}}</small>  </h3></div>
+                <div class="md-list-item-text" layout="column"> <h2>{{sub.title}} <small>{{sub.status}}</small>  </h2></div>
               </md-list-item>
               <div uib-collapse="isCollapsed">
                 <div class="well well-lg">
-                  {{sub}}
-                 <div>ID: {{sub._id}}</div>
-                 <div>Title: {{sub.title}}</div>
-                 <div> Author: {{sub.author_id}}</div>
-                 <div>Keywords: {{sub.keywords}}</div>
-                 <div>Authors: {{sub.authors}}</div>
-                 <div>Reviewer: {{sub.reviewer}}</div>
+
+                  <div> <h3>Title:</h3> {{sub.title}}</div>
+                  <div> <h3>Keywords:</h3> <span ng-repeat="key in sub.keywords"> {{key}},</span></div>
+                  <div> <h3>Authors:</h3> {{sub.title}}</div>
+                  <div> <h3>Title:</h3> <span ng-repeat="author in sub.authors"> {{author.email}} | {{author.first_name}} {{author.last_name}}</span></div>
                   <md-button  ng-if="sub.path" target="_self" ng-href="{{sub.path}}" download="{{sub.path}}" class="md-fab md-primary" aria-label="Comment">
                     <md-tooltip md-direction="left"> Download Paper </md-tooltip>
                     <span class="glyphicon glyphicon-download-alt">
@@ -93,7 +89,24 @@
       </md-tab>
       <md-tab label="Reviews">
         <md-content class="md-padding">
-          <h3>List of Reviews</h3>
+          <md-list flex="">
+            <div  ng-repeat="rev in reviews">
+              <md-list-item ng-click="isCollapsed = !isCollapsed" ng-class="{'selected': !isCollapsed}">
+                <div class="md-list-item-text" layout="column"> <h2>{{submissionsMap[rev.submission_id]}} <small>{{overallEvaluation[rev.overall_evaluation]}}</small>  </h2></div>
+              </md-list-item>
+              <div uib-collapse="isCollapsed">
+                <div class="well well-lg">
+                  <div> <h3>Detailed summary:</h3> {{rev.detailed_summary}}</div>
+                  <div> <h3>Major strong points:</h3> {{rev.major_strong_points}}</div>
+                  <div> <h3>Major weak points:</h3> {{rev.major_weak_points}}</div>
+                  <div> <h3>Review expertise:</h3> {{reviewerExpertise[rev.review_expertise]}}</div>
+                  <div> <h3>Overall evaluation:</h3> {{overallEvaluation[rev.overall_evaluation]}}</div>
+                  <div> <h3>Reviewer:</h3> {{reviewersMap[rev.reviewer_id]}}</div>
+                </div>
+              </div>
+              <md-divider ></md-divider>
+            </div>
+          </md-list>
         </md-content>
       </md-tab>
     </md-tabs>
