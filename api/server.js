@@ -89,6 +89,7 @@ app.post('/api/chair/assign',chair.assignPapers)
 //Reviews
 app.post('/api/user/review', reviews.postDetails);
 app.get('/api/user/review',reviews.getDetails);
+app.get('/api/user/review/list',reviews.list);
 
 // sending index file to handle angular routes
 app.all('/*', function(req, res) {

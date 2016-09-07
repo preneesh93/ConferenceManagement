@@ -12,7 +12,16 @@ angular.module('cms')
             $scope.review.reviewer_id =  response.data._id
             }
         )
-
+        var req = {
+          method: 'get',
+          url: '/api/user/submissions',
+          params: {submissionId : $stateParams.submissionId}
+        };
+        $http(req).then(function (result) {
+          $scope.sub = result.data
+        },function (error) {
+          console.error('Error: ' + error);
+        })
         $scope.reviewerExpertise = [
             { label: 'Not familiar w/ the topic', value: '1' },
             { label: 'Familiar', value: '2' },
@@ -74,11 +83,11 @@ angular.module('cms')
                 );
         };
         $scope.updateSubmissionStatus = function () {
-          console.log($scope.status)
+          console.log($scope.sub.status)
           var req = {
             method: 'post',
             url: '/api/user/submission/status',
-            data: {id:$stateParams.submissionId,status:$scope.status}
+            data: {id:$stateParams.submissionId,status:$scope.sub.status}
           };
           $http(req).then(function(response){console.log(response)})
         }

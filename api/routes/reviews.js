@@ -22,3 +22,7 @@ module.exports.getDetails = function (req, res) {
         res.json(result);
     });
 };
+
+module.exports.list = function (req, res){
+    Review.find(function (err,result) { if(err){throw err} res.send(result)})
+};

@@ -4,6 +4,7 @@
 angular.module('cms')
   .controller('DashboardController', function($scope,$http,$window,currentuser,config){
     $scope.reviewBtn = true;
+    $scope.subBtn = true;
     $scope.conf = {}
     $scope.assignedSubDetails=[]
     currentuser.data.roles.author=true;
@@ -82,9 +83,13 @@ angular.module('cms')
       {
         $scope.conf.sub = (response.data.submission_deadline)? new Date(response.data.submission_deadline) : undefined;
         $scope.conf.rev = (response.data.review_deadline)? new Date(response.data.review_deadline) : undefined;
-        if(currDate >= $scope.conf.rev)
+        if(currDate > $scope.conf.rev)
         {
           $scope.reviewBtn = false;
+        }
+        if(currDate > $scope.conf.sub)
+        {
+          $scope.subBtn = false;
         }
       }
       },function (error) {  console.log(error)  }

@@ -6,26 +6,26 @@
     </md-switch>
   </div>
 </div>
+<div ng-hide="!reviewer">
+  <md-card class="md-padding" ng-init="isCollapsed=true">
+    <h3>List of Assigned Submissions</h3>
+    <md-list flex="">
+      <div  ng-repeat="sub in assignedSubDetails">
+        <md-list-item ng-click="isCollapsed = !isCollapsed" ng-class="{'selected': !isCollapsed}">
+          <div class="md-list-item-text" layout="column">
+            <h4><span class="glyphicon glyphicon-chevron-right"></span>  {{sub.title}} | <small>{{sub.status}}</small> </h4>
+          </div>
+        </md-list-item>
+        <div uib-collapse="isCollapsed">
+          <div class="well well-lg">
 
-<div>
-
-  <div ng-hide="!reviewer">
-    <table class="table">
-      <thead>
-      <tr class="table-headers">
-        <th ng-repeat="h in headers" class="table-header">
-          <a href="#">{{h.name}}</a>
-        </th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr ng-repeat="s in assignedSubDetails track by $index" class="table-content">
-        <td class="table-content">{{s.title}}</td>
-        <td class="table-content">{{s.authors[0].first_name}}</td>
-        <td class="table-content">{{s.keywords}}</td>
-        <td class="table-content"><md-button ng-disabled="!reviewBtn" class="md-raised md-primary" ui-sref="root.review({submissionId:s._id})">Review</md-button></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+            <div>Title: {{sub.title}}</div>
+            <div>Abstract: {{sub.abstract}}</div>
+            <div> <span>Keywords:</span> <span ng-repeat="key in sub.keywords"> {{key}},</span></div>
+            <md-button ng-disabled="!reviewBtn" class="md-raised md-primary" ui-sref="root.review({submissionId:sub._id})">Review</md-button>
+          </div>
+        </div>
+      </div>
+    </md-list>
+  </md-card>
 </div>
