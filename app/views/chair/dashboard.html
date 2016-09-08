@@ -17,10 +17,29 @@
                     <div><strong>Email: </strong>{{user.email}}</div>
                     <div><strong>Name : </strong><span>{{user.first_name}}</span> <span>{{user.last_name}}</span>
                     </div>
-                    <div><strong>Address : </strong> {{user.address}}</div>
-                    <div><strong>Institution :</strong> {{user.institution}}</div>
-                    <div><strong>Submissions : </strong>{{user.submissions.length}}</div>
-                    <div><strong>Assigned Submissions: </strong>{{user.assigned_submissions.length}}</div>
+                    <div ng-if="user.address"> <strong>Address:</strong>
+                      {{user.address.street}},
+                      {{user.address.city}},
+                      {{user.address.State}},
+                      {{user.address.Country}},
+                      {{user.address.postal_code}}
+                    </div>
+                    <div ng-if="user.institution"><strong>Institution:</strong>
+                      {{user.institution.name}},
+                      {{user.institution.city}},
+                      {{user.institution.State}},
+                      {{user.institution.Country}}
+                    </div>
+                    <div ng-if="user.submissions.length>0"><strong>Submissions : </strong>
+                      <div ng-repeat="sub in user.submissions">
+                        <span>{{submissionsMap[sub._id]}}</span>
+                      </div>
+                    </div>
+                    <div ng-if="user.assigned_submissions.length>0"><strong>Assigned Submissions: </strong>
+                      <div ng-repeat="sub in user.assigned_submissions">
+                        <span>{{submissionsMap[sub]}}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <md-divider ></md-divider>
@@ -39,15 +58,34 @@
               </md-list-item>
               <div uib-collapse="isCollapsed">
                 <div class="well well-lg">
-                  <div>Username: {{reviewer.username}}</div>
-                  <div>Email: {{reviewer.email}}</div>
+                  <div><strong>Username: </strong>{{reviewer.username}}</div>
+                  <div><strong>Email: </strong>{{reviewer.email}}</div>
                   <div>{{reviewer.title}} <span>{{reviewer.first_name}}</span>
                     <span>{{reviewer.last_name}}</span>
                   </div>
-                  <div>Address:  {{reviewer.address}}</div>
-                  <div>Institution: {{reviewer.institution}}</div>
-                  <div>Submissions: {{reviewer.submissions.length}}</div>
-                  <div>Assigned Submissions: {{reviewer.assigned_submissions.length}}</div>
+                  <div ng-if="reviewer.address"><strong>Address:</strong>
+                    {{reviewer.address.street}},
+                    {{reviewer.address.city}},
+                    {{reviewer.address.State}},
+                    {{reviewer.address.Country}},
+                    {{reviewer.address.postal_code}}
+                  </div>
+                  <div ng-if="reviewer.institution"><strong>Institution:</strong>
+                    {{reviewer.institution.name}},
+                    {{reviewer.institution.city}},
+                    {{reviewer.institution.State}},
+                    {{reviewer.institution.Country}}
+                  </div>
+                  <div ng-if="reviewer.submissions.length>0"><strong>Submissions : </strong>
+                    <div ng-repeat="sub in reviewer.submissions">
+                      <span>{{submissionsMap[sub._id]}}</span>
+                    </div>
+                  </div>
+                  <div ng-if="reviewer.assigned_submissions.length>0"><strong>Assigned Submissions: </strong>
+                    <div ng-repeat="sub in reviewer.assigned_submissions">
+                      <span>{{submissionsMap[sub]}}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
               <md-divider ></md-divider>
