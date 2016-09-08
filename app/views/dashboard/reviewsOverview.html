@@ -6,7 +6,7 @@
     </md-switch>
   </div>
 </div>
-<div ng-hide="!reviewer">
+<div ng-hide="!reviewer" ng-if="assigned_submissions.length>0">
   <md-card class="md-padding" ng-init="isCollapsed=true">
     <h3>List of Assigned Submissions</h3>
     <md-list flex="">

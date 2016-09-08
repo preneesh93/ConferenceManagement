@@ -4,7 +4,7 @@
 angular.module('cms')
   .controller('NavigationController', function($scope, $rootScope, $window,$state,$mdSidenav,$mdMedia){
     $scope.hide = function () {
-      return $mdMedia('gt-sm')
+      return $mdMedia('gt-md')
     }
     $scope.toggleLeft = function () {
       console.log("toggling")

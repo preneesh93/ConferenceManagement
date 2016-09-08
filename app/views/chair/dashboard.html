@@ -67,16 +67,18 @@
                   <div> <h3>Title:</h3> {{sub.title}}</div>
                   <div> <h3>Keywords:</h3> <span ng-repeat="key in sub.keywords"> {{key}},</span></div>
                   <div> <h3>Authors:</h3> <div ng-repeat="author in sub.authors"> {{author.email}} | {{author.first_name}} {{author.last_name}}</div></div>
-                  <md-button  ng-if="sub.path" target="_self" ng-href="{{sub.path}}" download="{{sub.path}}" class="md-fab md-primary" aria-label="Comment">
-                    <md-tooltip md-direction="left"> Download Paper </md-tooltip>
+                  <div class="text-center ">
+                    <md-button  ng-if="sub.path" target="_self" ng-href="{{sub.path}}" download="{{sub.path}}" class="md-fab md-primary" aria-label="Comment">
+                      <md-tooltip md-direction="left"> Download Paper </md-tooltip>
                     <span class="glyphicon glyphicon-download-alt">
                     </span>
-                  </md-button>
-                  <md-button  ng-click="remove(sub,$index)" class=" md-fab md-warn" aria-label="Comment">
-                    <md-tooltip md-direction="right"> Remove Submission </md-tooltip>
+                    </md-button>
+                    <md-button  ng-click="remove(sub,$index)" class=" md-fab md-warn" aria-label="Comment">
+                      <md-tooltip md-direction="right"> Remove Submission </md-tooltip>
                     <span class="glyphicon glyphicon-remove">
                     </span>
-                  </md-button>
+                    </md-button>
+                  </div>
                 </div>
               </div>
               <md-divider ></md-divider>

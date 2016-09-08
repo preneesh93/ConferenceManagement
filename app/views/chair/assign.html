@@ -1,5 +1,5 @@
 <md-content class="md-padding">
-  <h3>List of Submissions</h3>
+  <h3>List of Unassigned Submissions</h3>
   <md-list flex="">
     <div  ng-repeat="sub in submissions">
       <md-list-item ng-click="isCollapsed = !isCollapsed" ng-class="{'selected': !isCollapsed}">
@@ -7,15 +7,16 @@
       </md-list-item>
       <div uib-collapse="isCollapsed">
         <div class="well well-lg">
-          <div>ID: {{sub._id}}</div>
           <div>Title: {{sub.title}}</div>
-          <div> Author: {{sub.author_id}}</div>
           <div> <span>Keywords:</span> <span ng-repeat="key in sub.keywords"> {{key}},</span></div>
-          <div>Authors: {{sub.authors}}</div>
+          Authors:
+          <div ng-repeat="author in sub.authors">
+            {{author.email}} | {{author.first_name}} {{author.last_name}}
+          </div>
           <div layout="row" layout-align="" >
             <md-input-container flex="">
               <md-select flex="" placeholder="Reviewer" ng-model="selectedReviewer" aria-label="selectedReviewer">
-                <md-option ng-repeat="reviewer in reviewers" ng-value="reviewer" ng-disabled="reviewer._id === sub.author_id">
+                <md-option ng-repeat="reviewer in reviewers" ng-value="reviewer" ng-disabled="checkAuthors(reviewer.email,sub.authors)">
                   {{reviewer.username}} | assigned submissions:{{reviewer.assigned_submissions.length}}
                   <span ng-if="reviewer._id === sub.author_id">Author</span>
                 </md-option>

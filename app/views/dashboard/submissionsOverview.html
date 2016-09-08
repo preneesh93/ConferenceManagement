@@ -43,7 +43,10 @@
               </div>
             </div>
           </div>
-          <md-button  class="md-raised md-primary" ui-sref="root.newsub">Add Submission</md-button>
+          <md-button  ng-disabled="!subBtn"  class="md-raised md-primary" ui-sref="root.newsub">Add Submission
+            <md-tooltip ng-if="subBtn" md-direction="right"> Add new submission</md-tooltip>
+            <md-tooltip ng-if="!subBtn" md-direction="right"> Submissions are closed </md-tooltip>
+          </md-button>
         </md-list>
       </md-card>
     </div>

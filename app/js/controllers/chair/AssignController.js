@@ -27,6 +27,15 @@ angular.module('cms')
         $window.location.reload();
       })
     }
+    $scope.checkAuthors= function (email,authors) {
+      var result= false
+      authors.forEach(function (author) {
+        if(author.email==email){
+          result = true
+        }
+      })
+      return result
 
+    }
   }]);
 
