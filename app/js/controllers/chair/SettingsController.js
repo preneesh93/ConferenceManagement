@@ -15,10 +15,12 @@ angular.module('cms')
     )
     $scope.addSubmissionDeadline = function(sub){
       $http.put("/api/chair/deadlines?conference="+config.conference_name,{submission_deadline: sub}).then(function(response){
+        $scope.showSuccess="Updated..."
       })
     }   
     $scope.addReviewDeadline = function(rev){
       $http.put("/api/chair/deadlines?conference="+config.conference_name,{review_deadline: rev}).then(function(response){
+        $scope.showSuccess="Updated..."
       })
     }
   });

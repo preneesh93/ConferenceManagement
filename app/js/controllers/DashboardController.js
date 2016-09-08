@@ -5,7 +5,7 @@ angular.module('cms')
   .controller('DashboardController', function($scope,$http,$window,currentuser,config){
     $scope.reviewBtn = true;
     $scope.subBtn = true;
-    $scope.conf = {}
+    $scope.conf = undefined
     $scope.assignedSubDetails=[]
     currentuser.data.roles.author=true;
     $scope.reviewer = currentuser.data.roles.reviewer?true:false;
@@ -79,6 +79,7 @@ angular.module('cms')
     })
     var currDate = new Date();
     $http.get("/api/chair/deadlines?conference="+config.conference_name).then(function(response){
+      $scope.conf={}
       if(response.data != null)
       {
         $scope.conf.sub = (response.data.submission_deadline)? new Date(response.data.submission_deadline) : undefined;

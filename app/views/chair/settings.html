@@ -24,6 +24,9 @@
         </md-datepicker>
         <md-button class="md-raised md-primary" ng-click="addReviewDeadline(conf.rev)">Update</md-button>
       </div>
+      <div ng-show="showSuccess">
+        <span>{{showSuccess}}</span>
+      </div>
     </md-content>
   </md-card>
 </div>

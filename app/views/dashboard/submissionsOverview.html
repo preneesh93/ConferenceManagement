@@ -21,7 +21,7 @@
                 <div ng-repeat="author in sub.authors">
                    {{author.email}} | {{author.first_name}} {{author.last_name}}
                 </div>
-                <div>
+                <div class="text-center ">
                   <md-button  ng-if="sub.path" target="_self" ng-href="{{sub.path}}" download="{{sub.path}}" class="md-fab md-primary" aria-label="Comment">
                     <md-tooltip md-direction="left"> Download Paper </md-tooltip>
                     <span class="glyphicon glyphicon-download-alt">

@@ -40,7 +40,9 @@ body{
   margin-right:15px;
   position:absolute;
 }
-
+.text-center {
+  text-align: center;
+}
 
 #side-nav md-content md-list {
   padding-left:0 ;

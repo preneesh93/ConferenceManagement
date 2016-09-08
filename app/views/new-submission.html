@@ -42,14 +42,15 @@
         </md-input-container>
       </div>
       <div>
-        <h4>Upload Paper</h4>
-        <p>Please upload your paper in .pdf format!</p>
-        <input type="file" ngf-select ng-model="subFile" name="file"
-               accept="application/pdf*" ngf-max-size="20MB" required
-               ngf-model-invalid="errorFile">
+        <span>Update Paper:</span>
+        <md-button class="md-raised" type="file" ngf-select ng-model="subFile" name="file"
+                   accept="application/pdf*" ngf-max-size="20MB" required
+                   ngf-model-invalid="errorFile">Select File</md-button>
+        <span ng-if="subFile">{{subFile.name}}</span>
+        <span ng-if="!subFile">No file chosen</span>
         <i ng-show="myForm.file.$error.maxSize">File too large
           {{errorFile.size / 1000000|number:1}}MB: max 20M</i>
-        <button ng-click="subFile = null" ng-show="subFile">Remove</button>
+        <md-button class="md-fab md-mini md-default" ng-click="subFile = null" ng-show="subFile">X</md-button>
         <br><br>
         <span ng-show="subFile.result">Upload Successful</span>
         <span class="err" ng-show="errorMsg">{{errorMsg}}</span>

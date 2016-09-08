@@ -5,7 +5,7 @@
         <md-content class="md-padding">
           <div flex="" layout="row">
             <md-list flex="">
-              <div  ng-repeat="user in users">
+              <div  ng-repeat="user in users" ng-hide="user.roles.chair">
                 <md-list-item ng-click="isCollapsed = !isCollapsed" ng-class="{'selected': !isCollapsed}">
                   <div class="md-list-item-text" layout="column">
                     <h3>  {{user.username}} <small>  | submissions: {{user.submissions.length}}</small> </h3>
@@ -13,15 +13,14 @@
                 </md-list-item>
                 <div uib-collapse="isCollapsed">
                   <div class="well well-lg">
-                    <div>Username: {{user.username}}</div>
-                    <div>Email: {{user.email}}</div>
-                    <div>{{user.title}} <span>{{user.first_name}}</span>
-                      <span>{{user.last_name}}</span>
+                    <div><strong>Username : </strong>{{user.username}}</div>
+                    <div><strong>Email: </strong>{{user.email}}</div>
+                    <div><strong>Name : </strong><span>{{user.first_name}}</span> <span>{{user.last_name}}</span>
                     </div>
-                    <div>Address:  {{user.address}}</div>
-                    <div>Institution {{user.institution}}</div>
-                    <div>Submissions: {{user.submissions.length}}</div>
-                    <div>Assigned Submissions: {{user.assigned_submissions.length}}</div>
+                    <div><strong>Address : </strong> {{user.address}}</div>
+                    <div><strong>Institution :</strong> {{user.institution}}</div>
+                    <div><strong>Submissions : </strong>{{user.submissions.length}}</div>
+                    <div><strong>Assigned Submissions: </strong>{{user.assigned_submissions.length}}</div>
                   </div>
                 </div>
                 <md-divider ></md-divider>
@@ -65,11 +64,9 @@
               </md-list-item>
               <div uib-collapse="isCollapsed">
                 <div class="well well-lg">
-
                   <div> <h3>Title:</h3> {{sub.title}}</div>
                   <div> <h3>Keywords:</h3> <span ng-repeat="key in sub.keywords"> {{key}},</span></div>
-                  <div> <h3>Authors:</h3> {{sub.title}}</div>
-                  <div> <h3>Title:</h3> <span ng-repeat="author in sub.authors"> {{author.email}} | {{author.first_name}} {{author.last_name}}</span></div>
+                  <div> <h3>Authors:</h3> <div ng-repeat="author in sub.authors"> {{author.email}} | {{author.first_name}} {{author.last_name}}</div></div>
                   <md-button  ng-if="sub.path" target="_self" ng-href="{{sub.path}}" download="{{sub.path}}" class="md-fab md-primary" aria-label="Comment">
                     <md-tooltip md-direction="left"> Download Paper </md-tooltip>
                     <span class="glyphicon glyphicon-download-alt">
